@@ -1,0 +1,81 @@
+<!doctype html> 
+<html lang="en"> 
+<head> 
+	<meta charset="UTF-8" />
+	<title>Phaser - Making your first game, part 1</title>
+    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+
+}
+
+var car;
+
+function create() {
+	var graphics = game.add.graphics(0, 0);
+
+	// Car graphics
+	car = game.add.graphics(0, 0);
+	car.beginFill(0xFF000F, 1.0);
+    car.drawRect(435, 10, 30, 80);
+    car.endFill();
+
+	graphics.lineStyle(5, 0x000000, 1);
+	graphics.beginFill(0xFFFFFF, 0.75);
+
+	// Top four
+    graphics.drawRect(400, 0, 100, 100);
+    graphics.drawRect(300, 0, 100, 100);
+    graphics.drawRect(400, 100, 100, 100);
+    graphics.drawRect(300, 100, 100, 100);
+
+    // Middle four
+    graphics.drawRect(400, 200, 100, 100);
+    graphics.drawRect(300, 200, 100, 100);
+    graphics.drawRect(400, 300, 100, 100);
+    graphics.drawRect(300, 300, 100, 100);
+
+    // Left six
+    graphics.drawRect(0, 200, 100, 100);
+    graphics.drawRect(100, 200, 100, 100);
+    graphics.drawRect(200, 200, 100, 100);
+    graphics.drawRect(0, 300, 100, 100);
+    graphics.drawRect(100, 300, 100, 100);
+    graphics.drawRect(200, 300, 100, 100);
+
+    // Right six
+    graphics.drawRect(500, 200, 100, 100);
+    graphics.drawRect(600, 200, 100, 100);
+    graphics.drawRect(700, 200, 100, 100);
+    graphics.drawRect(500, 300, 100, 100);
+    graphics.drawRect(600, 300, 100, 100);
+    graphics.drawRect(700, 300, 100, 100);
+
+    // Bottom four
+    graphics.drawRect(400, 400, 100, 100);
+    graphics.drawRect(300, 400, 100, 100);
+    graphics.drawRect(400, 500, 100, 100);
+    graphics.drawRect(300, 500, 100, 100);
+    
+    graphics.endFill();
+
+}
+
+function update() {
+}
+
+</script>
+
+</body>
+</html>
