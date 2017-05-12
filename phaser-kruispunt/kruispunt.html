@@ -20,16 +20,19 @@ function preload() {
 
 }
 
-var car;
+var carSprite;
 
 function create() {
+
+	cursors = game.input.keyboard.createCursorKeys();
+
 	var graphics = game.add.graphics(0, 0);
 
 	// Car graphics
-	car = game.add.graphics(0, 0);
-	car.beginFill(0xFF000F, 1.0);
-    car.drawRect(435, 10, 30, 80);
-    car.endFill();
+	carGraphics = game.add.graphics(0, 0);
+	carGraphics.beginFill(0xFF000F, 1.0);
+    carGraphics.drawRect(435, 10, 30, 80);
+    carGraphics.endFill();
 
 	graphics.lineStyle(5, 0x000000, 1);
 	graphics.beginFill(0xFFFFFF, 0.75);
@@ -70,9 +73,19 @@ function create() {
     
     graphics.endFill();
 
+    carSprite = game.add.sprite(40, 40, carGraphics.generateTexture());
+    carGraphics.destroy();
+
 }
 
 function update() {
+
+	if (cursors.down.isDown)
+    {
+        //  Move to the left
+        carSprite.y += 15; //possibly add functionality that it reacts only once to a keypress event.
+    } 
+
 }
 
 </script>
