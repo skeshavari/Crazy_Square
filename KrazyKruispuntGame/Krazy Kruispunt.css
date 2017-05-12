@@ -1,0 +1,25 @@
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,
+pre, form, fieldset, table, th, td {
+    margin: 0;
+    padding: 0;
+}
+
+#pageContainerDiv{
+    display: flex;
+    max-width: 100%;
+    min-width: 800px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#gameScreenDiv{
+    width: 600px;
+    border: solid 1px;
+}
+
+#blocklyDiv {
+    width: 600px;
+    height: 600px;
+}
