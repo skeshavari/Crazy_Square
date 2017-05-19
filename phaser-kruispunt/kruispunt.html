@@ -11,82 +11,132 @@
     </style>
 </head>
 <body>
-
+<script type="text/javascript" src="math.js"></script>
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+	var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
-function preload() {
+	function preload() {
 
-}
 
-var carSprite;
+	}
 
-function create() {
+	var carSprite;
+	var textPos;
+	var textAngle;
 
-	cursors = game.input.keyboard.createCursorKeys();
+	function create() {
 
-	var graphics = game.add.graphics(0, 0);
+		cursors = game.input.keyboard.createCursorKeys();
 
-	// Car graphics
-	carGraphics = game.add.graphics(0, 0);
-	carGraphics.beginFill(0xFF000F, 1.0);
-    carGraphics.drawRect(435, 10, 30, 80);
-    carGraphics.endFill();
+		var graphics = game.add.graphics(0, 0);
 
-	graphics.lineStyle(5, 0x000000, 1);
-	graphics.beginFill(0xFFFFFF, 0.75);
+		// Car graphics
+		carGraphics = game.add.graphics(0, 0);
+		carGraphics.beginFill(0xF1234F, 1.0);
+	    carGraphics.drawRect(435, 10, 30, 80);
+	    carGraphics.endFill();
 
-	// Top four
-    graphics.drawRect(400, 0, 100, 100);
-    graphics.drawRect(300, 0, 100, 100);
-    graphics.drawRect(400, 100, 100, 100);
-    graphics.drawRect(300, 100, 100, 100);
+		graphics.lineStyle(5, 0x000000, 1);
+		graphics.beginFill(0xFFFFFF, 0.9);
 
-    // Middle four
-    graphics.drawRect(400, 200, 100, 100);
-    graphics.drawRect(300, 200, 100, 100);
-    graphics.drawRect(400, 300, 100, 100);
-    graphics.drawRect(300, 300, 100, 100);
+		// Top four
+	    graphics.drawRect(400, 0, 100, 100);
+	    graphics.drawRect(300, 0, 100, 100);
+	    graphics.drawRect(400, 100, 100, 100);
+	    graphics.drawRect(300, 100, 100, 100);
 
-    // Left six
-    graphics.drawRect(0, 200, 100, 100);
-    graphics.drawRect(100, 200, 100, 100);
-    graphics.drawRect(200, 200, 100, 100);
-    graphics.drawRect(0, 300, 100, 100);
-    graphics.drawRect(100, 300, 100, 100);
-    graphics.drawRect(200, 300, 100, 100);
+	    // Middle four
+	    graphics.drawRect(400, 200, 100, 100);
+	    graphics.drawRect(300, 200, 100, 100);
+	    graphics.drawRect(400, 300, 100, 100);
+	    graphics.drawRect(300, 300, 100, 100);
 
-    // Right six
-    graphics.drawRect(500, 200, 100, 100);
-    graphics.drawRect(600, 200, 100, 100);
-    graphics.drawRect(700, 200, 100, 100);
-    graphics.drawRect(500, 300, 100, 100);
-    graphics.drawRect(600, 300, 100, 100);
-    graphics.drawRect(700, 300, 100, 100);
+	    // Left six
+	    graphics.drawRect(0, 200, 100, 100);
+	    graphics.drawRect(100, 200, 100, 100);
+	    graphics.drawRect(200, 200, 100, 100);
+	    graphics.drawRect(0, 300, 100, 100);
+	    graphics.drawRect(100, 300, 100, 100);
+	    graphics.drawRect(200, 300, 100, 100);
 
-    // Bottom four
-    graphics.drawRect(400, 400, 100, 100);
-    graphics.drawRect(300, 400, 100, 100);
-    graphics.drawRect(400, 500, 100, 100);
-    graphics.drawRect(300, 500, 100, 100);
-    
-    graphics.endFill();
+	    // Right six
+	    graphics.drawRect(500, 200, 100, 100);
+	    graphics.drawRect(600, 200, 100, 100);
+	    graphics.drawRect(700, 200, 100, 100);
+	    graphics.drawRect(500, 300, 100, 100);
+	    graphics.drawRect(600, 300, 100, 100);
+	    graphics.drawRect(700, 300, 100, 100);
 
-    carSprite = game.add.sprite(40, 40, carGraphics.generateTexture());
-    carGraphics.destroy();
+	    // Bottom four
+	    graphics.drawRect(400, 400, 100, 100);
+	    graphics.drawRect(300, 400, 100, 100);
+	    graphics.drawRect(400, 500, 100, 100);
+	    graphics.drawRect(300, 500, 100, 100);
+	    
+	    graphics.endFill();
 
-}
+	    carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
+	    carSprite.anchor.setTo(0.5, 0.5);
+	    carGraphics.destroy();
 
-function update() {
+	    var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
 
-	if (cursors.down.isDown)
-    {
-        //  Move to the left
-        carSprite.y += 15; //possibly add functionality that it reacts only once to a keypress event.
-    } 
+	    textPos = game.add.text(150, 100, lerp(2, 5, 0.5), style);
 
-}
+	    textPos.anchor.set(0.5);
+
+	    textAngle = game.add.text(650, 500, lerp(2, 5, 0.5), style);
+
+	    textAngle.anchor.set(0.5);
+
+	    carSprite.currentx = carSprite.x;
+	    carSprite.currenty = carSprite.y;
+	    carSprite.gotox = carSprite.x;
+	    carSprite.gotoy = carSprite.y;
+
+	    carSprite.currentAngle = carSprite.angle;
+	    carSprite.gotoAngle = carSprite.angle;
+	}
+
+	function update() {
+
+		textPos.text = "(" + carSprite.gotox + ", " + carSprite.gotoy + ")";
+		textAngle.text = "(" + carSprite.gotoAngle + ")";
+
+		if (cursors.down.downDuration(1))
+	    {
+	        carSprite.gotoy += 100; 
+	        carSprite.gotoAngle = 0;
+	    } 
+
+	    if (cursors.up.downDuration(1))
+	    {
+	        carSprite.gotoy -= 100; 
+	        carSprite.gotoAngle = 180;
+	    } 
+
+	    if (cursors.left.downDuration(1))
+	    {
+	        carSprite.gotox -= 100; 
+	        carSprite.gotoAngle = 90;
+	    } 
+
+	    if (cursors.right.downDuration(1))
+	    {
+	        carSprite.gotox += 100; 
+	        carSprite.gotoAngle = 270;
+	    } 
+
+	    carSprite.x = lerp(carSprite.currentx, carSprite.gotox, 0.5);
+	    carSprite.y = lerp(carSprite.currenty, carSprite.gotoy, 0.5);
+	    carSprite.currentx = carSprite.x;
+	    carSprite.currenty = carSprite.y;
+
+	    carSprite.angle = lerp(carSprite.currentAngle, carSprite.gotoAngle, 0.5);
+	    carSprite.currentAngle = carSprite.angle;
+
+	}
 
 </script>
 
