@@ -1,6 +1,6 @@
-<!doctype html> 
-<html lang="en"> 
-	<head> 
+<!doctype html>
+<html lang="en">
+	<head>
 		<meta charset="UTF-8" />
 		<title>Phaser - Making your first game, part 1</title>
 	    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
@@ -12,10 +12,11 @@
 	</head>
 	<body>
 		<script type="text/javascript" src="math.js"></script>
+		<script type="text/javascript" src="trafficlight.js"></script>
 		<script type="text/javascript">
 
 			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-
+			var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
 			function preload() {
 
 
@@ -25,11 +26,21 @@
 			var textPos;
 			var textAngle;
 
+			var trafficLightSprite;
+			var trafficLightGraphics = new Object();
+
 			function create() {
 
 				cursors = game.input.keyboard.createCursorKeys();
 
 				var graphics = game.add.graphics(0, 0);
+
+				// Trafficlight graphics
+				trafficLightGraphics = game.add.graphics(0, 0);
+				trafficLightGraphics.beginFill(red);
+					trafficLightGraphics.drawRect(225, 125, 50, 50);
+					trafficLightGraphics.endFill();
+				//TrafficLight.make(red);
 
 				// Car graphics
 				carGraphics = game.add.graphics(0, 0);
@@ -73,12 +84,16 @@
 			    graphics.drawRect(300, 400, 100, 100);
 			    graphics.drawRect(400, 500, 100, 100);
 			    graphics.drawRect(300, 500, 100, 100);
-			    
+
 			    graphics.endFill();
 
 			    carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
 			    carSprite.anchor.setTo(0.5, 0.5);
 			    carGraphics.destroy();
+
+					/*trafficLightSprite = game.add.sprite(250, 150, trafficLightGraphics.generateTexture());
+					trafficLightSprite.anchor.setTo(0.5, 0.5);
+					trafficLightGraphics.destroy();*/
 
 			    var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
 
@@ -106,32 +121,31 @@
 
 				if (cursors.down.downDuration(1))
 			    {
-			        carSprite.gotoy += 100; 
+			        carSprite.gotoy += 100;
 			        carSprite.gotoAngle = 0;
-			    } 
+			    }
 
 			    if (cursors.up.downDuration(1))
 			    {
-			        carSprite.gotoy -= 100; 
+			        carSprite.gotoy -= 100;
 			        carSprite.gotoAngle = 180;
-			    } 
+			    }
 
 			    if (cursors.left.downDuration(1))
 			    {
-			        carSprite.gotox -= 100; 
+			        carSprite.gotox -= 100;
 			        carSprite.gotoAngle = 90;
-			    } 
+			    }
 
 			    if (cursors.right.downDuration(1))
 			    {
 			    	if (carSprite.currentAngle === 180) {
 			    		carSprite.gotoAngle = 270;
 			    	} else {
-			    		carSprite.gotox += 100; 
+			    		carSprite.gotox += 100;
 			        	carSprite.gotoAngle = -90;
 			    	}
-			        
-			    } 
+			    }
 
 			    carSprite.x = lerp(carSprite.currentx, carSprite.gotox, 0.5);
 			    carSprite.y = lerp(carSprite.currenty, carSprite.gotoy, 0.5);
