@@ -6,6 +6,7 @@
 	    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
 		<script src="auto.js"></script>
 		<script src="kruispunt.js"></script>
+		<script src="input.js"></script>
 	    <style type="text/css">
 	        body {
 	            margin: 0;
@@ -30,18 +31,18 @@
 			var trafficLightSprite;
 			var trafficLightGraphics = new Object();
 
-			var downKey;
-
+			var upKey, downKey, rightKey, leftKey;
 
 			function create() {
 
+				upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
 				downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+				rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+				leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
 
 				kruispunt = new Kruispunt(game);
-
 				auto = new Auto(game);
-
-				game.physics.enable(auto, Phaser.Physics.ARCADE);
+				// input = new input(game);
 
 				// Trafficlight graphics
 				trafficLightGraphics = game.add.graphics(0, 0);
@@ -49,15 +50,10 @@
 				trafficLightGraphics.drawRect(225, 125, 50, 50);
 				trafficLightGraphics.endFill();
 				//TrafficLight.make(red);
-
-				
 			}
 
 			function update() {
-
-				if (downKey.isDown) {
-			        auto.y++;
-			    }
+				input(this);
 			}
 
 		</script>

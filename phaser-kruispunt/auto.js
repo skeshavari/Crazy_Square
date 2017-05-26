@@ -4,10 +4,10 @@ function Auto(game) {
 	carGraphics.drawRect(435, 10, 30, 80);
 	carGraphics.endFill();
 
-	this.carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
-	this.carSprite.anchor.setTo(0.5, 0.5);
+	this.sprite = game.add.sprite(350, 50, carGraphics.generateTexture());
+	this.sprite.anchor.setTo(0.5, 0.5);
 
 	carGraphics.destroy();
 
-	return this.carSprite;
+	return this;
 }
