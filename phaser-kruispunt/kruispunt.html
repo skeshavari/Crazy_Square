@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Phaser - Making your first game, part 1</title>
-	    <script src="//cdn.jsdelivr.net/phaser/2.2.2/phaser.min.js"></script>
+	    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
 	    <style type="text/css">
 	        body {
 	            margin: 0;
@@ -89,6 +89,7 @@
 
 			    carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
 			    carSprite.anchor.setTo(0.5, 0.5);
+			    
 			    carGraphics.destroy();
 
 					/*trafficLightSprite = game.add.sprite(250, 150, trafficLightGraphics.generateTexture());
@@ -101,7 +102,7 @@
 
 			    textPos.anchor.set(0.5);
 
-			    textAngle = game.add.text(650, 500, lerp(2, 5, 0.5), style);
+			    textAngle = game.add.text(650, 475, lerp(2, 5, 0.5), style);
 
 			    textAngle.anchor.set(0.5);
 
@@ -109,18 +110,16 @@
 			    carSprite.currenty = carSprite.y;
 			    carSprite.gotox = carSprite.x;
 			    carSprite.gotoy = carSprite.y;
-
-			    carSprite.currentAngle = carSprite.angle;
-			    carSprite.gotoAngle = carSprite.angle;
 			}
 
 			function update() {
 
 				textPos.text = "(" + carSprite.gotox + ", " + carSprite.gotoy + ")";
-				textAngle.text = "(" + carSprite.gotoAngle + ")";
+				textAngle.text = "(" + game.math.rotateToAngle(0.5*game.math.PI2, 0.75*game.math.PI2)  + ")";
 
 				if (cursors.down.downDuration(1))
 			    {
+<<<<<<< HEAD
 			        carSprite.gotoy += 100;
 			        carSprite.gotoAngle = 0;
 			    }
@@ -146,15 +145,36 @@
 			        	carSprite.gotoAngle = -90;
 			    	}
 			    }
+=======
+			        carSprite.gotoy += 100; 
+			        carSprite.angle = 180;
+			    } 
+
+			    if (cursors.up.downDuration(1))
+			    {
+			        carSprite.gotoy -= 100; 
+			        carSprite.angle = 0;
+			    } 
+
+			    if (cursors.left.downDuration(1))
+			    {
+			        carSprite.gotox -= 100; 
+			        carSprite.angle = 270;
+			    } 
+
+			    if (cursors.right.downDuration(1))
+			    {
+		    		carSprite.gotox += 100; 
+		        	carSprite.angle = 90;
+
+			    } 
+>>>>>>> da636ee23fa4ea7a2f579e34a884ab580994bc5e
 
 			    carSprite.x = lerp(carSprite.currentx, carSprite.gotox, 0.5);
 			    carSprite.y = lerp(carSprite.currenty, carSprite.gotoy, 0.5);
 			    carSprite.currentx = carSprite.x;
 			    carSprite.currenty = carSprite.y;
-
-			    carSprite.angle = lerp(carSprite.currentAngle, carSprite.gotoAngle, 0.5);
-			    carSprite.currentAngle = carSprite.angle;
-
+			    
 			}
 
 		</script>
