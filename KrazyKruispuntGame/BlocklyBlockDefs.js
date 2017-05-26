@@ -102,7 +102,7 @@ Blockly.Blocks['checktrafficlightcar'] = {
     this.appendValueInput("TrafficLightHasCar")
         .setCheck(null)
         .appendField("")
-        .appendField(new Blockly.FieldDropdown([["Car at","TOP"], ["No car at","RIGHT"]]), "LightIdentifier")
+        .appendField(new Blockly.FieldDropdown([["Car at","CAR-PRESENT"], ["No car at","CAR-ABSENT"]]), "CarPresent")
         .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")
         .appendField("Traffic Light");
     this.setInputsInline(false);
