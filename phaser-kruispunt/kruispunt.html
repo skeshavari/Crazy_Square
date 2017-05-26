@@ -32,8 +32,6 @@
 
 			function create() {
 
-				cursors = game.input.keyboard.createCursorKeys();
-
 				var graphics = game.add.graphics(0, 0);
 
 				// Trafficlight graphics
@@ -93,16 +91,6 @@
 
 			    carGraphics.destroy();
 
-			    var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
-
-			    textPos = game.add.text(150, 100, lerp(2, 5, 0.5), style);
-
-			    textPos.anchor.set(0.5);
-
-			    textAngle = game.add.text(650, 475, lerp(2, 5, 0.5), style);
-
-			    textAngle.anchor.set(0.5);
-
 			    carSprite.currentx = carSprite.x;
 			    carSprite.currenty = carSprite.y;
 			    carSprite.gotox = carSprite.x;
@@ -110,64 +98,10 @@
 			}
 
 			function update() {
-
-				textPos.text = "(" + carSprite.gotox + ", " + carSprite.gotoy + ")";
-				textAngle.text = "(" + game.math.rotateToAngle(0.5*game.math.PI2, 0.75*game.math.PI2)  + ")";
-
-				if (cursors.down.downDuration(1))
-			    {
-			        carSprite.gotoy += 100;
-			        carSprite.gotoAngle = 0;
-			    }
-
-			    if (cursors.up.downDuration(1))
-			    {
-			        carSprite.gotoy -= 100;
-			        carSprite.gotoAngle = 180;
-			    }
-
-			    if (cursors.left.downDuration(1))
-			    {
-			        carSprite.gotox -= 100;
-			        carSprite.gotoAngle = 90;
-			    }
-
-			    if (cursors.right.downDuration(1))
-			    {
-			    	if (carSprite.currentAngle === 180) {
-			    		carSprite.gotoAngle = 270;
-			    	} else {
-			    		carSprite.gotox += 100;
-			        	carSprite.gotoAngle = -90;
-			    	}
-			    } else {
-			        carSprite.gotoy += 100;
-			        carSprite.angle = 180;
-			    }
-
-			    if (cursors.up.downDuration(1))
-			    {
-			        carSprite.gotoy -= 100;
-			        carSprite.angle = 0;
-			    }
-
-			    if (cursors.left.downDuration(1))
-			    {
-			        carSprite.gotox -= 100;
-			        carSprite.angle = 270;
-			    }
-
-			    if (cursors.right.downDuration(1))
-			    {
-		    		carSprite.gotox += 100;
-		        	carSprite.angle = 90;
-
-			    }
 			    carSprite.x = lerp(carSprite.currentx, carSprite.gotox, 0.5);
 			    carSprite.y = lerp(carSprite.currenty, carSprite.gotoy, 0.5);
 			    carSprite.currentx = carSprite.x;
 			    carSprite.currenty = carSprite.y;
-
 			}
 
 		</script>
