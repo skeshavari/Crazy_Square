@@ -89,12 +89,8 @@
 
 			    carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
 			    carSprite.anchor.setTo(0.5, 0.5);
-			    
-			    carGraphics.destroy();
 
-					/*trafficLightSprite = game.add.sprite(250, 150, trafficLightGraphics.generateTexture());
-					trafficLightSprite.anchor.setTo(0.5, 0.5);
-					trafficLightGraphics.destroy();*/
+			    carGraphics.destroy();
 
 			    var style = { font: "65px Arial", fill: "#ff0044", align: "center" };
 
@@ -119,7 +115,6 @@
 
 				if (cursors.down.downDuration(1))
 			    {
-<<<<<<< HEAD
 			        carSprite.gotoy += 100;
 			        carSprite.gotoAngle = 0;
 			    }
@@ -144,37 +139,34 @@
 			    		carSprite.gotox += 100;
 			        	carSprite.gotoAngle = -90;
 			    	}
-			    }
-=======
-			        carSprite.gotoy += 100; 
+			    } else {
+			        carSprite.gotoy += 100;
 			        carSprite.angle = 180;
-			    } 
+			    }
 
 			    if (cursors.up.downDuration(1))
 			    {
-			        carSprite.gotoy -= 100; 
+			        carSprite.gotoy -= 100;
 			        carSprite.angle = 0;
-			    } 
+			    }
 
 			    if (cursors.left.downDuration(1))
 			    {
-			        carSprite.gotox -= 100; 
+			        carSprite.gotox -= 100;
 			        carSprite.angle = 270;
-			    } 
+			    }
 
 			    if (cursors.right.downDuration(1))
 			    {
-		    		carSprite.gotox += 100; 
+		    		carSprite.gotox += 100;
 		        	carSprite.angle = 90;
 
-			    } 
->>>>>>> da636ee23fa4ea7a2f579e34a884ab580994bc5e
-
+			    }
 			    carSprite.x = lerp(carSprite.currentx, carSprite.gotox, 0.5);
 			    carSprite.y = lerp(carSprite.currenty, carSprite.gotoy, 0.5);
 			    carSprite.currentx = carSprite.x;
 			    carSprite.currenty = carSprite.y;
-			    
+
 			}
 
 		</script>
