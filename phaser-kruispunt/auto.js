@@ -10,5 +10,4 @@ function Auto(game) {
 	carGraphics.destroy();
 
 	return this.carSprite;
-
 }

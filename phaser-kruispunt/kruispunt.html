@@ -5,6 +5,7 @@
 		<title>Phaser - Making your first game, part 1</title>
 	    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
 		<script src="auto.js"></script>
+		<script src="kruispunt.js"></script>
 	    <style type="text/css">
 	        body {
 	            margin: 0;
@@ -23,21 +24,26 @@
 
 			}
 
+			var kruispunt;
 			var auto;
 
 			var trafficLightSprite;
 			var trafficLight = new Object();
 
+			var downKey;
+
+
 			function create() {
 
-				var graphics = game.add.graphics(0, 0);
+				downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+				kruispunt = new Kruispunt(game);
 
 				auto = new Auto(game);
-				// game.physics.enable(auto, Phaser.Physics.ARCADE);
+
+				game.physics.enable(auto, Phaser.Physics.ARCADE);
 
 				// Trafficlight graphics
-
-				//trafficlight = new Trafficlight(game);
+				trafficLight = new TrafficLight(game, red);
 				//trafficLight = TrafficLight.createTrafficLight(red);
 				// trafficLightGraphics = game.add.graphics(0, 0);
 				// trafficLightGraphics.beginFill(red);
@@ -45,63 +51,14 @@
 				// 	trafficLightGraphics.endFill();
 
 
-				graphics.lineStyle(5, 0x000000, 1);
-				graphics.beginFill(0xFFFFFF, 0.9);
 
-				// Top four
-			    graphics.drawRect(400, 0, 100, 100);
-			    graphics.drawRect(300, 0, 100, 100);
-			    graphics.drawRect(400, 100, 100, 100);
-			    graphics.drawRect(300, 100, 100, 100);
-
-			    // Middle four
-			    graphics.drawRect(400, 200, 100, 100);
-			    graphics.drawRect(300, 200, 100, 100);
-			    graphics.drawRect(400, 300, 100, 100);
-			    graphics.drawRect(300, 300, 100, 100);
-
-			    // Left six
-			    graphics.drawRect(0, 200, 100, 100);
-			    graphics.drawRect(100, 200, 100, 100);
-			    graphics.drawRect(200, 200, 100, 100);
-			    graphics.drawRect(0, 300, 100, 100);
-			    graphics.drawRect(100, 300, 100, 100);
-			    graphics.drawRect(200, 300, 100, 100);
-
-			    // Right six
-			    graphics.drawRect(500, 200, 100, 100);
-			    graphics.drawRect(600, 200, 100, 100);
-			    graphics.drawRect(700, 200, 100, 100);
-			    graphics.drawRect(500, 300, 100, 100);
-			    graphics.drawRect(600, 300, 100, 100);
-			    graphics.drawRect(700, 300, 100, 100);
-
-			    // Bottom four
-			    graphics.drawRect(400, 400, 100, 100);
-			    graphics.drawRect(300, 400, 100, 100);
-			    graphics.drawRect(400, 500, 100, 100);
-			    graphics.drawRect(300, 500, 100, 100);
-
-			    graphics.endFill();
-
-			    // carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
-			    // carSprite.anchor.setTo(0.5, 0.5);
-
-			    // carGraphics.destroy();
-
-			    // carSprite.currentx = carSprite.x;
-			    // carSprite.currenty = carSprite.y;
-			    // carSprite.gotox = carSprite.x;
-			    // carSprite.gotoy = carSprite.y;
 			}
 
 			function update() {
 
-				//  only move when you click
-			    // if (game.input.keyboard.down.isDown)
-			    // {
-			    //     auto.x += 20;
-			    // }
+				if (downKey.isDown) {
+			        auto.y++;
+			    }
 			}
 
 		</script>
