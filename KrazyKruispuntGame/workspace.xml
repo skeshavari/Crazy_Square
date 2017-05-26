@@ -1,0 +1,17 @@
+<xml xmlns="http://www.w3.org/1999/xhtml" id="workspaceBlocks" style="display:none">
+  <block type="do_for_x_seconds" id="MgK^^@!uVgb)rSY3llH:" x="38" y="113">
+    <field name="seconds">5</field>
+    <statement name="NAME">
+      <block type="settrafficlight" id="^.,SOG{#Hu7KqP3b^x#K">
+        <field name="LightIdentifier">TOP</field>
+        <field name="LightValue">RED</field>
+      </block>
+    </statement>
+    <next>
+      <block type="settrafficlight" id="#w/Uw}bh}UT)rd[(v9Ih">
+        <field name="LightIdentifier">TOP</field>
+        <field name="LightValue">GREEN</field>
+      </block>
+    </next>
+  </block>
+</xml>
