@@ -1,0 +1,29 @@
+<xml id="toolbox" style="display: none">
+	<category name="Loops">
+		<block type="if_else"></block>
+		<block type="do_for_x_seconds">
+			<field name="seconds">0</field>
+		</block>
+		<block type="repeat_until"></block>
+	</category>
+	<category name="Logic">
+		<block type="and_or">
+			<field name="andOr">&amp;&amp;</field>
+		</block>
+		<block type="checktrafficlight">
+			<field name="LightIdentifier">TOP</field>
+			<field name="LightValue">RED</field>
+		</block>
+		<block type="checktrafficlightcar">
+			<field name="LightIdentifier">TOP</field>
+			<field name="LightIdentifier">TOP</field>
+		</block>
+		<block type="gameisover"></block>
+	</category>
+	<category name="Change">
+		<block type="settrafficlight">
+			<field name="LightIdentifier">TOP</field>
+			<field name="LightValue">RED</field>
+		</block>
+	</category>
+</xml>
