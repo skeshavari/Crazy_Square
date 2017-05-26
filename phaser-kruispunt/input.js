@@ -1,6 +1,4 @@
-
-
-function input(game) { 
+function updateGamestate(game) { 
 	if (upKey.downDuration(1)) {
 	    auto.sprite.y -= 100;
 	} else if (downKey.downDuration(1)) {

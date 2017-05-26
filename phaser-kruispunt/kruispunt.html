@@ -29,7 +29,7 @@
 			var auto;
 
 			var trafficLightSprite;
-			var trafficLightGraphics = new Object();
+			var trafficLight = new Object();
 
 			var upKey, downKey, rightKey, leftKey;
 
@@ -42,18 +42,12 @@
 
 				kruispunt = new Kruispunt(game);
 				auto = new Auto(game);
-				// input = new input(game);
-
-				// Trafficlight graphics
-				trafficLightGraphics = game.add.graphics(0, 0);
-				trafficLightGraphics.beginFill(red);
-				trafficLightGraphics.drawRect(225, 125, 50, 50);
-				trafficLightGraphics.endFill();
-				//TrafficLight.make(red);
+				trafficLight = new TrafficLight(game, red);
+	
 			}
 
 			function update() {
-				input(this);
+				updateGamestate(this);
 			}
 
 		</script>
