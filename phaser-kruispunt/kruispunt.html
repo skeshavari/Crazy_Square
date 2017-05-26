@@ -12,6 +12,7 @@
 	    </style>
 	</head>
 	<body>
+		<script type="text/javascript" src="math.js"></script>
 		<script type="text/javascript" src="trafficlight.js"></script>
 		<script type="text/javascript">
 
@@ -27,18 +28,18 @@
 			var textAngle;
 
 			var trafficLightSprite;
-			var trafficLightGraphics = new Object();
+			var trafficLight = new Object();
 
 			function create() {
 
 				var graphics = game.add.graphics(0, 0);
 
 				// Trafficlight graphics
-				trafficLightGraphics = game.add.graphics(0, 0);
-				trafficLightGraphics.beginFill(red);
-					trafficLightGraphics.drawRect(225, 125, 50, 50);
-					trafficLightGraphics.endFill();
-				//TrafficLight.make(red);
+				trafficLight = TrafficLight.createTrafficLight(red);
+				// trafficLightGraphics = game.add.graphics(0, 0);
+				// trafficLightGraphics.beginFill(red);
+				// 	trafficLightGraphics.drawRect(225, 125, 50, 50);
+				// 	trafficLightGraphics.endFill();
 
 				// Car graphics
 				carGraphics = game.add.graphics(0, 0);
