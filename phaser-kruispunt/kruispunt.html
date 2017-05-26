@@ -4,7 +4,7 @@
 		<meta charset="UTF-8" />
 		<title>Phaser - Making your first game, part 1</title>
 	    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
-		<script src="Game.js"></script>
+		<script src="auto.js"></script>
 	    <style type="text/css">
 	        body {
 	            margin: 0;
@@ -12,20 +12,18 @@
 	    </style>
 	</head>
 	<body>
-		<script type="text/javascript" src="math.js"></script>
 		<script type="text/javascript" src="trafficlight.js"></script>
 		<script type="text/javascript">
 
 			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 			var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
+
 			function preload() {
 
 
 			}
 
-			var carSprite;
-			var textPos;
-			var textAngle;
+			var auto;
 
 			var trafficLightSprite;
 			var trafficLight = new Object();
@@ -34,18 +32,23 @@
 
 				var graphics = game.add.graphics(0, 0);
 
+				auto = new Auto(game);
+				game.physics.enable(auto, Phaser.Physics.ARCADE);
+
 				// Trafficlight graphics
+<<<<<<< HEAD
 				trafficLight = TrafficLight.createTrafficLight(red);
 				// trafficLightGraphics = game.add.graphics(0, 0);
 				// trafficLightGraphics.beginFill(red);
 				// 	trafficLightGraphics.drawRect(225, 125, 50, 50);
 				// 	trafficLightGraphics.endFill();
-
-				// Car graphics
-				carGraphics = game.add.graphics(0, 0);
-				carGraphics.beginFill(0xF1234F, 1.0);
-			    carGraphics.drawRect(435, 10, 30, 80);
-			    carGraphics.endFill();
+=======
+				trafficLightGraphics = game.add.graphics(0, 0);
+				trafficLightGraphics.beginFill(red);
+				trafficLightGraphics.drawRect(225, 125, 50, 50);
+				trafficLightGraphics.endFill();
+				//TrafficLight.make(red);
+>>>>>>> 94a17eb6ee6a76e49002de7d4ea3d0f349a7aeed
 
 				graphics.lineStyle(5, 0x000000, 1);
 				graphics.beginFill(0xFFFFFF, 0.9);
@@ -86,22 +89,24 @@
 
 			    graphics.endFill();
 
-			    carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
-			    carSprite.anchor.setTo(0.5, 0.5);
+			    // carSprite = game.add.sprite(350, 50, carGraphics.generateTexture());
+			    // carSprite.anchor.setTo(0.5, 0.5);
 
-			    carGraphics.destroy();
+			    // carGraphics.destroy();
 
-			    carSprite.currentx = carSprite.x;
-			    carSprite.currenty = carSprite.y;
-			    carSprite.gotox = carSprite.x;
-			    carSprite.gotoy = carSprite.y;
+			    // carSprite.currentx = carSprite.x;
+			    // carSprite.currenty = carSprite.y;
+			    // carSprite.gotox = carSprite.x;
+			    // carSprite.gotoy = carSprite.y;
 			}
 
 			function update() {
-			    carSprite.x = lerp(carSprite.currentx, carSprite.gotox, 0.5);
-			    carSprite.y = lerp(carSprite.currenty, carSprite.gotoy, 0.5);
-			    carSprite.currentx = carSprite.x;
-			    carSprite.currenty = carSprite.y;
+
+				//  only move when you click
+			    if (game.input.keyboard.down.isDown)
+			    {
+			        auto.x += 20;
+			    }
 			}
 
 		</script>
