@@ -9,5 +9,12 @@ function Auto(game) {
 
 	carGraphics.destroy();
 
+	this.currentX = this.sprite.x;
+	this.goX = this.currentX;
+
+	this.updateX = function updateX() {
+		this.sprite.x = this.goX;
+	}
+
 	return this;
 }

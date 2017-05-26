@@ -7,6 +7,7 @@
 		<script src="auto.js"></script>
 		<script src="kruispunt.js"></script>
 		<script src="input.js"></script>
+		<script src="trafficlight.js"></script>
 	    <style type="text/css">
 	        body {
 	            margin: 0;
@@ -14,22 +15,19 @@
 	    </style>
 	</head>
 	<body>
-		<script type="text/javascript" src="trafficlight.js"></script>
+		
 		<script type="text/javascript">
 
 			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 			var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
 
 			function preload() {
-
-
 			}
 
 			var kruispunt;
 			var auto;
 
-			var trafficLightSprite;
-			var trafficLight = new Object();
+			var trafficLight;
 
 			var upKey, downKey, rightKey, leftKey;
 
@@ -48,6 +46,7 @@
 
 			function update() {
 				updateGamestate(this);
+				auto.updateX();
 			}
 
 		</script>
