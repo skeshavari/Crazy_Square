@@ -41,7 +41,7 @@
 				kruispunt = new Kruispunt(game);
 				auto = new Auto(game);
 				trafficLight = new TrafficLight(red, 225, 125);
-
+				setTimeout(TrafficLight(green, 225, 125), 2000); //fix Timeout so the TL's can be put on a timer!
 			}
 
 			function update() {
