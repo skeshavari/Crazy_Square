@@ -1,4 +1,4 @@
-function Kruispunt(game) { 
+var Crossroad = function(game) {
 	var graphics = game.add.graphics(0, 0);
 
 	graphics.lineStyle(5, 0x000000, 1);
