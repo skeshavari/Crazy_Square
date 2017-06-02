@@ -15,7 +15,7 @@
 	    </style>
 	</head>
 	<body>
-		
+
 		<script type="text/javascript">
 
 			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
@@ -40,8 +40,8 @@
 
 				kruispunt = new Kruispunt(game);
 				auto = new Auto(game);
-				trafficLight = new TrafficLight(red, 225, 125);
-				setTimeout(TrafficLight(green, 225, 125), 2000); //fix Timeout so the TL's can be put on a timer!
+				trafficLight = new TrafficLight(red, gridToScreenX, gridToScreenY);
+				// setTimeout(TrafficLight(green, 225, 125), 2000); //fix Timeout so the TL's can be put on a timer!
 			}
 
 			function update() {
@@ -49,6 +49,15 @@
 				auto.updateX();
 			}
 
+			function gridToScreenX(gridX){
+				screenX = gridX * 100;
+				return screenX;
+			}
+
+			function gridToScreenY(gridY){
+				screenY = gridY * 100;
+				return screenY;
+			}
 		</script>
 
 	</body>

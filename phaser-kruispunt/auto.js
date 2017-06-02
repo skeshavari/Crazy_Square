@@ -1,4 +1,4 @@
-function Auto(game) { 
+function Auto(game) {
 	carGraphics = game.add.graphics(0, 0);
 	carGraphics.beginFill(0xF1234F, 1.0);
 	carGraphics.drawRect(435, 10, 30, 80);
