@@ -39,7 +39,7 @@ Blockly.JavaScript['checkTrafficLight'] = function (block) {
     if (dropdownLightValue === "Red") {
         dropdownLightValue = "RED";
     }
-    var code = dropdownLightPosition + ".getColour == " + dropdownLightValue + "" + value_checktrafficlight;
+    var code = dropdownLightPosition + ".getColor == " + dropdownLightValue + "" + value_checktrafficlight;
     return [code, Blockly.JavaScript.ORDER_EQUALITY];
 };
 
@@ -47,10 +47,13 @@ Blockly.JavaScript['settrafficlight'] = function (block) {
     var dropdown_lightidentifier = block.getFieldValue('LightIdentifier');
     var dropdown_lightvalue = block.getFieldValue('LightValue');
 
+    if (dropdown_lightidentifier === "Top") {
+        dropdown_lightidentifier = "trafficLightTop";
+    }
     if(dropdown_lightvalue === "Red"){
         dropdown_lightvalue = "RED";
     }
-    var code = 'setTrafficlight' + dropdown_lightidentifier + '(' + dropdown_lightvalue + ');';
+    var code = dropdown_lightidentifier + '.setColor(' + dropdown_lightvalue + ');';
     return code;
 };
 
