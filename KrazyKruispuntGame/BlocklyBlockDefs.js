@@ -39,9 +39,9 @@ Blockly.Blocks['do_for_x_seconds'] = {
 Blockly.Blocks['and_or'] = {
   init: function() {
     this.appendValueInput("block_andOr")
-        .setCheck(true, "Boolean")
+        .setCheck(true, null)
         .appendField(new Blockly.FieldDropdown([["and","&&"], ["or","||"]]), "andOr");
-    this.setOutput(true, "Boolean");
+    this.setOutput(true, null);
     this.setColour(65);
     this.setTooltip('');
     this.setHelpUrl('');
@@ -88,7 +88,7 @@ Blockly.Blocks['settrafficlight'] = {
         .appendField("Set Traffic Light")
         .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")
         .appendField("to")
-        .appendField(new Blockly.FieldDropdown([["red","RED"], ["yellow","YELLOW"], ["green","GREEN"]]), "LightValue");
+        .appendField(new Blockly.FieldDropdown([["Red","RED"], ["Yellow","YELLOW"], ["Green","GREEN"]]), "LightValue");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(180);
@@ -100,13 +100,13 @@ Blockly.Blocks['settrafficlight'] = {
 Blockly.Blocks['checktrafficlightcar'] = {
   init: function() {
     this.appendValueInput("TrafficLightHasCar")
-        .setCheck(true, "Boolean")
+        .setCheck(false)
         .appendField("")
-        .appendField(new Blockly.FieldDropdown([["Car at","CAR-PRESENT"], ["No car at","CAR-ABSENT"]]), "CarPresent")
-        .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")
+        .appendField(new Blockly.FieldDropdown([["Car at","true"], ["No car at","false"]]), "CarPresent")
+        .appendField(new Blockly.FieldDropdown([["Top","trafficLightTop"], ["Right","trafficLightRight"], ["Bottom","trafficLightBottom"], ["Left","trafficLightLeft"]]), "LightIdentifier")
         .appendField("Traffic Light");
     this.setInputsInline(false);
-    this.setOutput(true, "Boolean");
+    this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip('');
     this.setHelpUrl('');
