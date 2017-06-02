@@ -15,9 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './src/main/krazykruispunt.js',
-      './src/test/*.js',
-      '/src/main/*.js',
+      'src/main/javascript/KrazyKruispunt.js',
+      './src/test/javascript/*.js',
+      './src/main/javascript/*.js',
       './src/main/*.js'
     ],
 
