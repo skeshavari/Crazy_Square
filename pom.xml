@@ -41,39 +41,43 @@
                     <!-- optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ -->
                     <downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>
                 </configuration>
+
+                <execution>
+                    <id>npm install</id>
+                    <goals>
+                        <goal>npm</goal>
+                    </goals>
+
+                    <!-- optional: default phase is "generate-resources" -->
+                    <phase>generate-resources</phase>
+
+                    <configuration>
+                        <!-- optional: The default argument is actually
+                        "install", so unless you need to run some other npm command,
+                        you can remove this whole <configuration> section.
+                        -->
+                        <arguments>install</arguments>
+                    </configuration>
+                </execution>
+
+                <execution>
+                    <id>javascript tests</id>
+                    <goals>
+                        <goal>karma</goal>
+                    </goals>
+
+                    <!-- optional: the default plase is "test". Some developers
+                    choose to run karma in the "integration-test" phase. -->
+                    <phase>test</phase>
+
+                    <configuration>
+                        <!-- optional: the default is "karma.conf.js" in your working directory -->
+                        <karmaConfPath>karma.conf.ci.js</karmaConfPath>
+                    </configuration>
+                </execution>
             </plugin>
         </plugins>
-        <execution>
-            <id>npm install</id>
-            <goals>
-                <goal>npm</goal>
-            </goals>
 
-            <!-- optional: default phase is "generate-resources" -->
-            <phase>generate-resources</phase>
 
-            <configuration>
-                <!-- optional: The default argument is actually
-                "install", so unless you need to run some other npm command,
-                you can remove this whole <configuration> section.
-                -->
-                <arguments>install</arguments>
-            </configuration>
-        </execution>
-        <execution>
-            <id>javascript tests</id>
-            <goals>
-                <goal>karma</goal>
-            </goals>
-
-            <!-- optional: the default plase is "test". Some developers
-            choose to run karma in the "integration-test" phase. -->
-            <phase>test</phase>
-
-            <configuration>
-                <!-- optional: the default is "karma.conf.js" in your working directory -->
-                <karmaConfPath>karma.conf.ci.js</karmaConfPath>
-            </configuration>
-        </execution>
     </build>
 </project>
