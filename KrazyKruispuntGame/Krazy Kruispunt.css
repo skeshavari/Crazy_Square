@@ -4,6 +4,10 @@ pre, form, fieldset, table, th, td {
     padding: 0;
 }
 
+body {
+    overflow: hidden;
+}
+
 #pageContainerDiv{
     display: flex;
     max-width: 100%;

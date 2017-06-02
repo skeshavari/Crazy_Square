@@ -1,18 +1,18 @@
 Blockly.Blocks['if_else'] = {
   init: function() {
-    this.appendValueInput("NAME")
+    this.appendValueInput("if")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("if");
-    this.appendStatementInput("NAME")
+    this.appendStatementInput("do")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("do");
-    this.appendStatementInput("NAME")
+    this.appendStatementInput("else")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField("else");
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(345);
@@ -23,7 +23,7 @@ Blockly.Blocks['if_else'] = {
 
 Blockly.Blocks['do_for_x_seconds'] = {
   init: function() {
-    this.appendStatementInput("NAME")
+    this.appendStatementInput("repeat")
         .setCheck(null)
         .appendField("do for")
         .appendField(new Blockly.FieldNumber(0), "seconds")
@@ -38,10 +38,10 @@ Blockly.Blocks['do_for_x_seconds'] = {
 
 Blockly.Blocks['and_or'] = {
   init: function() {
-    this.appendValueInput("NAME")
-        .setCheck(null)
+    this.appendValueInput("block_andOr")
+        .setCheck(true, "Boolean")
         .appendField(new Blockly.FieldDropdown([["and","&&"], ["or","||"]]), "andOr");
-    this.setOutput(true, null);
+    this.setOutput(true, "Boolean");
     this.setColour(65);
     this.setTooltip('');
     this.setHelpUrl('');
@@ -50,11 +50,11 @@ Blockly.Blocks['and_or'] = {
 
 Blockly.Blocks['repeat_until'] = {
   init: function() {
-    this.appendStatementInput("NAME")
+    this.appendStatementInput("codeToRepeat")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("repeat");
-    this.appendStatementInput("NAME")
+    this.appendStatementInput("stopCondition")
         .setCheck(null)
         .setAlign(Blockly.ALIGN_RIGHT)
         .appendField("until");
@@ -66,16 +66,16 @@ Blockly.Blocks['repeat_until'] = {
   }
 };
 
-Blockly.Blocks['checktrafficlight'] = {
+Blockly.Blocks['checkTrafficLight'] = {
   init: function() {
     this.appendValueInput("checkTrafficLight")
         .setCheck(null)
         .appendField("Traffic Light")
-        .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")
+        .appendField(new Blockly.FieldDropdown([["Top","trafficLightTop"], ["Right","trafficLightRight"], ["Bottom","trafficLightBottom"], ["Left","trafficLightLeft"]]), "LightIdentifier")
         .appendField("is")
-        .appendField(new Blockly.FieldDropdown([["red","RED"], ["yellow","YELLOW"], ["green","GREEN"]]), "LightValue");
+        .appendField(new Blockly.FieldDropdown([["Red","RED"], ["Yellow","YELLOW"], ["Green","GREEN"]]), "LightValue");
     this.setInputsInline(false);
-    this.setOutput(true, "Boolean");
+    this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip('');
     this.setHelpUrl('');
@@ -100,7 +100,7 @@ Blockly.Blocks['settrafficlight'] = {
 Blockly.Blocks['checktrafficlightcar'] = {
   init: function() {
     this.appendValueInput("TrafficLightHasCar")
-        .setCheck(null)
+        .setCheck(true, "Boolean")
         .appendField("")
         .appendField(new Blockly.FieldDropdown([["Car at","CAR-PRESENT"], ["No car at","CAR-ABSENT"]]), "CarPresent")
         .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")
