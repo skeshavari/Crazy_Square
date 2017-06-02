@@ -12,7 +12,7 @@ Blockly.Blocks['if_else'] = {
         .setCheck(null)
         .setAlign(Blockly.ALIGN_CENTRE)
         .appendField("else");
-    this.setInputsInline(false);
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(345);
@@ -39,9 +39,9 @@ Blockly.Blocks['do_for_x_seconds'] = {
 Blockly.Blocks['and_or'] = {
   init: function() {
     this.appendValueInput("block_andOr")
-        .setCheck('Boolean')
+        .setCheck(true, "Boolean")
         .appendField(new Blockly.FieldDropdown([["and","&&"], ["or","||"]]), "andOr");
-    this.setOutput(true, null);
+    this.setOutput(true, "Boolean");
     this.setColour(65);
     this.setTooltip('');
     this.setHelpUrl('');
@@ -66,16 +66,16 @@ Blockly.Blocks['repeat_until'] = {
   }
 };
 
-Blockly.Blocks['checktrafficlight'] = {
+Blockly.Blocks['checkTrafficLight'] = {
   init: function() {
     this.appendValueInput("checkTrafficLight")
         .setCheck(null)
         .appendField("Traffic Light")
-        .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")
+        .appendField(new Blockly.FieldDropdown([["Top","trafficLightTop"], ["Right","trafficLightRight"], ["Bottom","trafficLightBottom"], ["Left","trafficLightLeft"]]), "LightIdentifier")
         .appendField("is")
-        .appendField(new Blockly.FieldDropdown([["red","RED"], ["yellow","YELLOW"], ["green","GREEN"]]), "LightValue");
+        .appendField(new Blockly.FieldDropdown([["Red","RED"], ["Yellow","YELLOW"], ["Green","GREEN"]]), "LightValue");
     this.setInputsInline(false);
-    this.setOutput(true, "Boolean");
+    this.setOutput(true, null);
     this.setColour(60);
     this.setTooltip('');
     this.setHelpUrl('');
@@ -100,7 +100,7 @@ Blockly.Blocks['settrafficlight'] = {
 Blockly.Blocks['checktrafficlightcar'] = {
   init: function() {
     this.appendValueInput("TrafficLightHasCar")
-        .setCheck(null)
+        .setCheck(true, "Boolean")
         .appendField("")
         .appendField(new Blockly.FieldDropdown([["Car at","CAR-PRESENT"], ["No car at","CAR-ABSENT"]]), "CarPresent")
         .appendField(new Blockly.FieldDropdown([["Top","TOP"], ["Right","RIGHT"], ["Bottom","BOTTOM"], ["Left","LEFT"]]), "LightIdentifier")

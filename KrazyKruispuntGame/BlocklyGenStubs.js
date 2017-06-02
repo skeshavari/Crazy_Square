@@ -2,7 +2,7 @@ Blockly.JavaScript['if_else'] = function (block) {
     var block_if = Blockly.JavaScript.valueToCode(block, 'if', Blockly.JavaScript.ORDER_ATOMIC);
     var block_do = Blockly.JavaScript.statementToCode(block, 'do');
     var block_else = Blockly.JavaScript.statementToCode(block, 'else');
-    var code = 'if(' + block_if + '){\n' + block_do + '}else{\n' + block_else + '}\n';
+    var code = 'if(' + block_if + '){\n' + block_do + '}else{\n' + block_else + '};\n';
     return code;
 };
 
@@ -15,8 +15,8 @@ Blockly.JavaScript['do_for_x_seconds'] = function (block) {
 
 Blockly.JavaScript['and_or'] = function (block) {
     var dropdown_andor = block.getFieldValue('andOr');
-    var choiceAndOr = Blockly.JavaScript.valueToCode(block, 'andOr', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = dropdown_andor;
+    var choiceAndOr = Blockly.JavaScript.valueToCode(block, 'block_andOr', Blockly.JavaScript.ORDER_ATOMIC);
+    var code = dropdown_andor+""+choiceAndOr;
     return [code, Blockly.JavaScript.ORDER_LOGICAL_AND];
 };
 
@@ -28,14 +28,20 @@ Blockly.JavaScript['repeat_until'] = function (block) {
     return code;
 };
 
-Blockly.JavaScript['checktrafficlight'] = function (block) {
-    var dropdown_lightidentifier = block.getFieldValue('LightIdentifier');
-    var dropdown_lightvalue = block.getFieldValue('LightValue');
+Blockly.JavaScript['checkTrafficLight'] = function (block) {
+    var dropdownLightPosition = block.getFieldValue('LightIdentifier');
+    var dropdownLightValue = block.getFieldValue('LightValue');
     var value_checktrafficlight = Blockly.JavaScript.valueToCode(block, 'checkTrafficLight', Blockly.JavaScript.ORDER_ATOMIC);
     // TODO: Assemble JavaScript into code variable.
-    var code = '...';
+    if (dropdownLightPosition === "Top"){
+        dropdownLightPosition = "trafficLightTop";
+    }
+    if (dropdownLightValue === "Red"){
+        dropdownLightValue = "RED";
+    }
+    var code = dropdownLightPosition+".colour == "+dropdownLightValue+""+value_checktrafficlight;
     // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.JavaScript.ORDER_EQUALITY];
 };
 
 Blockly.JavaScript['settrafficlight'] = function (block) {
