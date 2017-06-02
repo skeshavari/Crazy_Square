@@ -80,13 +80,13 @@ Blockly.JavaScript['checktrafficlightcar'] = function(block) {
               code_light = 'lightLeftHasCar';
               break;
       };
-      var code = 'if( ' + code_light +' == ' + code_car + '){return true;}else{return false;}';
+      var code = '(' + code_light +'() === ' + code_car + ')';
   // TODO: Change ORDER_NONE to the correct strength.
   return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.JavaScript['gameisover'] = function (block) {
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...;\n';
-    return code;
+Blockly.JavaScript['gameisover'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'isEndOfGame();';
+  return code;
 };
