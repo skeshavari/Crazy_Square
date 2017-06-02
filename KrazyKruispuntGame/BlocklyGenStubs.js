@@ -46,14 +46,37 @@ Blockly.JavaScript['settrafficlight'] = function (block) {
     return code;
 };
 
-Blockly.JavaScript['checktrafficlightcar'] = function (block) {
-    var dropdown_lightidentifier = block.getFieldValue('LightIdentifier');
-    var dropdown_lightidentifier = block.getFieldValue('LightIdentifier');
-    var value_trafficlighthascar = Blockly.JavaScript.valueToCode(block, 'TrafficLightHasCar', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
-    var code = '...';
-    // TODO: Change ORDER_NONE to the correct strength.
-    return [code, Blockly.JavaScript.ORDER_NONE];
+Blockly.JavaScript['checktrafficlightcar'] = function(block) {
+  var dropdown_carIdentifier = block.getFieldValue('CarPresent');
+  var dropdown_lightidentifier = block.getFieldValue('LightIdentifier');
+  var value_trafficlighthascar = Blockly.JavaScript.valueToCode(block, 'TrafficLightHasCar', Blockly.JavaScript.ORDER_ATOMIC);
+  // TODO: Assemble JavaScript into code variable.
+
+  var code_car;
+  var code_light;
+      if (dropdown_carIdentifier == "CAR-PRESENT") {
+            code_car = 'true';
+      } else if (dropdown_carIdentifier == "CAR-ABSENT") {
+            code_car = 'false';
+      }
+
+      switch (dropdown_lightidentifier){
+          case 'TOP':
+            code_light = 'lightTopHasCar';
+            break;
+          case 'RIGHT':
+              code_light = 'lightRightHasCar';
+              break;
+          case 'BOTTOM':
+              code_light = 'lightBottomHasCar';
+              break;
+          case 'LEFT':
+              code_light = 'lightLeftHasCar';
+              break;
+      };
+      var code = 'if( ' + code_light +' == ' + code_car + '){return true;}else{return false;}';
+  // TODO: Change ORDER_NONE to the correct strength.
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
 Blockly.JavaScript['gameisover'] = function (block) {
