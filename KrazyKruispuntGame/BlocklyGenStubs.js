@@ -1,5 +1,5 @@
 Blockly.JavaScript['if_else'] = function (block) {
-    var block_if = Blockly.JavaScript.valueToCode(block, 'if', Blockly.JavaScript.ORDER_ATOMIC);
+    var block_if = Blockly.JavaScript.valueToCode(block, 'if', Blockly.JavaScript.ORDER_CONDITIONAL);
     var block_do = Blockly.JavaScript.statementToCode(block, 'do');
     var block_else = Blockly.JavaScript.statementToCode(block, 'else');
     var code = 'if(' + block_if + '){\n' + block_do + '\n}else{\n' + block_else + '};\n';
@@ -15,7 +15,7 @@ Blockly.JavaScript['do_for_x_seconds'] = function (block) {
 
 Blockly.JavaScript['and_or'] = function (block) {
     var dropdown_andor = block.getFieldValue('andOr');
-    var choiceAndOr = Blockly.JavaScript.valueToCode(block, 'block_andOr', Blockly.JavaScript.ORDER_ATOMIC);
+    var choiceAndOr = Blockly.JavaScript.valueToCode(block, 'block_andOr', Blockly.JavaScript.ORDER_NONE);
     var code = dropdown_andor + "" + choiceAndOr;
     return [code, Blockly.JavaScript.ORDER_LOGICAL_AND];
 };
@@ -23,7 +23,6 @@ Blockly.JavaScript['and_or'] = function (block) {
 Blockly.JavaScript['repeat_until'] = function (block) {
     var codeToRepeat = Blockly.JavaScript.statementToCode(block, 'codeToRepeat');
     var stopCondition = Blockly.JavaScript.statementToCode(block, 'stopCondition');
-
     var code = 'while(true){' + codeToRepeat + '\nif(' + stopCondition + '){\nbreak;\n}\n};\n';
     return code;
 };
@@ -31,7 +30,7 @@ Blockly.JavaScript['repeat_until'] = function (block) {
 Blockly.JavaScript['checkTrafficLight'] = function (block) {
     var dropdownLightPosition = block.getFieldValue('LightIdentifier');
     var dropdownLightValue = block.getFieldValue('LightValue');
-    var value_checktrafficlight = Blockly.JavaScript.valueToCode(block, 'checkTrafficLight', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_checktrafficlight = Blockly.JavaScript.valueToCode(block, 'checkTrafficLight', Blockly.JavaScript.ORDER_NONE);
 
     if (dropdownLightPosition === "Top") {
         dropdownLightPosition = "trafficLightTop";
@@ -39,7 +38,7 @@ Blockly.JavaScript['checkTrafficLight'] = function (block) {
     if (dropdownLightValue === "Red") {
         dropdownLightValue = "RED";
     }
-    var code = dropdownLightPosition + ".getColor == " + dropdownLightValue + "" + value_checktrafficlight;
+    var code = "("+dropdownLightPosition + ".getColor() === " + dropdownLightValue + ")" + value_checktrafficlight;
     return [code, Blockly.JavaScript.ORDER_EQUALITY];
 };
 
@@ -60,7 +59,7 @@ Blockly.JavaScript['settrafficlight'] = function (block) {
 Blockly.JavaScript['checktrafficlightcar'] = function (block) {
     var dropdown_carIdentifier = block.getFieldValue('CarPresent');
     var dropdown_lightidentifier = block.getFieldValue('LightIdentifier');
-    var value_trafficlighthascar = Blockly.JavaScript.valueToCode(block, 'TrafficLightHasCar', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_trafficlighthascar = Blockly.JavaScript.valueToCode(block, 'TrafficLightHasCar', Blockly.JavaScript.ORDER_NONE);
 
 
     if (dropdown_lightidentifier === "Top") {
