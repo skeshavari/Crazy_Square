@@ -19,6 +19,7 @@ body {
 }
 
 #gameScreenDiv{
+    position: relative;
     width: 600px;
     border: solid 1px;
 }
