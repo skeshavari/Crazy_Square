@@ -29,17 +29,12 @@
     });
     describe("The traffic lights", function () {
         it("should have been added", function () {
-            //    Game.makeTrafficLight(4, 2);
-            // Game.makeTrafficLight(5, 4);
-            //  Game.makeTrafficLight(3, 5);
-            //    Game.makeTrafficLight(2, 3);
             expect(Game.getTrafficLights().length).toBe(4);
             Game.clearTest();
         });
     });
     describe("A traffic light", function () {
         it("can change color to green", function () {
-            //         Game.makeTrafficLight(4, 2);
             Game.getTrafficLights()[0].setColor("green");
             expect(Game.getTrafficLights()[0].getColor()).toBe("green");
             Game.clearTest();
