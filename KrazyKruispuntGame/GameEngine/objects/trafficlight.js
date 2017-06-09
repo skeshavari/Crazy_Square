@@ -1,5 +1,4 @@
 var Trafficlight = function(colour, locX, locY) {
-
     var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
     var colour;
 
@@ -16,5 +15,18 @@ var Trafficlight = function(colour, locX, locY) {
 
 Trafficlight.prototype.setColor = function(color) {
     trafficLightGraphics.destroy();
-    return Trafficlight(color, gridToScreenX(4), gridToScreenY(4));
+
+    switch(color.toLowerCase()) {
+        case "red":
+            real_color = red;
+            break;
+        case "yellow":
+            real_color = yellow;
+            break;
+        case "green":
+            real_color = green;
+            break;
+    }
+
+    return Trafficlight(real_color, gridToScreenX(this.tempX), gridToScreenY(this.tempY));
 };

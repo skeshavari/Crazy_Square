@@ -10,15 +10,18 @@ function preload() {
 }
 
 var crossroad;
-var car;
-var trafficlight;
+var trafficlights;
 
 function create() {
     crossroad = new Crossroad(game);
-    trafficlight = new Trafficlight(yellow, gridToScreenX(4), gridToScreenY(4));
-    car = new Car(game, gridToScreenX(0), gridToScreenY(1));
+
+    trafficlights = Game.getTrafficLights();
+    for (tl in trafficlights) {
+        TrafficLight.plaatsTrafficLight(trafficlights[tl].getColor(), gridToScreenX(trafficlights[tl].getX()), gridToScreenY(trafficlights[tl].getY()));
+    }
 }
 
 function update() {
-    trafficlight.setColor(green);
+    TrafficLight.drawLights();
+    TrafficLight.update(trafficlights);
 }

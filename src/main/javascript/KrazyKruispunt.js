@@ -9,7 +9,7 @@ Game = (function () {
         var state = {
             locX: _x,
             locY: _y,
-            color: "red"
+            color: "RED"
         }
         return {
             setColor: function (_color) {
@@ -32,9 +32,9 @@ Game = (function () {
     };
 
     (function () {
-        makeTrafficLight(3, 3);
-        makeTrafficLight(3, 4);
-        makeTrafficLight(4, 3);
+        makeTrafficLight(1, 1);
+        makeTrafficLight(1, 4);
+        makeTrafficLight(4, 1);
         makeTrafficLight(4, 4);
     })();
 
@@ -106,3 +106,6 @@ Game = (function () {
 })();
 
 var trafficLightTop = Game.getTrafficLights()[0];
+var trafficLightRight = Game.getTrafficLights()[1];
+var trafficLightLeft = Game.getTrafficLights()[2];
+var trafficLightBottom = Game.getTrafficLights()[3];
