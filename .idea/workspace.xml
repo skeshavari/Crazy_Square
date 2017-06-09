@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68516bbd-8b9f-4445-b693-a8058691b482" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/car.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/crossroad.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/trafficlight.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/utilities.js" />
+    <list default="true" id="68516bbd-8b9f-4445-b693-a8058691b482" name="Default" comment="Clean up">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phaser-kruispunt/car.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phaser-kruispunt/crossroad.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phaser-kruispunt/main_game.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phaser-kruispunt/trafficlight.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/phaser-kruispunt/utilities.js" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/car.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/car.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/crossroad.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/crossroad.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/trafficlight.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/utilities.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/utilities.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.css" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phaser-kruispunt/car.js" afterPath="$PROJECT_DIR$/phaser-kruispunt/car.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phaser-kruispunt/main_game.html" afterPath="$PROJECT_DIR$/phaser-kruispunt/main_game.html" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,18 +36,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_game.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/phaser-kruispunt/main_game.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="0" lean-forward="true" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="trafficlight.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/trafficlight.js">
+        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -56,15 +49,37 @@
       <file leaf-file-name="Krazy Kruispunt.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="629">
-              <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+            <state relative-caret-position="306">
+              <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="car.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/car.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainGame.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#41#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="crossroad.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/crossroad.js">
+        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/crossroad.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="578">
               <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
@@ -84,7 +99,7 @@
         </entry>
       </file>
       <file leaf-file-name="utilities.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/utilities.js">
+        <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/utilities.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -94,6 +109,13 @@
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -106,6 +128,7 @@
         <option value="$PROJECT_DIR$/phaser-kruispunt/main_game.html" />
         <option value="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.css" />
         <option value="$PROJECT_DIR$/KrazyKruispuntGame/crossroad.js" />
+        <option value="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js" />
         <option value="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html" />
       </list>
     </option>
@@ -192,7 +215,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="phaser-kruispunt" />
+              <option name="myItemId" value="KrazyKruispuntGame" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -209,6 +232,54 @@
               <option name="myItemId" value="KrazyKruispuntGame" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VrijMiFunProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VrijMiFunProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KrazyKruispuntGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="objects" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VrijMiFunProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="VrijMiFunProject" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="KrazyKruispuntGame" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="GameEngine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="images" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -222,6 +293,10 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\phijma\Documents\VMP\VrijMiFunProject\KrazyKruispuntGame\GameEngine" />
+      <recent name="C:\Users\phijma\Documents\VMP\VrijMiFunProject\KrazyKruispuntGame\GameEngine\Objects" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\phijma\Documents\VMP\VrijMiFunProject\KrazyKruispuntGame" />
     </key>
@@ -337,19 +412,19 @@
       <updated>1495805477555</updated>
       <workItem from="1495805483027" duration="4963000" />
       <workItem from="1495810966988" duration="149000" />
-      <workItem from="1497011942954" duration="584000" />
+      <workItem from="1497011942954" duration="955000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5696000" />
+    <option name="totallyTimeSpent" value="6067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32969433" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -371,6 +446,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Clean up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -395,15 +474,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/KrazyKruispunt.js" />
     <entry file="file://$PROJECT_DIR$/src/main/KrazyKruispunt.js" />
-    <entry file="file://$PROJECT_DIR$/src/test/KrazyKruispunt-spec.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/utilities.js">
+    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/utilities.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -419,7 +490,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/crossroad.js">
+    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/crossroad.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="578">
           <caret line="34" column="23" lean-forward="false" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
@@ -435,7 +506,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/trafficlight.js">
+    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -443,10 +514,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/KrazyKruispunt-spec.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="5" lean-forward="true" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/car.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="52" column="0" lean-forward="true" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+        <state relative-caret-position="306">
+          <caret line="18" column="6" lean-forward="true" selection-start-line="18" selection-start-column="6" selection-end-line="18" selection-end-column="6" />
           <folding />
         </state>
       </provider>
