@@ -23,9 +23,9 @@ var Car = function(game, locX, locY) {
 };
 
 Car.prototype.update = function() {
-	this.sprite.x = Phaser.Math.linearInterpolation([this.currentX, this.goX], 0.25);
-	this.currentX = this.sprite.x;
+    this.sprite.x = Phaser.Math.linearInterpolation([this.currentX, this.goX], 0.25);
+    this.currentX = this.sprite.x;
 
-	this.sprite.y = Phaser.Math.linearInterpolation([this.currentY, this.goY], 0.25);
-	this.currentY = this.sprite.y;
+    this.sprite.y = Phaser.Math.linearInterpolation([this.currentY, this.goY], 0.25);
+    this.currentY = this.sprite.y;
 }

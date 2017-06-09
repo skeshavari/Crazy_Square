@@ -15,11 +15,10 @@ var trafficlight;
 
 function create() {
     crossroad = new Crossroad(game);
-    trafficlight = new Trafficlight(red, gridToScreenX(4), gridToScreenY(4));
+    trafficlight = new Trafficlight(yellow, gridToScreenX(4), gridToScreenY(4));
     car = new Car(game, gridToScreenX(0), gridToScreenY(1));
-
 }
 
 function update() {
-
+    trafficlight.setColor(green);
 }
