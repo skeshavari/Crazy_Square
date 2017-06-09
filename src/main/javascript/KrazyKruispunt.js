@@ -101,6 +101,8 @@ Game = (function () {
             }
         }
 
+        //
+
         return {
             getX: function () {
                 return this.locX;
