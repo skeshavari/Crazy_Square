@@ -3,11 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<title>Crossroad Simulator</title>
-	    <script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
-		<script src="car.js"></script>
-		<script src="crossroad.js"></script>
-		<script src="trafficlight.js"></script>
-		<script src="utilities.js"></script>
+
 	    <style type="text/css">
 	        body {
 	            margin: 0;
@@ -16,31 +12,7 @@
 	</head>
 	<body>
 		
-		<script type="text/javascript">
 
-			var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
-			var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
-
-			function preload() {
-                game.load.image('car', 'images/car.png');
-			}
-
-			var crossroad;
-			var car;
-			var trafficlight;
-
-			function create() {
-				crossroad = new Crossroad(game);
-                trafficlight = new Trafficlight(red, gridToScreenX(5), gridToScreenY(4));
-				car = new Car(game, gridToScreenX(5), gridToScreenY(4));
-
-			}
-
-			function update() {
-
-			}
-
-		</script>
 
 	</body>
 </html>

@@ -15,6 +15,7 @@ pre, form, fieldset, table, th, td {
 }
 
 #gameScreenDiv{
+    position: relative;
     width: 600px;
     border: solid 1px;
 }
