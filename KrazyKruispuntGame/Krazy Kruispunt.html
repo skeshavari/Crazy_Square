@@ -5,94 +5,108 @@
     <title>Krazy Kruispunt</title>
     <script src="../blockly/blockly_compressed.js"></script>
     <script src="../blockly/blocks_compressed.js"></script>
-	<script src="../blockly/javascript_compressed.js"></script>
+    <script src="../blockly/javascript_compressed.js"></script>
     <script src="../blockly/msg/js/en.js"></script>
+	<!-- Game engine: -->
+	<script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
+	<script src="GameEngine/objects/car.js"></script>
+	<script src="GameEngine/objects/crossroad.js"></script>
+	<script src="GameEngine/objects/trafficlight.js"></script>
+	<script src="GameEngine/objects/utilities.js"></script>
+    <script src="../src/main/javascript/KrazyKruispunt.js"></script>
 	
     <link rel="stylesheet" href="Krazy Kruispunt.css">
 </head>
 <body>
-  <p>
+<p>
     <button onclick="showCode()">Show JavaScript</button>
-	<button onclick="displayCode()">Display JavaScript</button>
+    <button onclick="displayCode()">Display JavaScript</button>
     <button onclick="runCode()">Run JavaScript</button>
-  </p>
+</p>
 <div id="pageContainerDiv">
-    <div id="gameScreenDiv""><label id="gamescreenlabel">This will be replaced!</label></div>
+    <div id="gameScreenDiv">
+
+		<script type="text/javascript" src="GameEngine/MainGame.js"></script>
+
+	</div>
     <div id="blocklyDiv"></div>
 </div>
 
 <div id="toolBoxInsertsHere">
-	
-  <xml id="toolbox" style="display: none">
-	<category name="Loops">
-		<block type="if_else"></block>
-		<block type="do_for_x_seconds">
-			<field name="seconds">0</field>
-		</block>
-		<block type="repeat_until"></block>
-	</category>
-	<category name="Logic">
-		<block type="and_or">
-			<field name="andOr">&amp;&amp;</field>
-		</block>
-		<block type="checktrafficlight">
-			<field name="LightIdentifier">TOP</field>
-			<field name="LightValue">RED</field>
-		</block>
-		<block type="checktrafficlightcar">
-			<field name="LightIdentifier">TOP</field>
-			<field name="LightIdentifier">TOP</field>
-		</block>
-		<block type="gameisover"></block>
-	</category>
-	<category name="Alter">
-		<block type="settrafficlight">
-			<field name="LightIdentifier">TOP</field>
-			<field name="LightValue">RED</field>
-		</block>
-	</category> 
-</xml>
 
-  <xml id="startBlocks" style="display: none">
-  
+    <xml id="toolbox" style="display: none">
+        <category name="Loops">
+            <block type="if_else"></block>
+            <block type="do_for_x_seconds">
+                <field name="seconds">0</field>
+            </block>
 
-  </xml>
+            <block type="repeat_until"></block>
+        </category>
+
+        <category name="Logic">
+            <block type="and_or">
+                <field name="andOr">&amp;&amp;</field>
+            </block>
+            <block type="checkTrafficLight">
+                <field name="LightIdentifier">Top</field>
+                <field name="LightValue">Red</field>
+            </block>
+            <block type="checktrafficlightcar">
+                <field name="LightIdentifier">Top</field>
+                <field name="LightIdentifier">Top</field>
+            </block>
+            <block type="gameisover"></block>
+
+        </category>
+        <category name="Alter">
+            <block type="settrafficlight">
+                <field name="LightIdentifier">Top</field>
+                <field name="LightValue">Red</field>
+            </block>
+        </category>
+    </xml>
+
+    <xml id="startBlocks" style="display: none">
+
+
+    </xml>
 
 </div>
-	<script src="BlocklyGenStubs.js"></script>
-	<script src="BlocklyBlockDefs.js"></script>
-	<script src="workspace.js"></script>
-	<script>
-		function showCode() {
-		  // Generate JavaScript code and display it.
-		  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-		  var code = Blockly.JavaScript.workspaceToCode(workspace);
-			alert(code);
-		}
-				function setLabelToCode(code){
-			var s = document.getElementById('gamescreenlabel').innerHTML = code;
-		}
-		
-		function displayCode() {
-		  // Generate JavaScript code and display it.
-		  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-		  var code = Blockly.JavaScript.workspaceToCode(workspace);
-			setLabelToCode(code); 	
-		}
-		
-		function runCode() {
-		  // Generate JavaScript code and run it.
-		  window.LoopTrap = 1000;
-		  Blockly.JavaScript.INFINITE_LOOP_TRAP =
-			  'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-		  var code = Blockly.JavaScript.workspaceToCode(workspace);
-		  Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
-		  try {
-			eval(code);
-		  } catch (e) {
-			alert(e);
-		  }
-		}
-	</script>
+<script src="BlocklyGenStubs.js"></script>
+<script src="BlocklyBlockDefs.js"></script>
+<script src="workspace.js"></script>
+<script>
+    function showCode() {
+        // Generate JavaScript code and display it.
+        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        alert(code);
+    }
+    function setLabelToCode(code) {
+        var s = document.getElementById('gamescreenlabel').innerHTML = code;
+    }
+
+    function displayCode() {
+        // Generate JavaScript code and display it.
+        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        setLabelToCode(code);
+    }
+
+    function runCode() {
+        // Generate JavaScript code and run it.
+        window.LoopTrap = 1000;
+        Blockly.JavaScript.INFINITE_LOOP_TRAP =
+            'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+        var code = Blockly.JavaScript.workspaceToCode(workspace);
+        Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+        try {
+            eval(code);
+        } catch (e) {
+            alert(e);
+        }
+    }
+</script>
 </body>
 </html>
