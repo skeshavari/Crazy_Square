@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="68516bbd-8b9f-4445-b693-a8058691b482" name="Default" comment="Clean up">
+    <list default="true" id="68516bbd-8b9f-4445-b693-a8058691b482" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/car.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/car.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -375,10 +372,18 @@
       <workItem from="1495810966988" duration="149000" />
       <workItem from="1497011942954" duration="955000" />
     </task>
+    <task id="LOCAL-00001" summary="Clean up">
+      <created>1497019178079</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1497019178079</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8077000" />
+    <option name="totallyTimeSpent" value="8086000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
