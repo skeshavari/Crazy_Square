@@ -104,3 +104,5 @@ Game = (function () {
         }
     };
 })();
+
+var trafficLightTop = Game.getTrafficLights()[0];
