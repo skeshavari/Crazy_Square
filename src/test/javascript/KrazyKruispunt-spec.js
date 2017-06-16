@@ -120,5 +120,28 @@
             Game.clearTest();
         });
     });
+    describe("A red light and a car", function () {
+        it("will stop if in front of a red light", function () {
+            Game.clearTest();
+            trafficLightTop.setColor("RED");
+            Game.makeCar(2, 0, "south");
+            Game.makeCar(2, 1, "south");
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            var cars = Game.getCars();
+            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getY()).toBe(0);
+            expect(cars[0].getDirection()).toBe("south");
+            expect(cars[1].getX()).toBe(2);
+            expect(cars[1].getY()).toBe(1);
+            expect(cars[1].getDirection()).toBe("south");
+            Game.clearTest();
+        });
+    });
 
 })();

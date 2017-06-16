@@ -59,8 +59,31 @@ Game = (function () {
             }
         }
 
+        function checkFront(locX, locY) {
+            for (i = 0; i < cars.length; i++) {
+                if (cars[i].getX === locX && cars[i].getY === locY) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        function carInFront() {
+            var inFront;
+            switch (state.direction) {
+                case "north":
+                    return checkFront(state.locX, state.locY - 1)
+                case "south":
+                    return checkFront(state.locX, state.locY + 1)
+                case "east":
+                    return checkFront(state.locX + 1, state.locY)
+                case "west":
+                    return checkFront(state.locX - 1, state.locY)
+            }
+        }
+
         function forward(distance = 1) {
-            if (redLight()) {
+            if (redLight() || carInFront()) {
                 return;
             }
             switch (state.direction) {
@@ -224,7 +247,10 @@ Game.makeTrafficLight(1, 1);
 Game.makeTrafficLight(1, 4);
 Game.makeTrafficLight(4, 1);
 Game.makeTrafficLight(4, 4);
-Game.makeCar(3, 5);
+Game.makeCar(3, 5, "north", "left");
+Game.makeCar(2, 0, "south", "left");
+Game.makeCar(2, -1, "south", "left");
+Game.makeCar(2, -2, "south", "left");
 
 var trafficLightTop = Game.getTrafficLights()[0];
 var trafficLightRight = Game.getTrafficLights()[2];
