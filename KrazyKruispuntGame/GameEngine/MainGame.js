@@ -44,7 +44,7 @@ function updateCars() {
 }
 
 function update() {
-    TrafficLight.drawLights();
+	TrafficLight.render();
     TrafficLight.update(trafficlights);
 
     Car.render();
