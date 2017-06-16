@@ -57,30 +57,39 @@ Game = (function () {
             }
         }
 
+        //Todo: refactor turnleft.
         function turnLeft() {
             switch (state.direction) {
                 case "north":
                     if (state.locX === 3 && state.locY === 2) {
                         state.direction = "west";
+                        state.hasTurned = true;
+                        return
                     }
                     break;
                 case "south":
                     if (state.locX === 2 && state.locY === 3) {
                         state.direction = "east";
+                        state.hasTurned = true;
+                        return
                     }
                     break;
                 case "east":
                     if (state.locX === 3 && state.locY === 3) {
                         state.direction = "north";
+                        state.hasTurned = true;
+                        return
                     }
                     break;
                 case "west":
                     if (state.locX === 2 && state.locY === 2) {
                         state.direction = "south";
+                        state.hasTurned = true;
+                        return
                     }
                     break;
             }
-            state.hasTurned = true;
+            forward();
         }
 
         function turnRight() {
