@@ -11,9 +11,12 @@ function preload() {
 
 var crossroad;
 var trafficlights;
+var cars;
 
 function create() {
     crossroad = new Crossroad(game);
+
+    car = 
 
     trafficlights = Game.getTrafficLights();
     for (tl in trafficlights) {

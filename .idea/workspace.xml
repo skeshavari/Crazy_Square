@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68516bbd-8b9f-4445-b693-a8058691b482" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight2.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/BlocklyBlockDefs.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/BlocklyBlockDefs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/MainGame.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/GameEngine/objects/trafficlight.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html" afterPath="$PROJECT_DIR$/KrazyKruispuntGame/Krazy Kruispunt.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/javascript/KrazyKruispunt.js" afterPath="$PROJECT_DIR$/src/main/javascript/KrazyKruispunt.js" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -81,8 +75,8 @@
       <file leaf-file-name="BlocklyBlockDefs.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/BlocklyBlockDefs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="84" column="26" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="26" />
+            <state relative-caret-position="415">
+              <caret line="92" column="38" lean-forward="true" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -411,15 +405,21 @@
       <option name="project" value="LOCAL" />
       <updated>1497019184349</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Clean up">
+      <created>1497022758038</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1497022758038</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11655000" />
+    <option name="totallyTimeSpent" value="11678000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25271413" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32922733" sideWeight="0.49758744" order="6" side_tool="false" content_ui="tabs" />
@@ -721,8 +721,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/KrazyKruispuntGame/BlocklyBlockDefs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="84" column="26" lean-forward="false" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="26" />
+        <state relative-caret-position="415">
+          <caret line="92" column="38" lean-forward="true" selection-start-line="92" selection-start-column="38" selection-end-line="92" selection-end-column="38" />
           <folding />
         </state>
       </provider>
