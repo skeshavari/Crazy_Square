@@ -13,7 +13,7 @@ Game = (function () {
         }
         return {
             setColor: function (_color) {
-                state.color = _color;
+                state.color = _color.toUpperCase();
             },
             getColor: function () {
                 return state.color;
@@ -40,7 +40,29 @@ Game = (function () {
             hasTurned: false,
         }
 
+        function redLight() {
+            if (state.locX === 2 && state.locY === 1 &&
+                trafficLightTop.getColor() === "RED") {
+                return true;
+            }
+            if (state.locX === 1 && state.locY === 3 &&
+                trafficLightLeft.getColor() === "RED") {
+                return true;
+            }
+            if (state.locX === 3 && state.locY === 4 &&
+                trafficLightBottom.getColor() === "RED") {
+                return true;
+            }
+            if (state.locX === 4 && state.locY === 2 &&
+                trafficLightRight.getColor() === "RED") {
+                return true;
+            }
+        }
+
         function forward(distance = 1) {
+            if (redLight()) {
+                return;
+            }
             switch (state.direction) {
                 case "north":
                     state.locY -= distance;

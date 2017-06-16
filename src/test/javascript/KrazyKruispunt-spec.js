@@ -9,6 +9,13 @@
         })
     });
     describe("The cars", function () {
+        beforeEach(function () {
+            trafficLightBottom.setColor("GREEN");
+            trafficLightTop.setColor("GREEN");
+            trafficLightLeft.setColor("GREEN");
+            trafficLightRight.setColor("GREEN");
+        });
+
         it("should have been added", function () {
             Game.clearTest();
             Game.makeCar(3, 3, "south");
@@ -50,6 +57,13 @@
         })
     });
     describe("The turning of cars", function () {
+        beforeEach(function () {
+            trafficLightBottom.setColor("GREEN");
+            trafficLightTop.setColor("GREEN");
+            trafficLightLeft.setColor("GREEN");
+            trafficLightRight.setColor("GREEN");
+        });
+
         it("should make cars that can turn left", function () {
             Game.clearTest();
             Game.makeCar(2, 0, "south", "left");
@@ -82,8 +96,27 @@
     });
     describe("A traffic light", function () {
         it("can change color to green", function () {
-            Game.getTrafficLights()[0].setColor("green");
-            expect(Game.getTrafficLights()[0].getColor()).toBe("green");
+            Game.getTrafficLights()[0].setColor("GREEN");
+            expect(Game.getTrafficLights()[0].getColor()).toBe("GREEN");
+            Game.clearTest();
+        });
+    });
+    describe("A red light and a car", function () {
+        it("will stop if in front of a red light", function () {
+            Game.clearTest();
+            Game.makeCar(2, 0, "south")
+            trafficLightTop.setColor("RED");
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            var cars = Game.getCars();
+            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getY()).toBe(1);
+            expect(cars[0].getDirection()).toBe("south");
             Game.clearTest();
         });
     });
