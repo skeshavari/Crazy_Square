@@ -18,16 +18,16 @@ Game = (function () {
             getColor: function () {
                 return state.color;
             },
-            getX: function(){
+            getX: function () {
                 return state.locX;
             },
-            getY: function(){
+            getY: function () {
                 return state.locY;
             }
         }
     };
 
-    var makeTrafficLight = function(x, y) {
+    var makeTrafficLight = function (x, y) {
         lights.push(TrafficLight(x, y))
     };
 
@@ -38,69 +38,156 @@ Game = (function () {
         makeTrafficLight(4, 4);
     })();
 
+    var Car = function (x = 3, y = 3, facing = "north", route = 'F') {
+        var state = {
+            locX: x,
+            locY: y,
+            direction: facing,
+            route: route,
+            hasTurned: false,
+        }
+
+        function forward(distance = 1) {
+            switch (state.direction) {
+                case "north":
+                    state.locY -= distance;
+                    break;
+                case "south":
+                    state.locY += distance;
+                    break;
+                case "east":
+                    state.locX += distance;
+                    break;
+                case "west":
+                    state.locX -= distance;
+                    break;
+            }
+        }
+
+        function turnLeft() {
+            switch (state.direction) {
+                case "north":
+                    if (state.locX !== 2 && state.locY !== 3) {
+                        return
+                    }
+                    state.direction = "west";
+                    break;
+                case "south":
+                    if (state.locX !== 3 && state.locY !== 2) {
+                        return
+                    }
+                    state.direction = "east";
+                    break;
+                case "east":
+                    if (state.locX !== 2 && state.locY !== 2) {
+                        return
+                    }
+                    state.direction = "north";
+                    break;
+                case "west":
+                    if (state.locX !== 3 && state.locY !== 3) {
+                        return
+                    }
+                    state.direction = "south";
+                    break;
+            }
+            state.hasTurned = true;
+        }
+
+        function turnRight() {
+            switch (state.direction) {
+                case "north":
+                    state.direction = "east"
+                    break;
+                case "south":
+                    state.direction = "west";
+                    break;
+                case "east":
+                    state.direction = "south";
+                    break;
+                case "west":
+                    state.direction = "north";
+            }
+            state.hasTurned = true
+        }
+
+        function checkIfXLocIsCenter() {
+            if (state.locX === 2 || state.locX === 3) {
+                return true
+            }
+            return false
+        }
+
+        function checkIfYLocIsCenter() {
+            if (state.locY === 2 || state.locY === 3) {
+                return true
+            }
+            return false
+        }
+
+        function atValidLocation() {
+            if (checkIfXLocIsCenter() && checkIfYLocIsCenter()) {
+                return true
+            }
+            return false
+        }
+
+        function turnIfNeeded() {
+            if (atValidLocation()) {
+                switch (state.route) {
+                    case 'F':
+                        forward();
+                        break;
+                    case 'L':
+                        turnLeft();
+                        break;
+                    case 'R':
+                        turnRight();
+                        break;
+                }
+            } else {
+                forward();
+            }
+        }
+
+        return {
+            getX: function () {
+                return state.locX;
+            },
+            getY: function () {
+                return state.locY;
+            },
+            getDirection: function () {
+                return state.direction;
+            },
+            update: function () {
+                if (state.hasTurned) {
+                    forward();
+                    return
+                } else {
+                    turnIfNeeded();
+                }
+            }
+        }
+    }
+
     return {
         clearTest: function () {
             cars = [];
         },
         makeCar: function (x, y, facing) {
-            cars.push({
-                locX: x,
-                locY: y,
-                direction: facing,
-                moveForward: function (distance) {
-                    switch (facing) {
-                        case "north":
-                            this.locY += distance;
-                            break;
-                        case "south":
-                            this.locY -= distance;
-                            break;
-                        case "east":
-                            this.locX += distance;
-                            break;
-                        case "west":
-                            this.locX -= distance;
-                            break;
-                    }
-                },
-                turnLeft: function () {
-                    switch (facing) {
-                        case "north":
-                            this.direction = "west";
-                            break;
-                        case "south":
-                            this.direction = "east";
-                            break;
-                        case "east":
-                            this.direction = "south";
-                            break;
-                        case "west":
-                            this.direction = "north";
-                    }
-                },
-                turnRight: function () {
-                    switch (facing) {
-                        case "north":
-                            this.direction = "east";
-                            break;
-                        case "south":
-                            this.direction = "west";
-                            break;
-                        case "east":
-                            this.direction = "north";
-                            break;
-                        case "west":
-                            this.direction = "south";
-                    }
-                }
-            });
+            cars.push(Car(x, y, facing));
         },
         getCars: function () {
             return cars;
         },
-
         getTrafficLights: function () {
             return lights;
+        },
+        update: function () {
+            for (var i = 0; i < cars.length; i++) {
+                cars[i].update();
+            }
         }
     };
 })();
