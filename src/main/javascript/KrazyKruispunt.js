@@ -202,7 +202,10 @@ Game.makeTrafficLight(1, 1);
 Game.makeTrafficLight(1, 4);
 Game.makeTrafficLight(4, 1);
 Game.makeTrafficLight(4, 4);
-Game.makeCar(3, 5);
+Game.makeCar(3, 5, "north", "right");
+Game.makeCar(2, 0, "south", "right");
+Game.makeCar(5, 2, "west", "left");
+Game.makeCar(0, 3, "east", "left");
 
 var trafficLightTop = Game.getTrafficLights()[0];
 var trafficLightRight = Game.getTrafficLights()[2];
