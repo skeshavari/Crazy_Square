@@ -27,12 +27,23 @@ Game = (function () {
         }
     };
 
-    var Car = function (x = 3, y = 3, facing = "north", route = 'F') {
+    var makeTrafficLight = function (x, y) {
+        lights.push(TrafficLight(x, y))
+    };
+
+    (function () {
+        makeTrafficLight(1, 1);
+        makeTrafficLight(1, 4);
+        makeTrafficLight(4, 1);
+        makeTrafficLight(4, 4);
+    })();
+
+    var Car = function (x = 3, y = 3, facing = "north", newRoute = "forward") {
         var state = {
             locX: x,
             locY: y,
             direction: facing,
-            route: route,
+            route: newRoute,
             hasTurned: false,
         }
 
@@ -56,28 +67,24 @@ Game = (function () {
         function turnLeft() {
             switch (state.direction) {
                 case "north":
-                    if (state.locX !== 2 && state.locY !== 3) {
-                        return
+                    if (state.locX === 3 && state.locY === 2) {
+                        state.direction = "west";
                     }
-                    state.direction = "west";
                     break;
                 case "south":
-                    if (state.locX !== 3 && state.locY !== 2) {
-                        return
+                    if (state.locX === 2 && state.locY === 3) {
+                        state.direction = "east";
                     }
-                    state.direction = "east";
                     break;
                 case "east":
-                    if (state.locX !== 2 && state.locY !== 2) {
-                        return
+                    if (state.locX === 3 && state.locY === 3) {
+                        state.direction = "north";
                     }
-                    state.direction = "north";
                     break;
                 case "west":
-                    if (state.locX !== 3 && state.locY !== 3) {
-                        return
+                    if (state.locX === 2 && state.locY === 2) {
+                        state.direction = "south";
                     }
-                    state.direction = "south";
                     break;
             }
             state.hasTurned = true;
@@ -124,13 +131,13 @@ Game = (function () {
         function turnIfNeeded() {
             if (atValidLocation()) {
                 switch (state.route) {
-                    case 'F':
+                    case "forward":
                         forward();
                         break;
-                    case 'L':
+                    case "left":
                         turnLeft();
                         break;
-                    case 'R':
+                    case "right":
                         turnRight();
                         break;
                 }
@@ -152,10 +159,15 @@ Game = (function () {
             update: function () {
                 if (state.hasTurned) {
                     forward();
-                    return
                 } else {
                     turnIfNeeded();
                 }
+            },
+            getRoute: function () {
+                return state.route;
+            },
+            getHasTurned: function () {
+                return state.hasTurned;
             }
         }
     }
