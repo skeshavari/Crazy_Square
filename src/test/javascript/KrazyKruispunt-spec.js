@@ -10,22 +10,44 @@
     });
     describe("The cars", function () {
         it("should have been added", function () {
-            Game.makeCar(3, 5, "south");
+            Game.clearTest();
+            Game.makeCar(3, 3, "south");
             Game.makeCar(1, 3, "east");
             Game.makeCar(5, 4, "west");
-            expect(Game.getCars().length).toBe(3);
+            Game.makeCar();
+            expect(Game.getCars().length).toBe(4);
         });
-        it("should be able to follow a route", function () {
+        it("should be at the right position", function () {
             var cars = Game.getCars();
-            cars[0].moveForward(2);
-            cars[0].turnLeft();
-            cars[0].turnRight();
-            cars[0].turnRight();
-            expect(cars[0].locX).toBe(3);
-            expect(cars[0].locY).toBe(3);
-            expect(cars[0].direction).toBe("west");
+            expect(cars[0].getX()).toBe(3);
+            expect(cars[0].getY()).toBe(3);
+            expect(cars[0].getDirection()).toBe("south");
+            expect(cars[1].getX()).toBe(1);
+            expect(cars[1].getY()).toBe(3);
+            expect(cars[1].getDirection()).toBe("east");
+            expect(cars[2].getX()).toBe(5);
+            expect(cars[2].getY()).toBe(4);
+            expect(cars[2].getDirection()).toBe("west");
+            expect(cars[3].getX()).toBe(3);
+            expect(cars[3].getY()).toBe(3);
+            expect(cars[3].getDirection()).toBe("north");
         })
-        Game.clearTest();
+        it("should update if update() is called", function () {
+            Game.update();
+            var cars = Game.getCars();
+            expect(cars[0].getX()).toBe(3);
+            expect(cars[0].getY()).toBe(4);
+            expect(cars[0].getDirection()).toBe("south");
+            expect(cars[1].getX()).toBe(2);
+            expect(cars[1].getY()).toBe(3);
+            expect(cars[1].getDirection()).toBe("east");
+            expect(cars[2].getX()).toBe(4);
+            expect(cars[2].getY()).toBe(4);
+            expect(cars[2].getDirection()).toBe("west");
+            expect(cars[3].getX()).toBe(3);
+            expect(cars[3].getY()).toBe(2);
+            expect(cars[3].getDirection()).toBe("north");
+        })
     });
     describe("The traffic lights", function () {
         it("should have been added", function () {

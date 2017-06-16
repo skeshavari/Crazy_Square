@@ -38,74 +38,135 @@ Game = (function () {
         makeTrafficLight(4, 4);
     })();
 
-    var Car = function (_x, _y, _facing) {
+    var Car = function (x = 3, y = 3, facing = "north", route = 'F') {
         var state = {
-            locX: _x,
-            locY: _y,
-            direction: _facing,
-            isMainCar: mainCar,
-            turnLeft: false,
-            turnRight: false,
+            locX: x,
+            locY: y,
+            direction: facing,
+            route: route,
+            hasTurned: false,
         }
 
-        function moveForward(distance) {
-            switch (this.direction) {
+        function forward(distance = 1) {
+            switch (state.direction) {
                 case "north":
-                    this.locY += distance;
+                    state.locY -= distance;
                     break;
                 case "south":
-                    this.locY -= distance;
+                    state.locY += distance;
                     break;
                 case "east":
-                    this.locX += distance;
+                    state.locX += distance;
                     break;
                 case "west":
-                    this.locX -= distance;
+                    state.locX -= distance;
                     break;
             }
         }
 
         function turnLeft() {
-            switch (this.direction) {
+            switch (state.direction) {
                 case "north":
-                    this.direction = "west"
+                    if (state.locX !== 2 && state.locY !== 3) {
+                        return
+                    }
+                    state.direction = "west";
                     break;
                 case "south":
-                    this.direction = "east";
+                    if (state.locX !== 3 && state.locY !== 2) {
+                        return
+                    }
+                    state.direction = "east";
                     break;
                 case "east":
-                    this.direction = "north";
+                    if (state.locX !== 2 && state.locY !== 2) {
+                        return
+                    }
+                    state.direction = "north";
                     break;
                 case "west":
-                    this.direction = "south";
+                    if (state.locX !== 3 && state.locY !== 3) {
+                        return
+                    }
+                    state.direction = "south";
+                    break;
             }
+            state.hasTurned = true;
         }
 
         function turnRight() {
-            switch (this.direction) {
+            switch (state.direction) {
                 case "north":
-                    this.direction = "east"
+                    state.direction = "east"
                     break;
                 case "south":
-                    this.direction = "west";
+                    state.direction = "west";
                     break;
                 case "east":
-                    this.direction = "south";
+                    state.direction = "south";
                     break;
                 case "west":
-                    this.direction = "north";
+                    state.direction = "north";
+            }
+            state.hasTurned = true
+        }
+
+        function checkIfXLocIsCenter() {
+            if (state.locX === 2 || state.locX === 3) {
+                return true
+            }
+            return false
+        }
+
+        function checkIfYLocIsCenter() {
+            if (state.locY === 2 || state.locY === 3) {
+                return true
+            }
+            return false
+        }
+
+        function atValidLocation() {
+            if (checkIfXLocIsCenter() && checkIfYLocIsCenter()) {
+                return true
+            }
+            return false
+        }
+
+        function turnIfNeeded() {
+            if (atValidLocation()) {
+                switch (state.route) {
+                    case 'F':
+                        forward();
+                        break;
+                    case 'L':
+                        turnLeft();
+                        break;
+                    case 'R':
+                        turnRight();
+                        break;
+                }
+            } else {
+                forward();
             }
         }
 
         return {
             getX: function () {
-                return this.locX;
+                return state.locX;
             },
             getY: function () {
-                return this.locY;
+                return state.locY;
             },
             getDirection: function () {
-                return this.direction;
+                return state.direction;
+            },
+            update: function () {
+                if (state.hasTurned) {
+                    forward();
+                    return
+                } else {
+                    turnIfNeeded();
+                }
             }
         }
     }
@@ -122,6 +183,11 @@ Game = (function () {
         },
         getTrafficLights: function () {
             return lights;
+        },
+        update: function () {
+            for (var i = 0; i < cars.length; i++) {
+                cars[i].update();
+            }
         }
     };
 })();
