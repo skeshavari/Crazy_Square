@@ -1,7 +1,6 @@
 Car = (function() {
     // private code komt hier...
     var cars = [];
-    var carSprite;
 
     return {
         // public code komt hier...
@@ -9,19 +8,14 @@ Car = (function() {
             cars = [];
         },
 
-        createCar: function(locX, locY) {
-            cars.push({ x: locX, y: locY})
+        create: function(locX, locY) {
+            cars.push({ sprite: game.add.sprite(locX, locY, 'police'), lerp_x: locX, lerp_y: locY })
         },
 
-        update: function(cars) {
-            for (car in cars) {
-
-            }
-        },
-
-        createSprites: function() {
-            for (car in cars) {
-                this.trafficLightGraphics = ame.add.sprite(0, 0, 'car');
+        update: function(carsFromModel) {
+            for (c in cars) {
+                cars[c].lerp_x = gridToScreenX(carsFromModel[c].getX());
+                cars[c].lerp_y = gridToScreenY(carsFromModel[c].getY());
             }
         },
 

@@ -179,6 +179,9 @@ Game = (function () {
         makeCar: function (x, y, facing) {
             cars.push(Car(x, y, facing));
         },
+        makeTrafficLight: function (x, y) {
+            lights.push(TrafficLight(x, y))
+        },
         getCars: function () {
             return cars;
         },
@@ -193,7 +196,13 @@ Game = (function () {
     };
 })();
 
+Game.makeTrafficLight(1, 1);
+Game.makeTrafficLight(1, 4);
+Game.makeTrafficLight(4, 1);
+Game.makeTrafficLight(4, 4);
+Game.makeCar(3, 5);
+
 var trafficLightTop = Game.getTrafficLights()[0];
-var trafficLightRight = Game.getTrafficLights()[1];
-var trafficLightLeft = Game.getTrafficLights()[2];
+var trafficLightRight = Game.getTrafficLights()[2];
+var trafficLightLeft = Game.getTrafficLights()[1];
 var trafficLightBottom = Game.getTrafficLights()[3];
