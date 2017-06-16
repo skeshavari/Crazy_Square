@@ -8,12 +8,15 @@ Car = (function() {
             cars = [];
         },
 
-        createCar: function(locX, locY) {
+        create: function(locX, locY) {
             cars.push({ sprite: game.add.sprite(locX, locY, 'police'), lerp_x: locX, lerp_y: locY })
         },
 
-        update: function(cars) {
-
+        update: function(carsFromModel) {
+            for (c in cars) {
+                cars[c].lerp_x = gridToScreenX(carsFromModel[c].getX());
+                cars[c].lerp_y = gridToScreenY(carsFromModel[c].getY());
+            }
         },
 
         getCars: function() {
