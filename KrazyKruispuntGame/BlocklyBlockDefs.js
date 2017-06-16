@@ -86,7 +86,7 @@ Blockly.Blocks['settrafficlight'] = {
   init: function() {
     this.appendDummyInput()
         .appendField("Set Traffic Light")
-        .appendField(new Blockly.FieldDropdown([["Top","setTrafficLightTop"], ["Right","setTrafficLightRight"], ["Bottom","trafficLightBottom"], ["Left","trafficLightLeft"]]), "LightIdentifier")
+        .appendField(new Blockly.FieldDropdown([["Top","trafficLightTop"], ["Right","trafficLightRight"], ["Bottom","trafficLightBottom"], ["Left","trafficLightLeft"]]), "LightIdentifier")
         .appendField("to")
         .appendField(new Blockly.FieldDropdown([["Red","RED"], ["Yellow","YELLOW"], ["Green","GREEN"]]), "LightValue");
     this.setPreviousStatement(true, null);
