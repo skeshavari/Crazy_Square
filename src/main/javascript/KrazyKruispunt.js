@@ -106,6 +106,8 @@ Game = (function () {
 })();
 
 var trafficLightTop = Game.getTrafficLights()[0];
-var trafficLightRight = Game.getTrafficLights()[1];
-var trafficLightLeft = Game.getTrafficLights()[2];
+var trafficLightRight = Game.getTrafficLights()[2];
+var trafficLightLeft = Game.getTrafficLights()[1];
 var trafficLightBottom = Game.getTrafficLights()[3];
+
+var firstCar = Game.getCars()[0];
