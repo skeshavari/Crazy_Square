@@ -31,13 +31,6 @@ Game = (function () {
         lights.push(TrafficLight(x, y))
     };
 
-    (function () {
-        makeTrafficLight(1, 1);
-        makeTrafficLight(1, 4);
-        makeTrafficLight(4, 1);
-        makeTrafficLight(4, 4);
-    })();
-
     var Car = function (x = 3, y = 3, facing = "north", newRoute = "forward") {
         var state = {
             locX: x,
@@ -176,8 +169,8 @@ Game = (function () {
         clearTest: function () {
             cars = [];
         },
-        makeCar: function (x, y, facing) {
-            cars.push(Car(x, y, facing));
+        makeCar: function (x, y, facing, route) {
+            cars.push(Car(x, y, facing, route));
         },
         makeTrafficLight: function (x, y) {
             lights.push(TrafficLight(x, y))
