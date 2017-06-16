@@ -57,6 +57,7 @@ Game = (function () {
             }
         }
 
+        //Todo: refactor turnleft.
         function turnLeft() {
             switch (state.direction) {
                 case "north":
