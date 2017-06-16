@@ -1,7 +1,6 @@
 Car = (function() {
     // private code komt hier...
     var cars = [];
-    var carSprite;
 
     return {
         // public code komt hier...
@@ -10,19 +9,11 @@ Car = (function() {
         },
 
         createCar: function(locX, locY) {
-            cars.push({ x: locX, y: locY})
+            cars.push({ sprite: game.add.sprite(locX, locY, 'police'), lerp_x: locX, lerp_y: locY })
         },
 
         update: function(cars) {
-            for (car in cars) {
 
-            }
-        },
-
-        createSprites: function() {
-            for (car in cars) {
-                this.trafficLightGraphics = ame.add.sprite(0, 0, 'car');
-            }
         },
 
         getCars: function() {
