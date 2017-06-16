@@ -66,42 +66,36 @@ Game = (function () {
         }
 
         function turnLeft() {
-            while (this.turnLeft) {
-                if (this.direction === "north" && this.locX === 3 && this.locY === 3) {
-                    this.direction = "west";
-                    this.turnLeft = false;
-                } else if (this.direction === "south" && this.locX === 2 && this.locY === 2) {
+            switch (this.direction) {
+                case "north":
+                    this.direction = "west"
+                    break;
+                case "south":
                     this.direction = "east";
-                    this.turnLeft = false;
-                } else if (this.direction === "east" && this.locX === 3 && this.locY === 2) {
+                    break;
+                case "east":
                     this.direction = "north";
-                    this.turnLeft = false;
-                } else if (this.direction === "west" && this.locX === 2 && this.locY === 3) {
+                    break;
+                case "west":
                     this.direction = "south";
-                    this.turnLeft = false;
-                }
             }
         }
 
         function turnRight() {
-            while (this.turnRight) {
-                if (this.direction === "west" && this.locX === 3 && this.locY === 3) {
-                    this.direction = "north";
-                    this.turnRight = false;
-                } else if (this.direction === "east" && this.locX === 2 && this.locY === 2) {
-                    this.direction = "south";
-                    this.turnRight = false;
-                } else if (this.direction === "north" && this.locX === 3 && this.locY === 2) {
-                    this.direction = "east";
-                    this.turnRight = false;
-                } else if (this.direction === "south" && this.locX === 2 && this.locY === 3) {
+            switch (this.direction) {
+                case "north":
+                    this.direction = "east"
+                    break;
+                case "south":
                     this.direction = "west";
-                    this.turnRight = false;
-                }
+                    break;
+                case "east":
+                    this.direction = "south";
+                    break;
+                case "west":
+                    this.direction = "north";
             }
         }
-
-        //
 
         return {
             getX: function () {
