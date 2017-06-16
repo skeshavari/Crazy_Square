@@ -17,18 +17,23 @@ var carSprites;
 function create() {
     crossroad = Crossroad.create();
 
+    // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();
     for (c in carsFromModel) {
-        Car.create(gridToScreenX(carsFromModel[c].getX()), gridToScreenY(carsFromModel[c].getY()));
+        Car.create(toGridX(carsFromModel[c].getX()), toGridY(carsFromModel[c].getY()));
     }
     carSprites = Car.getCars();
 
+    // Getting the trafficlights from the model and creating sprites:
     trafficlights = Game.getTrafficLights();
     for (tl in trafficlights) {
-        TrafficLight.plaatsTrafficLight(trafficlights[tl].getColor(), gridToScreenX(trafficlights[tl].getX()), gridToScreenY(trafficlights[tl].getY()));
+        TrafficLight.plaatsTrafficLight(trafficlights[tl].getColor(), toGridX(trafficlights[tl].getX()), toGridY(trafficlights[tl].getY()));
     }
 
-    game.time.events.repeat(Phaser.Timer.SECOND * 0.5, 3, updateCars, this);
+    // The time interval that's asks the domain to update it's state.
+    timer = game.time.create(false);
+    timer.loop(1000, updateCars, this);
+    timer.start();
 }
 
 function updateCars() {
@@ -42,12 +47,9 @@ function update() {
     TrafficLight.drawLights();
     TrafficLight.update(trafficlights);
 
-    for (c in carSprites) {
-    	carSprites[c].sprite.x = Phaser.Math.linearInterpolation([carSprites[c].sprite.x, carSprites[c].lerp_x], 0.05);
-    	carSprites[c].sprite.y = Phaser.Math.linearInterpolation([carSprites[c].sprite.y, carSprites[c].lerp_y], 0.05);
-    }
+    Car.render();
 
-    game.debug.text("Next update: " + game.time.events.duration.toFixed(0), 32, 32);
+    game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("carSprite.y: " + carSprites[0].sprite.y, 32, 64);
     game.debug.text("carFromModel.y: " + carsFromModel[0].getY(), 32, 96);
 }
