@@ -49,6 +49,47 @@
             expect(cars[3].getDirection()).toBe("north");
         })
     });
+    describe("The turning of cars", function () {
+        it("should make cars that can turn left", function () {
+            Game.clearTest();
+            Game.makeCar(2, 0, "south", "left");
+            //Game.makeCar(0, 3, "east", "L");
+            //Game.makeCar(3, 5, "north", "L");
+            //Game.makeCar(5, 2, "west", "L");
+            Game.update();
+            Game.update();
+            Game.update();
+            var cars = Game.getCars();
+            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getY()).toBe(3);
+            expect(cars[0].getDirection()).toBe("south");
+            expect(cars[0].getRoute()).toBe("left");
+            expect(cars[0].getHasTurned()).toBe(false);
+            // expect(cars[1].getX()).toBe(3);
+            // expect(cars[1].getY()).toBe(3);
+            // expect(cars[1].getDirection()).toBe("east");
+            // expect(cars[2].getX()).toBe(3);
+            // expect(cars[2].getY()).toBe(2);
+            // expect(cars[2].getDirection()).toBe("north");
+            // expect(cars[3].getX()).toBe(2);
+            // expect(cars[3].getY()).toBe(2);
+            // expect(cars[3].getDirection()).toBe("west");
+            Game.update();
+            cars = Game.getCars();
+            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getY()).toBe(3);
+            expect(cars[0].getDirection()).toBe("east");
+            // expect(cars[1].getX()).toBe(3);
+            // expect(cars[1].getY()).toBe(3);
+            // expect(cars[1].getDirection()).toBe("north");
+            // expect(cars[2].getX()).toBe(3);
+            // expect(cars[2].getY()).toBe(2);
+            // expect(cars[2].getDirection()).toBe("west");
+            // expect(cars[3].getX()).toBe(2);
+            // expect(cars[3].getY()).toBe(2);
+            // expect(cars[3].getDirection()).toBe("south");
+        })
+    });
     describe("The traffic lights", function () {
         it("should have been added", function () {
             expect(Game.getTrafficLights().length).toBe(4);
