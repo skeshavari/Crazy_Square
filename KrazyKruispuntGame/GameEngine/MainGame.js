@@ -13,9 +13,9 @@ function preload() {
 var crossroad;
 var trafficlights;
 var carsFromModel;
-var carSprites;
 
 function create() {
+    Game.setRandomSpawn(true);
     crossroad = Crossroad.create();
 
     // Getting the cars from the model and creating sprites:
@@ -23,7 +23,7 @@ function create() {
     for (c in carsFromModel) {
         Car.create(toGridX(carsFromModel[c].getX()) + 50, toGridY(carsFromModel[c].getY()) + 50, carsFromModel[c].getDirection());
     }
-    carSprites = Car.getCars();
+    
 
     // Getting the trafficlights from the model and creating sprites:
     trafficlights = Game.getTrafficLights();
@@ -39,10 +39,8 @@ function create() {
 }
 
 function updateCars() {
-	for (c in carsFromModel) {
-		carsFromModel[c].update();
-		Car.update(carsFromModel);
-	}
+    index = Game.update();
+	Car.update(carsFromModel, index);
 }
 
 function update() {
@@ -56,6 +54,6 @@ function update() {
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("FPS: " + game.time.fps, 32, 64);
-    game.debug.text("FPS: " + Car.getCars()[1].sprite.angle, 32, 96);
-    game.debug.text("FPS: " + Car.getCars()[1].lerp_angle, 32, 128);
+    game.debug.text("First car.x: " + Car.getCars().length, 32, 96);
+    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 128);
 }

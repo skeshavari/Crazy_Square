@@ -289,15 +289,20 @@ Game = (function () {
             return lights;
         },
         update: function () {
+            var index = [];
+
             for (var i = 0; i < cars.length; i++) {
                 cars[i].update();
                 if (cars[i].isOutOfBounds()) {
                     cars.splice(i, 1);
+                    index.push(i);
                 }
             }
             if (randomSpawn === true) {
                 spawnRandomCars();
             }
+
+            return index;
         },
         setRandomSpawn: function (input) {
             if (input === true) {
@@ -305,6 +310,9 @@ Game = (function () {
             } else {
                 randomSpawn = false;
             }
+        },
+        getRandomSpawn: function() {
+            return randomSpawn;
         }
     };
 })();

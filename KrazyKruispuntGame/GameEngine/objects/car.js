@@ -1,11 +1,11 @@
 Car = (function() {
     // private code komt hier...
-    var cars = [];
+    var carSprites = [];
 
     return {
         // public code komt hier...
         reset: function() {
-            cars = [];
+            carSprites = [];
         },
 
         create: function(locX, locY, orientation) {
@@ -25,45 +25,64 @@ Car = (function() {
                                 lerp_angle = -90;
                                 break;
             }
-            cars.push({ sprite: sprite, lerp_x: locX, lerp_y: locY, lerp_angle: lerp_angle, orientation: orientation })
+            carSprites.push({ sprite: sprite, lerp_x: locX, lerp_y: locY, lerp_angle: lerp_angle, orientation: orientation })
         },
 
         render: function() {
-            for (c in cars) {
-                cars[c].sprite.x = Phaser.Math.linearInterpolation([cars[c].sprite.x, cars[c].lerp_x], 0.05);
-                cars[c].sprite.y = Phaser.Math.linearInterpolation([cars[c].sprite.y, cars[c].lerp_y], 0.05);
+            for (c in carSprites) {
+                if ((carSprites[c].sprite.x > 850) || (carSprites[c].sprite.x < -250) || (carSprites[c].sprite.y > 850) || (carSprites[c].sprite.y < -250)) {
+                    carSprites[c].sprite.destroy();
+                }
 
-                switch (cars[c].orientation) {
-                    case "north":   cars[c].lerp_angle = 0;
+                carSprites[c].sprite.x = Phaser.Math.linearInterpolation([carSprites[c].sprite.x, carSprites[c].lerp_x], 0.05);
+                carSprites[c].sprite.y = Phaser.Math.linearInterpolation([carSprites[c].sprite.y, carSprites[c].lerp_y], 0.05);
+
+                switch (carSprites[c].orientation) {
+                    case "north":   carSprites[c].lerp_angle = 0;
                                     break;
-                    case "east":    cars[c].lerp_angle = 90;
+                    case "east":    carSprites[c].lerp_angle = 90;
                                     break;
-                    case "south":   cars[c].lerp_angle = 180;
+                    case "south":   carSprites[c].lerp_angle = 180;
                                     break;
-                    case "west":    cars[c].lerp_angle = -90;
+                    case "west":    carSprites[c].lerp_angle = -90;
                                     break;
                 }
 
-                cars[c].sprite.angle = cars[c].lerp_angle;
+                carSprites[c].sprite.angle = carSprites[c].lerp_angle;
 
-                // if ((Math.abs(cars[c].sprite.angle - cars[c].lerp_angle) > 5)) {
-                //     cars[c].sprite.angle = Phaser.Math.linearInterpolation([cars[c].sprite.angle, cars[c].lerp_angle], 0.02);
+                // if ((Math.abs(carSprites[c].sprite.angle - carSprites[c].lerp_angle) > 5)) {
+                //     carSprites[c].sprite.angle = Phaser.Math.linearInterpolation([carSprites[c].sprite.angle, carSprites[c].lerp_angle], 0.02);
                 // } else {
-                //     cars[c].sprite.angle = cars[c].lerp_angle;
+                //     carSprites[c].sprite.angle = carSprites[c].lerp_angle;
                 // }
             }
         },
 
-        update: function(carsFromModel) {
-            for (c in cars) {
-                cars[c].lerp_x = toGridX(carsFromModel[c].getX()) + 50;
-                cars[c].lerp_y = toGridY(carsFromModel[c].getY()) + 50;
-                cars[c].orientation = carsFromModel[c].getDirection();
+        update: function(carObjects, index) {
+            if (index.length !== 0) {
+                for (i in index) {
+                    carSprites.splice(index[i], 1);
+                }
+            }
+
+            if (carSprites.length < carObjects.length) {
+                var difference = carObjects.length - carSprites.length;
+                for (i = 0; i < difference; i++) {
+                    create(toGridX(carObjects[carSprites.length + i].getX()) + 50, 
+                        toGridY(carObjects[carSprites.length + i].getY()) + 50, 
+                        carObjects[carSprites.length + i].getDirection());
+                }
+            }
+
+            for (c in carObjects) {
+                carSprites[c].lerp_x = toGridX(carObjects[c].getX()) + 50;
+                carSprites[c].lerp_y = toGridY(carObjects[c].getY()) + 50;
+                carSprites[c].orientation = carObjects[c].getDirection();
             }
         },
 
         getCars: function() {
-            return cars;
+            return carSprites;
         }
     };
 })();
