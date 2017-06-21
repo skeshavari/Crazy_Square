@@ -81,7 +81,7 @@
             Game.update();
 
             cars = Game.getCars();
-            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getX()).toBe(3);
             expect(cars[0].getY()).toBe(3);
             expect(cars[0].getDirection()).toBe("east");
             expect(cars[0].getHasTurned()).toBe(true);
@@ -117,6 +117,29 @@
             expect(cars[0].getX()).toBe(2);
             expect(cars[0].getY()).toBe(1);
             expect(cars[0].getDirection()).toBe("south");
+            Game.clearTest();
+        });
+    });
+    describe("A car", function () {
+        it("will stop if there's a car in front", function () {
+            Game.clearTest();
+            trafficLightTop.setColor("RED");
+            Game.makeCar(2, 0, "south");
+            Game.makeCar(2, 1, "south");
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            Game.update();
+            var cars = Game.getCars();
+            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getY()).toBe(0);
+            expect(cars[0].getDirection()).toBe("south");
+            expect(cars[1].getX()).toBe(2);
+            expect(cars[1].getY()).toBe(1);
+            expect(cars[1].getDirection()).toBe("south");
             Game.clearTest();
         });
     });

@@ -59,8 +59,34 @@ Game = (function () {
             }
         }
 
+        function checkFront(locX, locY) {
+            if (atValidLocation()) {
+                return false
+            }
+            for (i = 0; i < cars.length; i++) {
+                if (cars[i].getX() === locX && cars[i].getY() === locY) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        function carInFront() {
+            var inFront;
+            switch (state.direction) {
+                case "north":
+                    return checkFront(state.locX, state.locY - 1)
+                case "south":
+                    return checkFront(state.locX, state.locY + 1)
+                case "east":
+                    return checkFront(state.locX + 1, state.locY)
+                case "west":
+                    return checkFront(state.locX - 1, state.locY)
+            }
+        }
+
         function forward(distance = 1) {
-            if (redLight()) {
+            if (redLight() || carInFront()) {
                 return;
             }
             switch (state.direction) {
@@ -86,28 +112,24 @@ Game = (function () {
                     if (state.locX === 3 && state.locY === 2) {
                         state.direction = "west";
                         state.hasTurned = true;
-                        return
                     }
                     break;
                 case "south":
                     if (state.locX === 2 && state.locY === 3) {
                         state.direction = "east";
                         state.hasTurned = true;
-                        return
                     }
                     break;
                 case "east":
                     if (state.locX === 3 && state.locY === 3) {
                         state.direction = "north";
                         state.hasTurned = true;
-                        return
                     }
                     break;
                 case "west":
                     if (state.locX === 2 && state.locY === 2) {
                         state.direction = "south";
                         state.hasTurned = true;
-                        return
                     }
                     break;
             }
@@ -127,9 +149,11 @@ Game = (function () {
                     break;
                 case "west":
                     state.direction = "north";
+                    break;
             }
             state.hasTurned = true
-        }
+            forward();
+    }
 
         function checkIfXLocIsCenter() {
             if (state.locX === 2 || state.locX === 3) {
@@ -224,10 +248,10 @@ Game.makeTrafficLight(1, 1);
 Game.makeTrafficLight(1, 4);
 Game.makeTrafficLight(4, 1);
 Game.makeTrafficLight(4, 4);
-Game.makeCar(3, 5, "north", "right");
-Game.makeCar(2, 0, "south", "right");
-Game.makeCar(5, 2, "west", "left");
-Game.makeCar(0, 3, "east", "left");
+Game.makeCar(3, 5, "north", "left");
+Game.makeCar(2, 0, "south", "left");
+Game.makeCar(2, -1, "south", "left");
+Game.makeCar(2, -2, "south", "left");
 
 var trafficLightTop = Game.getTrafficLights()[0];
 var trafficLightRight = Game.getTrafficLights()[2];
