@@ -1,6 +1,7 @@
 Game = (function () {
     var cars = [];
     var lights = [];
+    var randomSpawn = false;
 
     var TrafficLight = function (_x, _y) {
         var state = {
@@ -23,8 +24,8 @@ Game = (function () {
             }
         }
     };
-    
-    var Car = function (x = 3, y = 3, facing = "north", newRoute = "forward") {
+
+    var Car = function (x = 3, y = 6, facing = "north", newRoute = "forward") {
         var state = {
             locX: x,
             locY: y,
@@ -146,7 +147,7 @@ Game = (function () {
             }
             state.hasTurned = true
             forward();
-    }
+        }
 
         function checkIfXLocIsCenter() {
             if (state.locX === 2 || state.locX === 3) {
@@ -209,7 +210,65 @@ Game = (function () {
             },
             getHasTurned: function () {
                 return state.hasTurned;
+            },
+            isOutOfBounds: function () {
+                if (state.locX < -2 || state.locX > 7) {
+                    return true;
+                }
+                if (state.locY < -2 || state.locY > 7) {
+                    return true;
+                }
+                return false;
             }
+        }
+    }
+
+    function carPresentAt(x, y) {
+        for (i = 0; i < cars.length; i++) {
+            if (x === cars[i].getX() && y === cars[i].getY()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function generateRandomCarAndAddToList() {
+        var chance = Math.floor(Math.random() * cars.length);
+        var validRoutes = ["left", "right", "forward"];
+        var routeChance = Math.floor(Math.random() * validRoutes.length);
+
+        switch (chance) {
+            case (0):
+                if (carPresentAt(-1, 3)) {
+                    return
+                }
+                cars.push(Car(-1, 3, "east", validRoutes[routeChance]));
+                break;
+            case (1):
+                if (carPresentAt(2, -1)) {
+                    return
+                }
+                cars.push(Car(2, -1, "south", validRoutes[routeChance]));
+                break;
+            case (2):
+                if (carPresentAt(3, 6)) {
+                    return
+                }
+                cars.push(Car(3, 6, "north", validRoutes[routeChance]));
+                break;
+            case (3):
+                if (carPresentAt(6, 2)) {
+                    return
+                }
+                cars.push(Car(6, 2, "west", validRoutes[routeChance]));
+                break;
+        };
+    }
+
+    function spawnRandomCars() {
+        var chance = Math.random();
+        if (chance <= 0.4) {
+            generateRandomCarAndAddToList();
         }
     }
 
@@ -232,6 +291,19 @@ Game = (function () {
         update: function () {
             for (var i = 0; i < cars.length; i++) {
                 cars[i].update();
+                if (cars[i].isOutOfBounds()) {
+                    cars.splice(i, 1);
+                }
+            }
+            if (randomSpawn === true) {
+                spawnRandomCars();
+            }
+        },
+        setRandomSpawn: function (input) {
+            if (input === true) {
+                randomSpawn = input;
+            } else {
+                randomSpawn = false;
             }
         }
     };
@@ -245,6 +317,7 @@ Game.makeCar(3, 5, "north", "left");
 Game.makeCar(2, 0, "south", "left");
 Game.makeCar(2, -1, "south", "left");
 Game.makeCar(2, -2, "south", "left");
+
 
 var trafficLightTop = Game.getTrafficLights()[0];
 var trafficLightRight = Game.getTrafficLights()[2];

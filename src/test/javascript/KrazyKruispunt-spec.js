@@ -21,7 +21,7 @@
             Game.makeCar(3, 3, "south");
             Game.makeCar(1, 3, "east");
             Game.makeCar(5, 4, "west");
-            Game.makeCar();
+            Game.makeCar(3, 3, "north");
             expect(Game.getCars().length).toBe(4);
         });
         it("should be at the right position", function () {
@@ -126,13 +126,9 @@
             trafficLightTop.setColor("RED");
             Game.makeCar(2, 0, "south");
             Game.makeCar(2, 1, "south");
-            Game.update();
-            Game.update();
-            Game.update();
-            Game.update();
-            Game.update();
-            Game.update();
-            Game.update();
+            for (var i = 0; i < 10; i++) {
+                Game.update();
+            }
             var cars = Game.getCars();
             expect(cars[0].getX()).toBe(2);
             expect(cars[0].getY()).toBe(0);
@@ -142,6 +138,28 @@
             expect(cars[1].getDirection()).toBe("south");
             Game.clearTest();
         });
-    });
 
+        it("will destroy itself if out of screen", function () {
+            Game.clearTest();
+            trafficLightTop.setColor("GREEN");
+            Game.makeCar(2, 0, "south");
+            for (var i = 0; i < 10; i++) {
+                Game.update();
+            }
+            var cars = Game.getCars();
+            expect(cars.length).toBe(0);
+        });
+    });
+    describe("The random spawner", function () {
+        it("should be able to spawn a random car", function () {
+            Game.clearTest();
+            trafficLightTop.setColor("RED")
+            Game.setRandomSpawn(true);
+            for (var i = 0; i < 100; i++) {
+                Game.update();
+            }
+            var cars = Game.getCars();
+            expect(cars.length > 5).toBe(true);
+        })
+    })
 })();
