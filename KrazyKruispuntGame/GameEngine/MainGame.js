@@ -7,6 +7,7 @@ var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
 
 function preload() {
     game.load.image('police', 'GameEngine/assets/images/police.png');
+    game.time.advancedTiming = true;
 }
 
 var crossroad;
@@ -44,12 +45,14 @@ function updateCars() {
 }
 
 function update() {
-	TrafficLight.render();
-    TrafficLight.update(trafficlights);
-
+    if (TrafficLight.colorChanged(trafficlights)) {
+        TrafficLight.render(trafficlights);
+    }
+    
     Car.render();
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
-    game.debug.text("carSprite.y: " + carSprites[0].sprite.y, 32, 64);
-    game.debug.text("carSprites.angle: " + carSprites[0].sprite.angle, 32, 96);
+    game.debug.text("FPS: " + game.time.fps, 32, 64);
+    game.debug.text("BOOL: " + TrafficLight.colorChanged(trafficlights), 32, 96);
+    // game.debug.text("carSprites.angle: " + carSprites[0].sprite.angle, 32, 96);
 }
