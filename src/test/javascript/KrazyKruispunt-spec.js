@@ -81,7 +81,7 @@
             Game.update();
 
             cars = Game.getCars();
-            expect(cars[0].getX()).toBe(2);
+            expect(cars[0].getX()).toBe(3);
             expect(cars[0].getY()).toBe(3);
             expect(cars[0].getDirection()).toBe("east");
             expect(cars[0].getHasTurned()).toBe(true);
@@ -120,8 +120,8 @@
             Game.clearTest();
         });
     });
-    describe("A red light and a car", function () {
-        it("will stop if in front of a red light", function () {
+    describe("A car", function () {
+        it("will stop if there's a car in front", function () {
             Game.clearTest();
             trafficLightTop.setColor("RED");
             Game.makeCar(2, 0, "south");

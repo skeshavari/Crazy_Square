@@ -60,8 +60,11 @@ Game = (function () {
         }
 
         function checkFront(locX, locY) {
+            if (atValidLocation()) {
+                return false
+            }
             for (i = 0; i < cars.length; i++) {
-                if (cars[i].getX === locX && cars[i].getY === locY) {
+                if (cars[i].getX() === locX && cars[i].getY() === locY) {
                     return true
                 }
             }
@@ -109,28 +112,24 @@ Game = (function () {
                     if (state.locX === 3 && state.locY === 2) {
                         state.direction = "west";
                         state.hasTurned = true;
-                        return
                     }
                     break;
                 case "south":
                     if (state.locX === 2 && state.locY === 3) {
                         state.direction = "east";
                         state.hasTurned = true;
-                        return
                     }
                     break;
                 case "east":
                     if (state.locX === 3 && state.locY === 3) {
                         state.direction = "north";
                         state.hasTurned = true;
-                        return
                     }
                     break;
                 case "west":
                     if (state.locX === 2 && state.locY === 2) {
                         state.direction = "south";
                         state.hasTurned = true;
-                        return
                     }
                     break;
             }
@@ -150,9 +149,11 @@ Game = (function () {
                     break;
                 case "west":
                     state.direction = "north";
+                    break;
             }
             state.hasTurned = true
-        }
+            forward();
+    }
 
         function checkIfXLocIsCenter() {
             if (state.locX === 2 || state.locX === 3) {
