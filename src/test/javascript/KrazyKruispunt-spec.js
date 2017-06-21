@@ -155,11 +155,11 @@
             Game.clearTest();
             trafficLightTop.setColor("RED")
             Game.setRandomSpawn(true);
-            for (var i = 0; i < 100; i++) {
+            for (var i = 0; i < 10; i++) {
                 Game.update();
             }
             var cars = Game.getCars();
-            expect(cars.length > 5).toBe(true);
+            expect(cars.length > 0).toBe(true);
         })
     })
 })();
