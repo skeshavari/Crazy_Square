@@ -56,4 +56,6 @@ function update() {
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("FPS: " + game.time.fps, 32, 64);
+    game.debug.text("FPS: " + Car.getCars()[1].sprite.angle, 32, 96);
+    game.debug.text("FPS: " + Car.getCars()[1].lerp_angle, 32, 128);
 }
