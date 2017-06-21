@@ -11,7 +11,21 @@ Car = (function() {
         create: function(locX, locY, orientation) {
             var sprite = game.add.sprite(locX, locY, 'police');
             sprite.anchor.setTo(0.5, 0.5);
-            cars.push({ sprite: sprite, lerp_x: locX, lerp_y: locY, lerp_angle: 0, orientation: orientation })
+            switch (orientation) {
+                case "north":   sprite.angle = 0;
+                                lerp_angle = 0;
+                                break;
+                case "east":    sprite.angle = 90;
+                                lerp_angle = 90;
+                                break;
+                case "south":   sprite.angle = 180;
+                                lerp_angle = 180;
+                                break;
+                case "west":    sprite.angle = -90;
+                                lerp_angle = -90;
+                                break;
+            }
+            cars.push({ sprite: sprite, lerp_x: locX, lerp_y: locY, lerp_angle: lerp_angle, orientation: orientation })
         },
 
         render: function() {
@@ -30,11 +44,13 @@ Car = (function() {
                                     break;
                 }
 
-                if ((cars[c].sprite.angle != cars[c].lerp_angle) && (Math.abs(cars[c].sprite.angle - cars[c].lerp_angle) > 5)) {
-                    cars[c].sprite.angle = Phaser.Math.linearInterpolation([cars[c].sprite.angle, cars[c].lerp_angle], 0.05);
-                } else if ((cars[c].sprite.angle != cars[c].lerp_angle) && (Math.abs(cars[c].sprite.angle - cars[c].lerp_angle) < 5)) {
-                    cars[c].sprite.angle = cars[c].lerp_angle;
-                }
+                cars[c].sprite.angle = cars[c].lerp_angle;
+
+                // if ((Math.abs(cars[c].sprite.angle - cars[c].lerp_angle) > 5)) {
+                //     cars[c].sprite.angle = Phaser.Math.linearInterpolation([cars[c].sprite.angle, cars[c].lerp_angle], 0.02);
+                // } else {
+                //     cars[c].sprite.angle = cars[c].lerp_angle;
+                // }
             }
         },
 
