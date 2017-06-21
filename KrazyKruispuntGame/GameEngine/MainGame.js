@@ -28,8 +28,9 @@ function create() {
     // Getting the trafficlights from the model and creating sprites:
     trafficlights = Game.getTrafficLights();
     for (tl in trafficlights) {
-        TrafficLight.plaatsTrafficLight(trafficlights[tl].getColor(), toGridX(trafficlights[tl].getX()), toGridY(trafficlights[tl].getY()));
+        TrafficLight.plaatsTrafficLight(trafficlights[tl].getColor().toLowerCase(), toGridX(trafficlights[tl].getX()), toGridY(trafficlights[tl].getY()));
     }
+    TrafficLight.render(trafficlights);
 
     // The time interval that's asks the domain to update it's state.
     timer = game.time.create(false);
@@ -45,14 +46,14 @@ function updateCars() {
 }
 
 function update() {
-    if (TrafficLight.colorChanged(trafficlights)) {
+    colorChanged = TrafficLight.colorChanged(trafficlights);
+
+    if (colorChanged) {
         TrafficLight.render(trafficlights);
     }
-    
+
     Car.render();
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("FPS: " + game.time.fps, 32, 64);
-    game.debug.text("BOOL: " + TrafficLight.colorChanged(trafficlights), 32, 96);
-    // game.debug.text("carSprites.angle: " + carSprites[0].sprite.angle, 32, 96);
 }

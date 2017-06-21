@@ -1,6 +1,3 @@
-/**
- * Created by ckyoung on 19-May-17.
- */
 Game = (function () {
     var cars = [];
     var lights = [];
@@ -26,11 +23,7 @@ Game = (function () {
             }
         }
     };
-
-    var makeTrafficLight = function (x, y) {
-        lights.push(TrafficLight(x, y))
-    };
-
+    
     var Car = function (x = 3, y = 3, facing = "north", newRoute = "forward") {
         var state = {
             locX: x,
