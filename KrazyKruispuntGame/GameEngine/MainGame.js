@@ -20,7 +20,7 @@ function create() {
     // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();
     for (c in carsFromModel) {
-        Car.create(toGridX(carsFromModel[c].getX()), toGridY(carsFromModel[c].getY()));
+        Car.create(toGridX(carsFromModel[c].getX()) + 50, toGridY(carsFromModel[c].getY()) + 50, carsFromModel[c].getDirection());
     }
     carSprites = Car.getCars();
 
@@ -32,7 +32,7 @@ function create() {
 
     // The time interval that's asks the domain to update it's state.
     timer = game.time.create(false);
-    timer.loop(1000, updateCars, this);
+    timer.loop(500, updateCars, this);
     timer.start();
 }
 
@@ -51,5 +51,5 @@ function update() {
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("carSprite.y: " + carSprites[0].sprite.y, 32, 64);
-    game.debug.text("carFromModel.y: " + carsFromModel[0].getY(), 32, 96);
+    game.debug.text("carSprites.angle: " + carSprites[0].sprite.angle, 32, 96);
 }
