@@ -267,7 +267,7 @@ Game = (function () {
 
     function spawnRandomCars() {
         var chance = Math.random();
-        if (chance <= 0.4) {
+        if (chance <= 0.75) {
             generateRandomCarAndAddToList();
         }
     }
@@ -292,16 +292,18 @@ Game = (function () {
             var index = [];
 
             for (var i = 0; i < cars.length; i++) {
-                cars[i].update();
                 if (cars[i].isOutOfBounds()) {
                     cars.splice(i, 1);
                     index.push(i);
                 }
+                cars[i].update();
             }
+
             if (randomSpawn === true) {
                 spawnRandomCars();
             }
-
+            
+            adapter.update(index);
             return index;
         },
         setRandomSpawn: function (input) {
@@ -311,10 +313,18 @@ Game = (function () {
                 randomSpawn = false;
             }
         },
-        getRandomSpawn: function() {
+        getRandomSpawn: function () {
             return randomSpawn;
         }
     };
+})();
+
+var adapter = (function () {
+    return {
+        update: function (indices) {
+            Car.destroyAt(indices);
+        }
+    }
 })();
 
 Game.makeTrafficLight(1, 1);
