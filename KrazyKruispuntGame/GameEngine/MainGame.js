@@ -2,8 +2,14 @@
  * Created by phijma on 6/9/2017.
  */
 
-var game = new Phaser.Game(600, 600, Phaser.AUTO, gameScreenDiv, { preload: preload, create: create, update: update });
-var red = 0xFF0000, yellow = 0xFFFF00, green = 0x00FF00;
+var game = new Phaser.Game(600, 600, Phaser.AUTO, gameScreenDiv, {
+    preload: preload,
+    create: create,
+    update: update
+});
+var red = 0xFF0000,
+    yellow = 0xFFFF00,
+    green = 0x00FF00;
 
 function preload() {
     game.load.image('police', 'GameEngine/assets/images/police.png');
@@ -20,10 +26,9 @@ function create() {
 
     // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();
-    for (c in carsFromModel) {
-        Car.create(toGridX(carsFromModel[c].getX()) + 50, toGridY(carsFromModel[c].getY()) + 50, carsFromModel[c].getDirection());
+    for (i = 0; i < carsFromModel.length; i++) {
+        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection());
     }
-    
 
     // Getting the trafficlights from the model and creating sprites:
     trafficlights = Game.getTrafficLights();
@@ -39,8 +44,9 @@ function create() {
 }
 
 function updateCars() {
-    index = Game.update();
-	Car.update(carsFromModel, index);
+    var index = Game.update();
+    var carsFromModel = Game.getCars();
+    Car.update(carsFromModel, index);
 }
 
 function update() {
@@ -54,6 +60,7 @@ function update() {
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("FPS: " + game.time.fps, 32, 64);
-    game.debug.text("First car.x: " + Car.getCars().length, 32, 96);
-    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 128);
+    game.debug.text("carsSprites: " + Car.getCars().length, 32, 96);
+    game.debug.text("carsInDomain: " + Game.getCars().length, 32, 128);
+    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
 }
