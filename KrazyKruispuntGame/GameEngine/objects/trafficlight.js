@@ -39,13 +39,20 @@ TrafficLight = (function() {
 
                     switch(trafficlights[tl].getColor().toLowerCase()) {
                         case "red":
-                            real_color = red;
+                            if (graphicalLights[tl].color != "red") {
+                                graphicalLights[tl].sprite.destroy();
+                                graphicalLights[tl].sprite = game.add.sprite(graphicalLights[tl].x, graphicalLights[tl].y, 'light_red');
+                                graphicalLights[tl].color = "red";
+                            }
                             break;
                         case "yellow":
-                            real_color = yellow;
                             break;
                         case "green":
-                            real_color = green;
+                            if (graphicalLights[tl].color != "green") {
+                                graphicalLights[tl].sprite.destroy();
+                                graphicalLights[tl].sprite = game.add.sprite(graphicalLights[tl].x, graphicalLights[tl].y, 'light_green');
+                                graphicalLights[tl].color = "green";
+                            }
                             break;
                     }
                 graphicalLights[tl].color = trafficlights[tl].getColor();
