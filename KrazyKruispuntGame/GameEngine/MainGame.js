@@ -18,6 +18,7 @@ function preload() {
     game.load.image('audi', 'GameEngine/assets/images/audi.png');
     game.load.image('spr_kruispunt', 'GameEngine/assets/images/kruispunt.png');
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
+    game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.time.advancedTiming = true;
 }
 
@@ -27,7 +28,8 @@ var carsFromModel;
 
 function create() {
     Game.setRandomSpawn(true);
-    crossroad = Crossroad.create();
+    
+    game.add.sprite(0, 0, 'spr_kruispunt');
 
     // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();

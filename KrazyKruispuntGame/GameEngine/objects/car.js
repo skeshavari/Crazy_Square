@@ -42,9 +42,6 @@ Car = (function () {
 
         render: function () {
             for (var i = 0; i < carSprites.length; i++) {
-                // if ((carSprites[c].sprite.x > 850) || (carSprites[c].sprite.x < -250) || (carSprites[c].sprite.y > 850) || (carSprites[c].sprite.y < -250)) {
-                //     carSprites[c].sprite.destroy();
-                // }
 
                 carSprites[i].sprite.x = Phaser.Math.linearInterpolation([carSprites[i].sprite.x, carSprites[i].lerp_x], 0.05);
                 carSprites[i].sprite.y = Phaser.Math.linearInterpolation([carSprites[i].sprite.y, carSprites[i].lerp_y], 0.05);
@@ -65,12 +62,6 @@ Car = (function () {
                 }
 
                 carSprites[i].sprite.angle = carSprites[i].lerp_angle;
-
-                // if ((Math.abs(carSprites[c].sprite.angle - carSprites[c].lerp_angle) > 5)) {
-                //     carSprites[c].sprite.angle = Phaser.Math.linearInterpolation([carSprites[c].sprite.angle, carSprites[c].lerp_angle], 0.02);
-                // } else {
-                //     carSprites[c].sprite.angle = carSprites[c].lerp_angle;
-                // }
             }
         },
 
