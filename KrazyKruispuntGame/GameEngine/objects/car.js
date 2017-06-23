@@ -34,16 +34,16 @@ Car = (function () {
 
             switch (route) {
                 case "forward":
-                    knipper_x = locX;
-                    knipper_y = locY;
+                    knipper_x = sprite.x - 25;
+                    knipper_y = sprite.x - 50;
                     break;
                 case "left":
-                    knipper_x = locX;
-                    knipper_y = locY;
+                    knipper_x = sprite.x - 25;
+                    knipper_y = sprite.x - 50;
                     break;
                 case "right":
-                    knipper_x = locX;
-                    knipper_y = locY;
+                    knipper_x = sprite.x + 25;
+                    knipper_y = sprite.x - 50;
                 break;
             }
 
@@ -68,7 +68,7 @@ Car = (function () {
                 knipperlicht: knipperlicht,
                 knipper_x: knipper_x,
                 knipper_y: knipper_y,
-                route
+                route: route
             })
         },
 
@@ -103,6 +103,27 @@ Car = (function () {
                 carSprites[i].emitter_smoke.emitX = particle_x;
                 carSprites[i].emitter_smoke.emitY = particle_y;
 
+                for (var c = 0; c < carSprites.length; c++) {
+
+                    switch (carSprites[c].route) {
+                        case "forward":
+                            carSprites[c].knipper_x = carSprites[c].sprite.x - 25;
+                            carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
+                            break;
+                        case "left":
+                            carSprites[c].knipper_x = carSprites[c].sprite.x - 25;
+                            carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
+                            break;
+                        case "right":
+                            carSprites[c].knipper_x = carSprites[c].sprite.x + 25;
+                            carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
+                        break;
+                    }
+
+                    carSprites[c].knipperlicht.x = carSprites[c].knipper_x;
+                    carSprites[c].knipperlicht.y = carSprites[c].knipper_y;
+                }
+
                 carSprites[i].sprite.angle = carSprites[i].lerp_angle;
             }
         },
@@ -129,12 +150,7 @@ Car = (function () {
                 carSprites[c].lerp_x = toGridX(carObjects[c].getX()) + 50;
                 carSprites[c].lerp_y = toGridY(carObjects[c].getY()) + 50;
                 carSprites[c].orientation = carObjects[c].getDirection();
-                carSprites[c].knipperlicht.x = carSprites[c].sprite.x;
-                carSprites[c].knipperlicht.y = carSprites[c].sprite.y;
             }
-
-            
-
         },
 
         getCars: function () {
