@@ -39,30 +39,30 @@ Car = (function () {
         },
 
         render: function () {
-            for (c in carSprites) {
+            for (var i = 0; i < carSprites.length; i++) {
                 // if ((carSprites[c].sprite.x > 850) || (carSprites[c].sprite.x < -250) || (carSprites[c].sprite.y > 850) || (carSprites[c].sprite.y < -250)) {
                 //     carSprites[c].sprite.destroy();
                 // }
 
-                carSprites[c].sprite.x = Phaser.Math.linearInterpolation([carSprites[c].sprite.x, carSprites[c].lerp_x], 0.05);
-                carSprites[c].sprite.y = Phaser.Math.linearInterpolation([carSprites[c].sprite.y, carSprites[c].lerp_y], 0.05);
+                carSprites[i].sprite.x = Phaser.Math.linearInterpolation([carSprites[i].sprite.x, carSprites[i].lerp_x], 0.05);
+                carSprites[i].sprite.y = Phaser.Math.linearInterpolation([carSprites[i].sprite.y, carSprites[i].lerp_y], 0.05);
 
-                switch (carSprites[c].orientation) {
+                switch (carSprites[i].orientation) {
                     case "north":
-                        carSprites[c].lerp_angle = 0;
+                        carSprites[i].lerp_angle = 0;
                         break;
                     case "east":
-                        carSprites[c].lerp_angle = 90;
+                        carSprites[i].lerp_angle = 90;
                         break;
                     case "south":
-                        carSprites[c].lerp_angle = 180;
+                        carSprites[i].lerp_angle = 180;
                         break;
                     case "west":
-                        carSprites[c].lerp_angle = -90;
+                        carSprites[i].lerp_angle = -90;
                         break;
                 }
 
-                carSprites[c].sprite.angle = carSprites[c].lerp_angle;
+                carSprites[i].sprite.angle = carSprites[i].lerp_angle;
 
                 // if ((Math.abs(carSprites[c].sprite.angle - carSprites[c].lerp_angle) > 5)) {
                 //     carSprites[c].sprite.angle = Phaser.Math.linearInterpolation([carSprites[c].sprite.angle, carSprites[c].lerp_angle], 0.02);
@@ -74,22 +74,22 @@ Car = (function () {
 
         update: function (carObjects, index) {
             if (index.length !== 0) {
-                for (i = 0; i < index.length; i++) {
+                for (var i = 0; i < index.length; i++) {
                     carSprites[index[i]].sprite.destroy();
                     carSprites.splice(index[i], 1);
                 }
             }
-            
+
             if (carSprites.length < carObjects.length) {
                 var difference = carObjects.length - carSprites.length;
-                for (i = 0; i < difference; i++) {
-                    this.create(toGridX(carObjects[carSprites.length + i].getX()) + 50,
-                        toGridY(carObjects[carSprites.length + i].getY()) + 50,
-                        carObjects[carSprites.length + i].getDirection());
+                for (var j = 0; j < difference; j++) {
+                    this.create(toGridX(carObjects[carSprites.length + j].getX()) + 50,
+                        toGridY(carObjects[carSprites.length + j].getY()) + 50,
+                        carObjects[carSprites.length + j].getDirection());
                 }
             }
 
-            for (c = 0; c < carObjects.length; c++) {
+            for (var c = 0; c < carObjects.length; c++) {
                 carSprites[c].lerp_x = toGridX(carObjects[c].getX()) + 50;
                 carSprites[c].lerp_y = toGridY(carObjects[c].getY()) + 50;
                 carSprites[c].orientation = carObjects[c].getDirection();
@@ -100,7 +100,6 @@ Car = (function () {
             return carSprites;
         },
         destroyAt: function (index) {
-
         }
     };
 })();

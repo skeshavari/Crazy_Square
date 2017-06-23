@@ -266,6 +266,9 @@ Game = (function () {
     }
 
     function spawnRandomCars() {
+        if (this.randomspawn !== true) {
+            return;
+        }
         var chance = Math.random();
         if (chance <= 0.75) {
             generateRandomCarAndAddToList();
@@ -299,11 +302,8 @@ Game = (function () {
                 cars[i].update();
             }
 
-            if (randomSpawn === true) {
-                spawnRandomCars();
-            }
-            
-            adapter.update(index);
+            spawnRandomCars();
+
             return index;
         },
         setRandomSpawn: function (input) {
@@ -319,14 +319,6 @@ Game = (function () {
     };
 })();
 
-var adapter = (function () {
-    return {
-        update: function (indices) {
-            Car.destroyAt(indices);
-        }
-    }
-})();
-
 Game.makeTrafficLight(1, 1);
 Game.makeTrafficLight(1, 4);
 Game.makeTrafficLight(4, 1);
@@ -335,7 +327,6 @@ Game.makeCar(3, 5, "north", "left");
 Game.makeCar(2, 0, "south", "left");
 Game.makeCar(2, -1, "south", "left");
 Game.makeCar(2, -2, "south", "left");
-
 
 var trafficLightTop = Game.getTrafficLights()[0];
 var trafficLightRight = Game.getTrafficLights()[2];
