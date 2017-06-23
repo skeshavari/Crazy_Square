@@ -2,7 +2,7 @@
 var toolbox = document.getElementById("toolbox");
 
 var options = { 
-	toolbox : toolbox, 
+	toolbox : toolbox,
 	collapse : true, 
 	comments : false, 
 	disable : false, 

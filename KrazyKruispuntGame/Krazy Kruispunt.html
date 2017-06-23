@@ -14,17 +14,36 @@
     <script src="GameEngine/objects/car.js"></script>
 	<script src="GameEngine/objects/trafficlight.js"></script>
 	<script src="GameEngine/objects/utilities.js"></script>
-    <script src="GameLevels/02-level-2.js"></script>
- 
-    
+    <script src="GameLevels/LevelCreator.js"></script>
+    <script>
+        var myParam = location.search.split('level=')[1]
+        switch (myParam) {
+            case '1':
+                createLevelOne();
+                break;
+            case '2':
+                createLevelTwo();
+                break;
+            default:
+                createLevelOne();
+        }
+    </script>
+
     <link rel="stylesheet" href="Krazy Kruispunt.css">
 </head>
 <body>
-<p>
-    <button onclick="showCode()">Show JavaScript</button>
-    <button onclick="displayCode()">Display JavaScript</button>
+<div class="buttonsContainer">
     <button onclick="runCode()">Run JavaScript</button>
-</p>
+    <div class="dropdown">
+    <button class="dropbtn">Select Level</button>
+    <div class="dropdown-content">
+        <a href="?level=1">Level 1</a>
+        <a href="?level=2">Level 2</a>
+        <a href="?level=3">Level 3</a>
+    </div>
+</div>
+</div>
+    
 <div id="pageContainerDiv">
     <div id="gameScreenDiv">
 
