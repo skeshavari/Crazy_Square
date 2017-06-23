@@ -20,8 +20,10 @@ function preload() {
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
+
     game.load.spritesheet('knipperendlicht', 'GameEngine/assets/particles/knipperlicht.png', 10, 10, 2);
     game.load.spritesheet('p_explosion', 'GameEngine/assets/particles/explosion.png',65,65,25);
+
     game.load.image('p_knipperlicht', 'GameEngine/assets/particles/knipperlicht.png');
     game.time.advancedTiming = true;
 }

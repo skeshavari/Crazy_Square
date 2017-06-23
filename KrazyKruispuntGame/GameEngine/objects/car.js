@@ -70,11 +70,15 @@ Car = (function () {
                 lerp_angle: lerp_angle,
                 orientation: orientation,
                 emitter_smoke: emitter_smoke,
+<<<<<<< HEAD
                 emitter_explosion: emitter_explosion,
                 knipperlicht: knipperlicht,
                 knipper_x: knipper_x,
                 knipper_y: knipper_y,
                 route: route
+=======
+                emitter_explosion: emitter_explosion
+>>>>>>> 71143d836dfbd6110fece0a3dc9c4dcbe86d9075
             })
         },
 
@@ -143,6 +147,7 @@ Car = (function () {
                     carSprites[index[i]].emitter_smoke.destroy();
                     carSprites[index[i]].emitter_explosion.start(true, 500, null, 50);
                     carSprites.splice(index[i], 1);
+                    carSprites[index[i]].emitter_explosion.start(true, 1000, null, 50);
                 }
             }
 
