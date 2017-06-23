@@ -2,6 +2,10 @@ Game = (function () {
     var cars = [];
     var lights = [];
     var randomSpawn = false;
+    var spawnChance = 0.75;
+    var maximumSpawns = 25;
+    var alreadySpawned = 0;
+    var collisionCounter = 0;
 
     var TrafficLight = function (_x, _y) {
         var state = {
@@ -32,37 +36,42 @@ Game = (function () {
             direction: facing,
             route: newRoute,
             hasTurned: false,
+            explodeOnNextTurn: false
         }
 
         function redLight() {
-            if (state.locX === 2 && state.locY === 1 &&
+            if (state.locX === 2 &&
+                state.locY === 1 &&
                 trafficLightTop.getColor() === "RED") {
                 return true;
             }
-            if (state.locX === 1 && state.locY === 3 &&
+            if (state.locX === 1 &&
+                state.locY === 3 &&
                 trafficLightLeft.getColor() === "RED") {
                 return true;
             }
-            if (state.locX === 3 && state.locY === 4 &&
+            if (state.locX === 3 &&
+                state.locY === 4 &&
                 trafficLightBottom.getColor() === "RED") {
                 return true;
             }
-            if (state.locX === 4 && state.locY === 2 &&
+            if (state.locX === 4 &&
+                state.locY === 2 &&
                 trafficLightRight.getColor() === "RED") {
                 return true;
             }
         }
 
         function checkFront(locX, locY) {
-            if (atValidLocation()) {
-                return false
+            if (atValidLocation() || inFrontOfGreenLight()) {
+                return false;
             }
             for (i = 0; i < cars.length; i++) {
                 if (cars[i].getX() === locX && cars[i].getY() === locY) {
-                    return true
+                    return true;
                 }
             }
-            return false
+            return false;
         }
 
         function carInFront() {
@@ -151,23 +160,23 @@ Game = (function () {
 
         function checkIfXLocIsCenter() {
             if (state.locX === 2 || state.locX === 3) {
-                return true
+                return true;
             }
-            return false
+            return false;
         }
 
         function checkIfYLocIsCenter() {
             if (state.locY === 2 || state.locY === 3) {
-                return true
+                return true;
             }
-            return false
+            return false;
         }
 
         function atValidLocation() {
             if (checkIfXLocIsCenter() && checkIfYLocIsCenter()) {
-                return true
+                return true;
             }
-            return false
+            return false;
         }
 
         function turnIfNeeded() {
@@ -186,6 +195,13 @@ Game = (function () {
             } else {
                 forward();
             }
+        }
+
+        function inFrontOfGreenLight() {
+            if (state.locX > 0 && state.locX < 5 && state.locY > 0 && state.locY < 5) {
+                return true;
+            }
+            return false;
         }
 
         return {
@@ -219,6 +235,12 @@ Game = (function () {
                     return true;
                 }
                 return false;
+            },
+            setExplodeOnNextTurn: function () {
+                state.explodeOnNextTurn = true;
+            },
+            getExplodeOnNextTurn: function () {
+                return state.explodeOnNextTurn;
             }
         }
     }
@@ -243,35 +265,55 @@ Game = (function () {
                     return;
                 }
                 cars.push(Car(-1, 3, "east", validRoutes[routeChance]));
+                alreadySpawned += 1;
                 break;
             case (1):
                 if (carPresentAt(2, -1)) {
                     return;
                 }
                 cars.push(Car(2, -1, "south", validRoutes[routeChance]));
+                alreadySpawned += 1;
                 break;
             case (2):
                 if (carPresentAt(3, 6)) {
                     return;
                 }
                 cars.push(Car(3, 6, "north", validRoutes[routeChance]));
+                alreadySpawned += 1;
                 break;
             case (3):
                 if (carPresentAt(6, 2)) {
                     return;
                 }
                 cars.push(Car(6, 2, "west", validRoutes[routeChance]));
+                alreadySpawned += 1;
                 break;
         };
+    }
+    function spawnLimitNOTReached() {
+        return maximumSpawns > alreadySpawned;
     }
 
     function spawnRandomCars() {
         if (randomSpawn) {
             var chance = Math.random();
-            if (chance <= 0.75) {
+            if (chance <= spawnChance && spawnLimitNOTReached()) {
                 generateRandomCarAndAddToList();
             }
         }
+    }
+
+    function detectCollision(x, y) {
+        var count = 0;
+        for (var i = 0; i < cars.length; i++) {
+            if (cars[i].getX() === x && cars[i].getY() === y) {
+                count++;
+            }
+        }
+        if (count > 1) {
+            return true;
+        }
+        return false;
     }
 
     return {
@@ -282,7 +324,7 @@ Game = (function () {
             cars.push(Car(x, y, facing, route));
         },
         makeTrafficLight: function (x, y) {
-            lights.push(TrafficLight(x, y))
+            lights.push(TrafficLight(x, y));
         },
         getCars: function () {
             return cars;
@@ -294,11 +336,17 @@ Game = (function () {
             var index = [];
 
             for (var i = 0; i < cars.length; i++) {
-                if (cars[i].isOutOfBounds()) {
+                if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
                     cars.splice(i, 1);
                     index.push(i);
+                    continue;
                 } else {
                     cars[i].update();
+                }
+
+                if (detectCollision(cars[i].getX(), cars[i].getY())) {
+                    cars[i].setExplodeOnNextTurn();
+                    this.incrementCollisionCounter();
                 }
             }
 
@@ -313,22 +361,23 @@ Game = (function () {
                 randomSpawn = false;
             }
         },
+        changeSpawnChance: function (chance = 0.75) {
+            spawnChance = chance;
+        },
         getRandomSpawn: function () {
             return randomSpawn;
+        },
+        setTotalSpawns: function (number = 25) {
+            maximumSpawns = number;
+        },
+        getSpawnRatio: function () {
+            return alreadySpawned + "/" + maximumSpawns;
+        },
+        getCollisionCounter: function () {
+            return collisionCounter;
+        },
+        incrementCollisionCounter: function () {
+            collisionCounter++;
         }
     };
 })();
-
-Game.makeTrafficLight(1, 1);
-Game.makeTrafficLight(1, 4);
-Game.makeTrafficLight(4, 1);
-Game.makeTrafficLight(4, 4);
-Game.makeCar(3, 5, "north", "left");
-Game.makeCar(2, 0, "south", "left");
-Game.makeCar(2, -1, "south", "left");
-Game.makeCar(2, -2, "south", "left");
-
-var trafficLightTop = Game.getTrafficLights()[0];
-var trafficLightRight = Game.getTrafficLights()[2];
-var trafficLightLeft = Game.getTrafficLights()[1];
-var trafficLightBottom = Game.getTrafficLights()[3];
