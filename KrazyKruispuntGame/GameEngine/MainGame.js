@@ -20,6 +20,7 @@ function preload() {
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
+    game.load.image('p_explosion', 'GameEngine/assets/particles/explosion.png');
     game.load.image('p_knipperlicht', 'GameEngine/assets/particles/knipperlicht.png');
     game.time.advancedTiming = true;
 }
@@ -74,5 +75,4 @@ function update() {
     game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
     game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 192);
     game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 224);
-
 }
