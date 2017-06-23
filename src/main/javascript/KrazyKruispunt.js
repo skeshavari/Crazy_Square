@@ -266,9 +266,9 @@ Game = (function () {
     }
 
     function spawnRandomCars() {
-        if (this.randomspawn !== true) {
-            return;
-        }
+        // if (this.randomSpawn !== true) {
+        //     return;
+        // }
         var chance = Math.random();
         if (chance <= 0.75) {
             generateRandomCarAndAddToList();
