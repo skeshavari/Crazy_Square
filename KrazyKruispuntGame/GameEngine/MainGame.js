@@ -70,4 +70,5 @@ function update() {
     game.debug.text("carsSprites: " + Car.getCars().length, 32, 96);
     game.debug.text("carsInDomain: " + Game.getCars().length, 32, 128);
     game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
+    game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 192);
 }
