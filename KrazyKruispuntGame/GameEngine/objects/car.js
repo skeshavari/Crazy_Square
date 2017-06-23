@@ -8,7 +8,7 @@ Car = (function () {
             carSprites = [];
         },
 
-        create: function (locX, locY, orientation) {
+        create: function (locX, locY, orientation, route) {
             cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue']
             var random_audi = cars[Math.floor(Math.random() * cars.length)];
             var sprite = game.add.sprite(locX, locY, random_audi);
@@ -32,11 +32,31 @@ Car = (function () {
                     break;
             }
 
+            switch (route) {
+                case "forward":
+                    knipper_x = locX;
+                    knipper_y = locY;
+                    break;
+                case "left":
+                    knipper_x = locX;
+                    knipper_y = locY;
+                    break;
+                case "right":
+                    knipper_x = locX;
+                    knipper_y = locY;
+                break;
+            }
+
             emitter_smoke = game.add.emitter(game.world.centerX, game.world.centerY, 400);
             emitter_smoke.makeParticles( [ 'p_smoke' ] );
             emitter_smoke.setAlpha(0.2, 1, 1000);
             emitter_smoke.setScale(0.25, 0, 0.25, 0, 250);
             emitter_smoke.start(false, 1000, 50);
+
+            var knipperlicht = game.add.sprite(locX + 100, locY + 100, 'knipperendlicht');
+            knipperlicht.animations.add('knipper');
+            knipperlicht.animations.play('knipper', 1, true);
+            knipperlicht.animations.currentAnim.speed = 2;
 
             carSprites.push({
                 sprite: sprite,
@@ -45,6 +65,10 @@ Car = (function () {
                 lerp_angle: lerp_angle,
                 orientation: orientation,
                 emitter_smoke: emitter_smoke,
+                knipperlicht: knipperlicht,
+                knipper_x: knipper_x,
+                knipper_y: knipper_y,
+                route
             })
         },
 
@@ -106,7 +130,12 @@ Car = (function () {
                 carSprites[c].lerp_x = toGridX(carObjects[c].getX()) + 50;
                 carSprites[c].lerp_y = toGridY(carObjects[c].getY()) + 50;
                 carSprites[c].orientation = carObjects[c].getDirection();
+                carSprites[c].knipperlicht.x = carSprites[c].sprite.x;
+                carSprites[c].knipperlicht.y = carSprites[c].sprite.y;
             }
+
+            
+
         },
 
         getCars: function () {

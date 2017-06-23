@@ -20,7 +20,7 @@ function preload() {
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
-    game.load.image('p_knipperlicht', 'GameEngine/assets/particles/knipperlicht.png');
+    game.load.spritesheet('knipperendlicht', 'GameEngine/assets/particles/knipperlicht.png', 10, 10, 2);
     game.time.advancedTiming = true;
 }
 
@@ -36,7 +36,7 @@ function create() {
     // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();
     for (i = 0; i < carsFromModel.length; i++) {
-        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection());
+        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection(), carsFromModel[i].getRoute());
     }
 
     // Getting the trafficlights from the model and creating sprites:
