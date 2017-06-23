@@ -2,8 +2,9 @@ Game = (function () {
     var cars = [];
     var lights = [];
     var randomSpawn = false;
+    var spawnChance = 0.75;
     var maximumSpawns = 25;
-    var alreadySpawned = 4;
+    var alreadySpawned = 0;
 
     var TrafficLight = function (_x, _y) {
         var state = {
@@ -277,7 +278,7 @@ Game = (function () {
     function spawnRandomCars() {
         if (randomSpawn) {
             var chance = Math.random();
-            if (chance <= 0.75 && spawnLimitNOTReached()) {
+            if (chance <= spawnChance && spawnLimitNOTReached()) {
                 generateRandomCarAndAddToList();
             }
         }
@@ -322,25 +323,17 @@ Game = (function () {
                 randomSpawn = false;
             }
         },
+        changeSpawnChance: function (chance = 0.75) {
+            spawnChance = chance;
+        },
         getRandomSpawn: function () {
             return randomSpawn;
+        },
+        setTotalSpawns: function (number = 25) {
+            maximumSpawns = number;
         },
         getSpawnRatio: function () {
             return alreadySpawned + "/" + maximumSpawns;
         }
     };
 })();
-
-Game.makeTrafficLight(1, 1);
-Game.makeTrafficLight(1, 4);
-Game.makeTrafficLight(4, 1);
-Game.makeTrafficLight(4, 4);
-Game.makeCar(3, 5, "north", "left");
-Game.makeCar(2, 0, "south", "left");
-Game.makeCar(2, -1, "south", "left");
-Game.makeCar(2, -2, "south", "left");
-
-var trafficLightTop = Game.getTrafficLights()[0];
-var trafficLightRight = Game.getTrafficLights()[2];
-var trafficLightLeft = Game.getTrafficLights()[1];
-var trafficLightBottom = Game.getTrafficLights()[3];
