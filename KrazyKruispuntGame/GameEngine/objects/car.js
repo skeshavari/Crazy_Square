@@ -31,12 +31,20 @@ Car = (function () {
                     lerp_angle = -90;
                     break;
             }
+
+            emitter = game.add.emitter(game.world.centerX, game.world.centerY, 400);
+            emitter.makeParticles( [ 'p_smoke' ] );
+            emitter.setAlpha(1, 0, 3000);
+            emitter.setScale(0.8, 0, 0.8, 0, 3000);
+            emitter.start(false, 3000, 5);
+
             carSprites.push({
                 sprite: sprite,
                 lerp_x: locX,
                 lerp_y: locY,
                 lerp_angle: lerp_angle,
-                orientation: orientation
+                orientation: orientation,
+                emitter: emitter
             })
         },
 
@@ -61,7 +69,9 @@ Car = (function () {
                         break;
                 }
 
-                carSprites[i].sprite.angle = carSprites[i].lerp_angle;
+                carSprites[i].emitter.emitX = carSprites[i].sprite.x;
+                carSprites[i].emitter.emitY = carSprites[i].sprite.y;
+
             }
         },
 
