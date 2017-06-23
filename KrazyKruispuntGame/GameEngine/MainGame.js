@@ -12,7 +12,12 @@ var red = 0xFF0000,
     green = 0x00FF00;
 
 function preload() {
-    game.load.image('police', 'GameEngine/assets/images/police.png');
+    game.load.image('audi_yellow', 'GameEngine/assets/images/audi_yellow.png');
+    game.load.image('audi_blue', 'GameEngine/assets/images/audi_blue.png');
+    game.load.image('audi_metallic', 'GameEngine/assets/images/audi_metallic.png');
+    game.load.image('audi', 'GameEngine/assets/images/audi.png');
+    game.load.image('spr_kruispunt', 'GameEngine/assets/images/kruispunt.png');
+    game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.time.advancedTiming = true;
 }
 
