@@ -32,11 +32,11 @@ Car = (function () {
                     break;
             }
 
-            emitter = game.add.emitter(game.world.centerX, game.world.centerY, 400);
-            emitter.makeParticles( [ 'p_smoke' ] );
-            emitter.setAlpha(1, 0, 3000);
-            emitter.setScale(0.8, 0, 0.8, 0, 3000);
-            emitter.start(false, 3000, 5);
+            emitter_smoke = game.add.emitter(game.world.centerX, game.world.centerY, 400);
+            emitter_smoke.makeParticles( [ 'p_smoke' ] );
+            emitter_smoke.setAlpha(0.2, 1, 1000);
+            emitter_smoke.setScale(0.25, 0, 0.25, 0, 250);
+            emitter_smoke.start(false, 1000, 50);
 
             carSprites.push({
                 sprite: sprite,
@@ -44,7 +44,7 @@ Car = (function () {
                 lerp_y: locY,
                 lerp_angle: lerp_angle,
                 orientation: orientation,
-                emitter: emitter
+                emitter_smoke: emitter_smoke,
             })
         },
 
@@ -57,20 +57,30 @@ Car = (function () {
                 switch (carSprites[i].orientation) {
                     case "north":
                         carSprites[i].lerp_angle = 0;
+                        particle_x = carSprites[i].sprite.x - 10
+                        particle_y = carSprites[i].sprite.y + 45
                         break;
                     case "east":
                         carSprites[i].lerp_angle = 90;
+                        particle_x = carSprites[i].sprite.x - 45
+                        particle_y = carSprites[i].sprite.y - 10
                         break;
                     case "south":
                         carSprites[i].lerp_angle = 180;
+                        particle_x = carSprites[i].sprite.x - 10
+                        particle_y = carSprites[i].sprite.y - 45
                         break;
                     case "west":
                         carSprites[i].lerp_angle = -90;
+                        particle_x = carSprites[i].sprite.x + 45
+                        particle_y = carSprites[i].sprite.y - 10
                         break;
                 }
 
-                carSprites[i].emitter.emitX = carSprites[i].sprite.x;
-                carSprites[i].emitter.emitY = carSprites[i].sprite.y;
+                carSprites[i].emitter_smoke.emitX = particle_x;
+                carSprites[i].emitter_smoke.emitY = particle_y;
+
+                carSprites[i].sprite.angle = carSprites[i].lerp_angle;
 
             }
         },
