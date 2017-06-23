@@ -26,7 +26,9 @@ TrafficLight = (function() {
         },
 
         plaatsTrafficLight: function(color, locX, locY) {
-            graphicalLights.push({ color: color, x: locX, y: locY});
+
+            graphicalLights.push({ color: color, x: locX, y: locY });
+
 
             for (tl in graphicalLights) {
                 this.trafficLightGraphics = game.add.graphics(0, 0);

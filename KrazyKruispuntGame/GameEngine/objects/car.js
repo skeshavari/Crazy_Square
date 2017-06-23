@@ -9,7 +9,9 @@ Car = (function () {
         },
 
         create: function (locX, locY, orientation) {
-            var sprite = game.add.sprite(locX, locY, 'police');
+            cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue']
+            var random_audi = cars[Math.floor(Math.random() * cars.length)];
+            var sprite = game.add.sprite(locX, locY, random_audi);
             sprite.anchor.setTo(0.5, 0.5);
             switch (orientation) {
                 case "north":
