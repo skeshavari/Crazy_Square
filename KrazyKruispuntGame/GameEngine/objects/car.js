@@ -33,7 +33,7 @@ Car = (function () {
             }
 
             emitter_smoke = game.add.emitter(game.world.centerX, game.world.centerY, 400);
-            emitter_smoke.makeParticles( [ 'p_smoke' ] );
+            emitter_smoke.makeParticles(['p_smoke']);
             emitter_smoke.setAlpha(0.2, 1, 1000);
             emitter_smoke.setScale(0.25, 0, 0.25, 0, 250);
             emitter_smoke.start(false, 1000, 50);
@@ -50,7 +50,6 @@ Car = (function () {
 
         render: function () {
             for (var i = 0; i < carSprites.length; i++) {
-
                 carSprites[i].sprite.x = Phaser.Math.linearInterpolation([carSprites[i].sprite.x, carSprites[i].lerp_x], 0.05);
                 carSprites[i].sprite.y = Phaser.Math.linearInterpolation([carSprites[i].sprite.y, carSprites[i].lerp_y], 0.05);
 
@@ -81,7 +80,6 @@ Car = (function () {
                 carSprites[i].emitter_smoke.emitY = particle_y;
 
                 carSprites[i].sprite.angle = carSprites[i].lerp_angle;
-
             }
         },
 
@@ -89,6 +87,7 @@ Car = (function () {
             if (index.length !== 0) {
                 for (var i = 0; i < index.length; i++) {
                     carSprites[index[i]].sprite.destroy();
+                    carSprites[index[i]].emitter_smoke.destroy();
                     carSprites.splice(index[i], 1);
                 }
             }
