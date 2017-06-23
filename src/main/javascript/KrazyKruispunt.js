@@ -226,7 +226,7 @@ Game = (function () {
     }
 
     function carPresentAt(x, y) {
-        for (i = 0; i < cars.length; i++) {
+        for (var i = 0; i < cars.length; i++) {
             if (x === cars[i].getX() && y === cars[i].getY()) {
                 return true;
             }
@@ -242,28 +242,28 @@ Game = (function () {
         switch (chance) {
             case (0):
                 if (carPresentAt(-1, 3)) {
-                    return
+                    return;
                 }
                 cars.push(Car(-1, 3, "east", validRoutes[routeChance]));
                 alreadySpawned += 1;
                 break;
             case (1):
                 if (carPresentAt(2, -1)) {
-                    return
+                    return;
                 }
                 cars.push(Car(2, -1, "south", validRoutes[routeChance]));
                 alreadySpawned += 1;
                 break;
             case (2):
                 if (carPresentAt(3, 6)) {
-                    return
+                    return;
                 }
                 cars.push(Car(3, 6, "north", validRoutes[routeChance]));
                 alreadySpawned += 1;
                 break;
             case (3):
                 if (carPresentAt(6, 2)) {
-                    return
+                    return;
                 }
                 cars.push(Car(6, 2, "west", validRoutes[routeChance]));
                 alreadySpawned += 1;
@@ -275,12 +275,11 @@ Game = (function () {
     }
 
     function spawnRandomCars() {
-//        if (this.randomspawn !== true) {
-//            return;
-//        }
-        var chance = Math.random();
-        if (chance <= 1 && spawnLimitNOTReached()) {
-            generateRandomCarAndAddToList();
+        if (randomSpawn) {
+            var chance = Math.random();
+            if (chance <= 0.75 && spawnLimitNOTReached()) {
+                generateRandomCarAndAddToList();
+            }
         }
     }
 
@@ -307,8 +306,9 @@ Game = (function () {
                 if (cars[i].isOutOfBounds()) {
                     cars.splice(i, 1);
                     index.push(i);
+                } else {
+                    cars[i].update();
                 }
-                cars[i].update();
             }
 
             spawnRandomCars();
