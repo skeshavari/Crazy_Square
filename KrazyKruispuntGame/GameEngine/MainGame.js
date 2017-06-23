@@ -19,6 +19,7 @@ function preload() {
     game.load.image('spr_kruispunt', 'GameEngine/assets/images/kruispunt.png');
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
+    game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
     game.time.advancedTiming = true;
 }
 
@@ -28,7 +29,7 @@ var carsFromModel;
 
 function create() {
     Game.setRandomSpawn(true);
-    
+
     game.add.sprite(0, 0, 'spr_kruispunt');
 
     // Getting the cars from the model and creating sprites:
