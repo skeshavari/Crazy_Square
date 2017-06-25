@@ -58,10 +58,8 @@ Car = (function () {
             knipperlicht.animations.play('knipper', 1, true);
             knipperlicht.animations.currentAnim.speed = 2;
 
-            //Explosion emitter
-            var emitter_explosion = game.add.emitter(game.world.centerX, game.world.centerY, 400);
-            emitter_explosion.makeParticles(['p_explosion']);
-            emitter_explosion.setAlpha(0.2, 1, 1000);
+            //todo: May need another way of adding an explosion
+            sprite.animations.add('p_explosion',25,false);
 
             carSprites.push({
                 sprite: sprite,
@@ -70,7 +68,6 @@ Car = (function () {
                 lerp_angle: lerp_angle,
                 orientation: orientation,
                 emitter_smoke: emitter_smoke,
-                emitter_explosion: emitter_explosion,
                 knipperlicht: knipperlicht,
                 knipper_x: knipper_x,
                 knipper_y: knipper_y,
@@ -136,14 +133,15 @@ Car = (function () {
             }
         },
 
+        //todo: make explosion particle again and use the spritesheet to animate particle
         update: function (carObjects, index) {
             if (index.length !== 0) {
                 for (var i = 0; i < index.length; i++) {
+                    carSprites[index[i]].sprite.animations.play('p_explosion');
                     carSprites[index[i]].sprite.destroy();
                     carSprites[index[i]].emitter_smoke.destroy();
-                    carSprites[index[i]].emitter_explosion.start(true, 500, null, 50);
+                    carSprites[index[i]].knipperlicht.destroy();
                     carSprites.splice(index[i], 1);
-                    carSprites[index[i]].emitter_explosion.start(true, 1000, null, 50);
                 }
             }
 
