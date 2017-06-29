@@ -85,5 +85,6 @@ function update() {
     if (Car.getCars()[1] !== undefined) {
         game.debug.text("ROUTE: " + Car.getCars()[1].route, 32, 250);
     }
-    
+    game.debug.text("Crashes allowed: " + Game.getTotalCrashesAllowed(), 412, 32);
+    game.debug.text("Cars Rescued:    " + Game.getTotalCarsSafelyPassed(), 412, 64);
 }
