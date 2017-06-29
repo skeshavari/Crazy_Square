@@ -18,13 +18,16 @@
         var myParam = location.search.split('level=')[1]
         switch (myParam) {
             case '1':
-                createLevelOne();
+                createLevelEasy();
                 break;
             case '2':
-                createLevelTwo();
+                createLevelMedium();
                 break;
             case '3':
-                chaosMode();
+                createLevelHard();
+                break;
+            case '4':
+                createLevelChallengeMode();
                 break;
             default:
                 createLevelOne();
@@ -37,16 +40,17 @@
 
 
 
-<div style="display: flex;align-items: flex-start;flex-direction: column;padding: 5px;">
+<div id="MainPageContainer">
         
     <div class="buttonsContainer">
-        <button onclick="runCode()">Run JavaScript</button>
+        <button onclick="runCode()">Run My Code!</button>
         <div class="dropdown">
             <button class="dropbtn">Select Level</button>
             <div class="dropdown-content">
-                <a href="?level=1">Level 1</a>
-                <a href="?level=2">Level 2</a>
-                <a href="?level=3">Level 3</a>
+                <a href="?level=1">Easy</a>
+                <a href="?level=2">Medium</a>
+                <a href="?level=3">Hard</a>
+                <a href="?level=4">Challenge Mode</a>
             </div>
         </div>
     </div>

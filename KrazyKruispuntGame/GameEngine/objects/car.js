@@ -17,7 +17,7 @@ Car = (function () {
         },
 
         create: function (locX, locY, orientation, route) {
-            cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue', 'ambulance']
+            cars = ['ambulance', 'audi', 'audi_metallic', 'audi_yellow', 'audi_blue', 'oldtimer', 'police', 'taxi']
             var random_audi = cars[Math.floor(Math.random() * cars.length)];
 
             var sprite = game.add.sprite(locX, locY, random_audi);

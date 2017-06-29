@@ -8,18 +8,36 @@ var trafficLightRight;
 var trafficLightLeft;
 var trafficLightBottom;
 
-function createLevelOne() {
+Game.setRandomSpawn(true);
+
+function createLevelEasy() {
 
     Game.makeCar(3, 5, "north", "left");
-    Game.setRandomSpawn(false);
-   
+    Game.setTotalSpawns(25);
+    Game.changeSpawnChance(0.5);
+
     trafficLightTop = Game.getTrafficLights()[0];
     trafficLightRight = Game.getTrafficLights()[2];
     trafficLightLeft = Game.getTrafficLights()[1];
     trafficLightBottom = Game.getTrafficLights()[3];
 }
 
-function createLevelTwo() {
+function createLevelMedium() {
+    Game.makeCar(3, 5, "north", "left");
+    Game.makeCar(2, 0, "south", "left");
+    Game.makeCar(2, -1, "south", "left");
+    Game.makeCar(2, -2, "south", "left");
+
+    Game.setTotalSpawns(50);
+    Game.changeSpawnChance(0.75);
+
+    trafficLightTop = Game.getTrafficLights()[0];
+    trafficLightRight = Game.getTrafficLights()[2];
+    trafficLightLeft = Game.getTrafficLights()[1];
+    trafficLightBottom = Game.getTrafficLights()[3];
+}
+
+function createLevelHard() {
     Game.makeCar(3, 5, "north", "left");
     Game.makeCar(2, 0, "south", "left");
     Game.makeCar(2, -1, "south", "left");
@@ -34,9 +52,9 @@ function createLevelTwo() {
     trafficLightBottom = Game.getTrafficLights()[3];
 }
 
-function chaosMode() {
-    Game.setRandomSpawn(true);
-    Game.setTotalSpawns(25);
+function createLevelChallengeMode() {
+    
+    Game.setTotalSpawns(9999999);
     Game.changeSpawnChance(1);
 
     Game.makeMainCar(2, 0, "south", "left");
