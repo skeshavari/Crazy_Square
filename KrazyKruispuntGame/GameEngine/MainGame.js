@@ -37,8 +37,33 @@ function preload() {
 var crossroad;
 var trafficlights;
 var carsFromModel;
+var filter;
 
 function create() {
+    var fragmentSrc = [
+
+        "precision mediump float;",
+
+        "varying vec2 vTextureCoord;",
+        "uniform sampler2D uSampler;",
+
+        "void main(void) {",
+
+            "vec4 texColor = texture2D(uSampler, vTextureCoord);",
+
+            "if (vTextureCoord.x < 1.0) {",
+                "if (texColor.b > 0.0) {",
+                    "texColor = vec4(0.0, 0.0, 0.0, 0.75);",
+                "}",
+            "}",
+     
+            "gl_FragColor = texColor;",
+
+        "}"
+    ];
+
+    filter = new Phaser.Filter(game, null, fragmentSrc);
+
     game.add.sprite(0, 0, 'spr_kruispunt');
 
     // Getting the cars from the model and creating sprites:

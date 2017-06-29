@@ -20,6 +20,11 @@ Car = (function () {
             cars = ['ambulance', 'audi', 'audi_metallic', 'audi_yellow', 'audi_blue', 'oldtimer', 'police', 'taxi']
             var random_audi = cars[Math.floor(Math.random() * cars.length)];
 
+
+            // SHADOW TEST:
+            var shadow = game.add.sprite(locX + 10, locY + 10, random_audi);
+            shadow.anchor.setTo(0.5, 0.5);
+            shadow.filters = [ filter ];
             var sprite = game.add.sprite(locX, locY, random_audi);
             sprite.anchor.setTo(0.5, 0.5);
             switch (orientation) {
@@ -63,6 +68,7 @@ Car = (function () {
 
             carSprites.push({
                 sprite: sprite,
+                shadow: shadow,
                 lerp_x: locX,
                 lerp_y: locY,
                 lerp_angle: lerp_angle,
@@ -81,6 +87,10 @@ Car = (function () {
                     Phaser.Math.linearInterpolation([carSprites[i].sprite.x, carSprites[i].lerp_x], 0.05);
                 carSprites[i].sprite.y =
                     Phaser.Math.linearInterpolation([carSprites[i].sprite.y, carSprites[i].lerp_y], 0.05);
+                carSprites[i].shadow.x =
+                    Phaser.Math.linearInterpolation([carSprites[i].sprite.x + 5, carSprites[i].lerp_x + 10], 0.05);
+                carSprites[i].shadow.y =
+                    Phaser.Math.linearInterpolation([carSprites[i].sprite.y + 5, carSprites[i].lerp_y + 10], 0.05);
 
                 switch (carSprites[i].orientation) {
                     case "north":
@@ -164,6 +174,7 @@ Car = (function () {
                 }
 
                 carSprites[i].sprite.angle = carSprites[i].lerp_angle;
+                carSprites[i].shadow.angle = carSprites[i].lerp_angle;
             }
         },
         //todo: make explosion particle again and use the spritesheet to animate particle
