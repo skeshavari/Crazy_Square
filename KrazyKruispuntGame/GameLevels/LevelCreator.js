@@ -30,7 +30,7 @@ function createLevelMedium() {
 
     Game.setTotalSpawns(50);
     Game.changeSpawnChance(0.75);
-
+    Game.setMaximumCrashesAllowed(5);
     trafficLightTop = Game.getTrafficLights()[0];
     trafficLightRight = Game.getTrafficLights()[2];
     trafficLightLeft = Game.getTrafficLights()[1];
@@ -42,7 +42,7 @@ function createLevelHard() {
     Game.makeCar(2, 0, "south", "left");
     Game.makeCar(2, -1, "south", "left");
     Game.makeCar(2, -2, "south", "left");
-
+    Game.setMaximumCrashesAllowed(3);
     Game.setTotalSpawns(100);
     Game.changeSpawnChance(1);
 
@@ -56,6 +56,23 @@ function createLevelChallengeMode() {
     
     Game.setTotalSpawns(9999999);
     Game.changeSpawnChance(1);
+    Game.setMaximumCrashesAllowed(3);
+
+    Game.makeMainCar(2, 0, "south", "left");
+
+    
+    trafficLightTop = Game.getTrafficLights()[0];
+    trafficLightRight = Game.getTrafficLights()[2];
+    trafficLightLeft = Game.getTrafficLights()[1];
+    trafficLightBottom = Game.getTrafficLights()[3];
+
+}
+
+function createLevelInsaneChallengeMode() {
+
+    Game.setTotalSpawns(9999999);
+    Game.changeSpawnChance(1);
+    Game.setMaximumCrashesAllowed(0);
 
     Game.makeMainCar(2, 0, "south", "left");
 
@@ -66,9 +83,3 @@ function createLevelChallengeMode() {
     trafficLightBottom = Game.getTrafficLights()[3];
 
 }
-
-function printTotalCrashesAllowed() {
-    
-}
-
-printTotalCrashesAllowed();
