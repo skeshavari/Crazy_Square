@@ -16,6 +16,7 @@ function preload() {
     game.load.image('audi_blue', 'GameEngine/assets/images/audi_blue.png');
     game.load.image('audi_metallic', 'GameEngine/assets/images/audi_metallic.png');
     game.load.image('audi', 'GameEngine/assets/images/audi.png');
+    game.load.image('ambulance', 'GameEngine/assets/images/ambulance.png');
     game.load.image('spr_kruispunt', 'GameEngine/assets/images/kruispunt.png');
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
@@ -38,7 +39,7 @@ function create() {
     // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();
     for (i = 0; i < carsFromModel.length; i++) {
-        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection(), carsFromModel[i].getRoute());
+        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection(), carsFromModel[i].getRoute(), isMainCar = true);
     }
 
     // Getting the trafficlights from the model and creating sprites:

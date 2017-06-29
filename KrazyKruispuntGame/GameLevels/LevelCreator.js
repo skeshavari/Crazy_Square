@@ -36,10 +36,11 @@ function createLevelTwo() {
 
 function chaosMode() {
     Game.setRandomSpawn(true);
-    Game.setTotalSpawns(100);
+    Game.setTotalSpawns(25);
     Game.changeSpawnChance(1);
 
-    Game.makeCar(2, 0, "south", "left");
+    Game.makeMainCar(2, 0, "south", "left", true);
+
 
     trafficLightTop = Game.getTrafficLights()[0];
     trafficLightRight = Game.getTrafficLights()[2];

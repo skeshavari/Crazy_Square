@@ -8,9 +8,14 @@ Car = (function () {
             carSprites = [];
         },
 
-        create: function (locX, locY, orientation, route) {
+        create: function (locX, locY, orientation, route, isMainCar) {
             cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue']
             var random_audi = cars[Math.floor(Math.random() * cars.length)];
+
+            if (isMainCar) {
+                random_audi = 'ambulance';
+            }
+
             var sprite = game.add.sprite(locX, locY, random_audi);
             sprite.anchor.setTo(0.5, 0.5);
             switch (orientation) {

@@ -289,7 +289,12 @@ Game = (function () {
                 alreadySpawned += 1;
                 break;
         };
+
+        if (maximumSpawns === alreadySpawned) {
+            randomSpawn = false;
+        }
     }
+
     function spawnLimitNOTReached() {
         return maximumSpawns > alreadySpawned;
     }
@@ -319,6 +324,9 @@ Game = (function () {
     return {
         clearTest: function () {
             cars = [];
+        },
+        makeMainCar: function (x, y, facing, route) {
+            cars.push(Car(x, y, facing, route));
         },
         makeCar: function (x, y, facing, route) {
             cars.push(Car(x, y, facing, route));
