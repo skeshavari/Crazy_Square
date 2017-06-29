@@ -39,7 +39,7 @@ function create() {
     // Getting the cars from the model and creating sprites:
     carsFromModel = Game.getCars();
     for (i = 0; i < carsFromModel.length; i++) {
-        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection(), carsFromModel[i].getRoute(), isMainCar = true);
+        Car.create(toGridX(carsFromModel[i].getX()) + 50, toGridY(carsFromModel[i].getY()) + 50, carsFromModel[i].getDirection(), carsFromModel[i].getRoute());
     }
 
     // Getting the trafficlights from the model and creating sprites:

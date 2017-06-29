@@ -39,7 +39,7 @@ function chaosMode() {
     Game.setTotalSpawns(25);
     Game.changeSpawnChance(1);
 
-    Game.makeMainCar(2, 0, "south", "left", true);
+    Game.makeMainCar(2, 0, "south", "left");
 
 
     trafficLightTop = Game.getTrafficLights()[0];
