@@ -32,68 +32,78 @@
     <link rel="stylesheet" href="Krazy Kruispunt.css">
 </head>
 <body>
-<div class="buttonsContainer">
-    <button onclick="runCode()">Run JavaScript</button>
-    <div class="dropdown">
-    <button class="dropbtn">Select Level</button>
-    <div class="dropdown-content">
-        <a href="?level=1">Level 1</a>
-        <a href="?level=2">Level 2</a>
-        <a href="?level=3">Level 3</a>
+
+
+
+<div style="display: flex;align-items: flex-start;flex-direction: column;padding: 5px;">
+        
+    <div class="buttonsContainer">
+        <button onclick="runCode()">Run JavaScript</button>
+        <div class="dropdown">
+            <button class="dropbtn">Select Level</button>
+            <div class="dropdown-content">
+                <a href="?level=1">Level 1</a>
+                <a href="?level=2">Level 2</a>
+                <a href="?level=3">Level 3</a>
+            </div>
+        </div>
     </div>
-</div>
-</div>
+
+
     
-<div id="pageContainerDiv">
-    <div id="gameScreenDiv">
+    <div id="gameContainerDiv">
+        <div id="gameScreenDiv">
 
-		<script type="text/javascript" src="GameEngine/MainGame.js"></script>
+		    <script type="text/javascript" src="GameEngine/MainGame.js"></script>
 
-	</div>
-    <div id="blocklyDiv"></div>
+	    </div>
+        <div id="blocklyDiv"></div>
+    </div>
+
+    <div id="toolBoxInsertsHere">
+
+        <xml id="toolbox" style="display: none">
+            <category name="Loops">
+                <block type="if_else"></block>
+                <block type="do_for_x_seconds">
+                    <field name="seconds">0</field>
+                </block>
+
+                <block type="repeat_until"></block>
+            </category>
+
+            <category name="Logic">
+                <block type="and_or">
+                    <field name="andOr">&amp;&amp;</field>
+                </block>
+                <block type="checkTrafficLight">
+                    <field name="LightIdentifier">Top</field>
+                    <field name="LightValue">Red</field>
+                </block>
+                <block type="checktrafficlightcar">
+                    <field name="LightIdentifier">Top</field>
+                    <field name="LightIdentifier">Top</field>
+                </block>
+                <block type="gameisover"></block>
+
+            </category>
+            <category name="Alter">
+                <block type="settrafficlight">
+                    <field name="LightIdentifier">Top</field>
+                    <field name="LightValue">Red</field>
+                </block>
+            </category>
+        </xml>
+
+        <xml id="startBlocks" style="display: none">
+
+
+        </xml>
+
+    </div>
+
 </div>
 
-<div id="toolBoxInsertsHere">
-
-    <xml id="toolbox" style="display: none">
-        <category name="Loops">
-            <block type="if_else"></block>
-            <block type="do_for_x_seconds">
-                <field name="seconds">0</field>
-            </block>
-
-            <block type="repeat_until"></block>
-        </category>
-
-        <category name="Logic">
-            <block type="and_or">
-                <field name="andOr">&amp;&amp;</field>
-            </block>
-            <block type="checkTrafficLight">
-                <field name="LightIdentifier">Top</field>
-                <field name="LightValue">Red</field>
-            </block>
-            <block type="checktrafficlightcar">
-                <field name="LightIdentifier">Top</field>
-                <field name="LightIdentifier">Top</field>
-            </block>
-            <block type="gameisover"></block>
-
-        </category>
-        <category name="Alter">
-            <block type="settrafficlight">
-                <field name="LightIdentifier">Top</field>
-                <field name="LightValue">Red</field>
-            </block>
-        </category>
-    </xml>
-
-    <xml id="startBlocks" style="display: none">
-
-
-    </xml>
-
-</div>
 <script src="BlocklyGenStubs.js"></script>
 <script src="BlocklyBlockDefs.js"></script>
 <script src="workspace.js"></script>
