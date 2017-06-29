@@ -33,8 +33,6 @@ var trafficlights;
 var carsFromModel;
 
 function create() {
-    Game.setRandomSpawn(true);
-
     game.add.sprite(0, 0, 'spr_kruispunt');
 
     // Getting the cars from the model and creating sprites:
@@ -73,9 +71,9 @@ function update() {
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("FPS: " + game.time.fps, 32, 64);
-    game.debug.text("carsSprites: " + Car.getCars().length, 32, 96);
+    /*game.debug.text("carsSprites: " + Car.getCars().length, 32, 96); */
+    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 96);
     game.debug.text("carsInDomain: " + Game.getCars().length, 32, 128);
     game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
     game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 192);
-    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 224);
 }

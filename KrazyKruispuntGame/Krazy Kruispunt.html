@@ -10,7 +10,6 @@
 	<!-- Game engine: -->
 	<script src="//cdn.jsdelivr.net/phaser/2.6.2/phaser.min.js"></script>
     <script src="../src/main/javascript/KrazyKruispunt.js"></script>
-	<script src="GameEngine/objects/crossroad.js"></script>
     <script src="GameEngine/objects/car.js"></script>
 	<script src="GameEngine/objects/trafficlight.js"></script>
 	<script src="GameEngine/objects/utilities.js"></script>
@@ -23,6 +22,9 @@
                 break;
             case '2':
                 createLevelTwo();
+                break;
+            case '3':
+                chaosMode();
                 break;
             default:
                 createLevelOne();

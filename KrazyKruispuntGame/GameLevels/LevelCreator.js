@@ -3,7 +3,6 @@ Game.makeTrafficLight(1, 4);
 Game.makeTrafficLight(4, 1);
 Game.makeTrafficLight(4, 4);
 
-
 var trafficLightTop;
 var trafficLightRight;
 var trafficLightLeft;
@@ -12,7 +11,7 @@ var trafficLightBottom;
 function createLevelOne() {
 
     Game.makeCar(3, 5, "north", "left");
-
+    Game.setRandomSpawn(false);
    
     trafficLightTop = Game.getTrafficLights()[0];
     trafficLightRight = Game.getTrafficLights()[2];
@@ -28,6 +27,19 @@ function createLevelTwo() {
 
     Game.setTotalSpawns(100);
     Game.changeSpawnChance(1);
+
+    trafficLightTop = Game.getTrafficLights()[0];
+    trafficLightRight = Game.getTrafficLights()[2];
+    trafficLightLeft = Game.getTrafficLights()[1];
+    trafficLightBottom = Game.getTrafficLights()[3];
+}
+
+function chaosMode() {
+    Game.setRandomSpawn(true);
+    Game.setTotalSpawns(100);
+    Game.changeSpawnChance(1);
+
+    Game.makeCar(2, 0, "south", "left");
 
     trafficLightTop = Game.getTrafficLights()[0];
     trafficLightRight = Game.getTrafficLights()[2];

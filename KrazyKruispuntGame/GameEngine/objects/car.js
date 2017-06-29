@@ -135,17 +135,17 @@ Car = (function () {
 
         //todo: make explosion particle again and use the spritesheet to animate particle
         update: function (carObjects, index) {
-            if (index.length !== 0) {
+            if (index !== undefined && index.length !== 0) {
                 for (var i = 0; i < index.length; i++) {
-                    carSprites[index[i]].sprite.animations.play('p_explosion');
+//                    carSprites[index[i]].sprite.animations.play('p_explosion');
                     carSprites[index[i]].sprite.destroy();
                     carSprites[index[i]].emitter_smoke.destroy();
                     carSprites[index[i]].knipperlicht.destroy();
                     carSprites.splice(index[i], 1);
                 }
             }
-
-            if (carSprites.length < carObjects.length) {
+            //Create additional car sprites
+            if (carSprites.length !== carObjects.length) {
                 var difference = carObjects.length - carSprites.length;
                 for (var j = 0; j < difference; j++) {
                     this.create(toGridX(carObjects[carSprites.length + j].getX()) + 50,
@@ -153,7 +153,7 @@ Car = (function () {
                         carObjects[carSprites.length + j].getDirection());
                 }
             }
-
+            //Update car position
             for (var c = 0; c < carObjects.length; c++) {
                 carSprites[c].lerp_x = toGridX(carObjects[c].getX()) + 50;
                 carSprites[c].lerp_y = toGridY(carObjects[c].getY()) + 50;

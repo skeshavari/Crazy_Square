@@ -334,24 +334,25 @@ Game = (function () {
         },
         update: function () {
             var index = [];
-
-            for (var i = 0; i < cars.length; i++) {
+            var carsLength = cars.length;
+            for (var i = 0; i < carsLength; i++) {
                 if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
-                    cars.splice(i, 1);
                     index.push(i);
-                    continue;
+                    cars.splice(i, 1);
+                    carsLength = cars.length;
+                    i--;
                 } else {
                     cars[i].update();
-                }
 
-                if (detectCollision(cars[i].getX(), cars[i].getY())) {
-                    cars[i].setExplodeOnNextTurn();
-                    this.incrementCollisionCounter();
+                    if (detectCollision(cars[i].getX(), cars[i].getY())) {
+                        cars[i].setExplodeOnNextTurn();
+                        this.incrementCollisionCounter();
+                    }
                 }
             }
 
             spawnRandomCars();
-
+             
             return index;
         },
         setRandomSpawn: function (input) {
