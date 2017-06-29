@@ -61,7 +61,7 @@ Car = (function () {
             emitter_smoke.setScale(0.25, 0, 0.25, 0, 250);
             emitter_smoke.start(false, 1000, 50);
 
-            var knipperlicht = game.add.sprite(locX + 100, locY + 100, 'knipperendlicht');
+            var knipperlicht = game.add.sprite(knipper_x, knipper_y, 'knipperendlicht');
             knipperlicht.animations.add('knipper');
             knipperlicht.animations.play('knipper', 1, true);
             knipperlicht.animations.currentAnim.speed = 2;
@@ -116,16 +116,16 @@ Car = (function () {
                 for (var c = 0; c < carSprites.length; c++) {
                     switch (carSprites[c].route) {
                         case "forward":
-                            carSprites[c].knipper_x = carSprites[c].sprite.x - 25;
-                            carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
+                            carSprites[c].knipper_x = carSprites[c].sprite.x - 22;
+                            carSprites[c].knipper_y = carSprites[c].sprite.y - 36;
                             break;
                         case "left":
-                            carSprites[c].knipper_x = carSprites[c].sprite.x - 25;
-                            carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
+                            carSprites[c].knipper_x = carSprites[c].sprite.x - 22;
+                            carSprites[c].knipper_y = carSprites[c].sprite.y - 36;
                             break;
                         case "right":
-                            carSprites[c].knipper_x = carSprites[c].sprite.x + 25;
-                            carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
+                            carSprites[c].knipper_x = carSprites[c].sprite.x + 22;
+                            carSprites[c].knipper_y = carSprites[c].sprite.y - 36;
                             break;
                     }
 
