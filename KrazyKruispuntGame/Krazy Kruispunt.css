@@ -8,10 +8,19 @@ body {
     overflow: hidden;
 }
 
+#MainPageContainer {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    padding: 5px;
+}
+
 #gameContainerDiv {
     display: flex;
     max-width: 100%;
     min-width: 800px;
+
     /* position: fixed; */
     /* top: 50%; */
     /* left: 50%; */
