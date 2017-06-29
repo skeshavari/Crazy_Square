@@ -6,6 +6,7 @@ Game = (function () {
     var maximumSpawns = 25;
     var alreadySpawned = 0;
     var collisionCounter = 0;
+    var maximumCrashes = 10;
 
     var TrafficLight = function (_x, _y) {
         var state = {
@@ -387,6 +388,12 @@ Game = (function () {
         },
         incrementCollisionCounter: function () {
             collisionCounter++;
+        },
+        setMaximumCrashesAllowed: function (max_crashes) {
+            maximumCrashes = max_crashes;
+        },
+        getMaximumCrashesAllowed: function () {
+            return maximumCrashes;
         }
     };
 })();

@@ -12,15 +12,20 @@ var red = 0xFF0000,
     green = 0x00FF00;
 
 function preload() {
+    game.load.image('ambulance', 'GameEngine/assets/images/ambulance.png');
     game.load.image('audi_yellow', 'GameEngine/assets/images/audi_yellow.png');
     game.load.image('audi_blue', 'GameEngine/assets/images/audi_blue.png');
     game.load.image('audi_metallic', 'GameEngine/assets/images/audi_metallic.png');
     game.load.image('audi', 'GameEngine/assets/images/audi.png');
-    game.load.image('ambulance', 'GameEngine/assets/images/ambulance.png');
+    game.load.image('oldtimer', 'GameEngine/assets/images/oldtimer.png');
+    game.load.image('police', 'GameEngine/assets/images/police.png');
+    game.load.image('taxi', 'GameEngine/assets/images/taxi.png');
     game.load.image('spr_kruispunt', 'GameEngine/assets/images/kruispunt.png');
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
+    game.load.audio('explosion', 'GameEngine/assets/SoundEffects/explosion.mp3');
+
 
     game.load.spritesheet('knipperendlicht', 'GameEngine/assets/particles/knipperlicht.png', 10, 10, 2);
     game.load.spritesheet('p_explosion', 'GameEngine/assets/particles/explosion.png', 65, 65);
