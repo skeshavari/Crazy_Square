@@ -17,8 +17,9 @@ Car = (function () {
         },
 
         create: function (locX, locY, orientation, route) {
-            cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue'];
+            cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue', 'ambulance']
             var random_audi = cars[Math.floor(Math.random() * cars.length)];
+
             var sprite = game.add.sprite(locX, locY, random_audi);
             sprite.anchor.setTo(0.5, 0.5);
             switch (orientation) {
@@ -138,7 +139,7 @@ Car = (function () {
         },
         //todo: make explosion particle again and use the spritesheet to animate particle
         update: function (carObjects, index) {
-            if (index.length !== 0) {
+            if (index !== undefined && index.length !== 0) {
                 for (var i = 0; i < index.length; i++) {
                     playExplosion(carSprites[index[i]].sprite.x, carSprites[index[i]].sprite.y);
                     carSprites[index[i]].sprite.destroy();
@@ -147,8 +148,8 @@ Car = (function () {
                     carSprites.splice(index[i], 1);
                 }
             }
-
-            if (carSprites.length < carObjects.length) {
+            //Create additional car sprites
+            if (carSprites.length !== carObjects.length) {
                 var difference = carObjects.length - carSprites.length;
                 for (var j = 0; j < difference; j++) {
                     this.create(toGridX(carObjects[carSprites.length + j].getX()) + 50,
@@ -156,7 +157,7 @@ Car = (function () {
                         carObjects[carSprites.length + j].getDirection());
                 }
             }
-
+            //Update car position
             for (var c = 0; c < carObjects.length; c++) {
                 carSprites[c].lerp_x = toGridX(carObjects[c].getX()) + 50;
                 carSprites[c].lerp_y = toGridY(carObjects[c].getY()) + 50;

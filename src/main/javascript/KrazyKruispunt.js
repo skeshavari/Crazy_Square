@@ -289,7 +289,12 @@ Game = (function () {
                 alreadySpawned += 1;
                 break;
         };
+
+        if (maximumSpawns === alreadySpawned) {
+            randomSpawn = false;
+        }
     }
+
     function spawnLimitNOTReached() {
         return maximumSpawns > alreadySpawned;
     }
@@ -320,6 +325,9 @@ Game = (function () {
         clearTest: function () {
             cars = [];
         },
+        makeMainCar: function (x, y, facing, route) {
+            cars.push(Car(x, y, facing, route));
+        },
         makeCar: function (x, y, facing, route) {
             cars.push(Car(x, y, facing, route));
         },
@@ -334,24 +342,25 @@ Game = (function () {
         },
         update: function () {
             var index = [];
-
-            for (var i = 0; i < cars.length; i++) {
+            var carsLength = cars.length;
+            for (var i = 0; i < carsLength; i++) {
                 if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
-                    cars.splice(i, 1);
                     index.push(i);
-                    continue;
+                    cars.splice(i, 1);
+                    carsLength = cars.length;
+                    i--;
                 } else {
                     cars[i].update();
-                }
 
-                if (detectCollision(cars[i].getX(), cars[i].getY())) {
-                    cars[i].setExplodeOnNextTurn();
-                    this.incrementCollisionCounter();
+                    if (detectCollision(cars[i].getX(), cars[i].getY())) {
+                        cars[i].setExplodeOnNextTurn();
+                        this.incrementCollisionCounter();
+                    }
                 }
             }
 
             spawnRandomCars();
-
+             
             return index;
         },
         setRandomSpawn: function (input) {

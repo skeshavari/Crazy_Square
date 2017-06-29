@@ -16,6 +16,7 @@ function preload() {
     game.load.image('audi_blue', 'GameEngine/assets/images/audi_blue.png');
     game.load.image('audi_metallic', 'GameEngine/assets/images/audi_metallic.png');
     game.load.image('audi', 'GameEngine/assets/images/audi.png');
+    game.load.image('ambulance', 'GameEngine/assets/images/ambulance.png');
     game.load.image('spr_kruispunt', 'GameEngine/assets/images/kruispunt.png');
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
@@ -33,8 +34,6 @@ var trafficlights;
 var carsFromModel;
 
 function create() {
-    Game.setRandomSpawn(true);
-
     game.add.sprite(0, 0, 'spr_kruispunt');
 
     // Getting the cars from the model and creating sprites:
@@ -73,9 +72,9 @@ function update() {
 
     game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
     game.debug.text("FPS: " + game.time.fps, 32, 64);
-    game.debug.text("carsSprites: " + Car.getCars().length, 32, 96);
+    /*game.debug.text("carsSprites: " + Car.getCars().length, 32, 96); */
+    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 96);
     game.debug.text("carsInDomain: " + Game.getCars().length, 32, 128);
     game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
     game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 192);
-    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 224);
 }
