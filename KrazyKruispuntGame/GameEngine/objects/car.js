@@ -47,7 +47,7 @@ Car = (function () {
                 break;
             }
 
-            emitter_smoke = game.add.emitter(game.world.centerX, game.world.centerY, 400);
+            var emitter_smoke = game.add.emitter(game.world.centerX, game.world.centerY, 400);
             emitter_smoke.makeParticles(['p_smoke']);
             emitter_smoke.setAlpha(0.2, 1, 1000);
             emitter_smoke.setScale(0.25, 0, 0.25, 0, 250);
@@ -57,6 +57,9 @@ Car = (function () {
             knipperlicht.animations.add('knipper');
             knipperlicht.animations.play('knipper', 1, true);
             knipperlicht.animations.currentAnim.speed = 2;
+
+            //todo: May need another way of adding an explosion
+            sprite.animations.add('p_explosion',25,false);
 
             carSprites.push({
                 sprite: sprite,
@@ -74,8 +77,10 @@ Car = (function () {
 
         render: function () {
             for (var i = 0; i < carSprites.length; i++) {
-                carSprites[i].sprite.x = Phaser.Math.linearInterpolation([carSprites[i].sprite.x, carSprites[i].lerp_x], 0.05);
-                carSprites[i].sprite.y = Phaser.Math.linearInterpolation([carSprites[i].sprite.y, carSprites[i].lerp_y], 0.05);
+                carSprites[i].sprite.x =
+                    Phaser.Math.linearInterpolation([carSprites[i].sprite.x, carSprites[i].lerp_x], 0.05);
+                carSprites[i].sprite.y =
+                    Phaser.Math.linearInterpolation([carSprites[i].sprite.y, carSprites[i].lerp_y], 0.05);
 
                 switch (carSprites[i].orientation) {
                     case "north":
@@ -128,11 +133,14 @@ Car = (function () {
             }
         },
 
+        //todo: make explosion particle again and use the spritesheet to animate particle
         update: function (carObjects, index) {
             if (index.length !== 0) {
                 for (var i = 0; i < index.length; i++) {
+                    carSprites[index[i]].sprite.animations.play('p_explosion');
                     carSprites[index[i]].sprite.destroy();
                     carSprites[index[i]].emitter_smoke.destroy();
+                    carSprites[index[i]].knipperlicht.destroy();
                     carSprites.splice(index[i], 1);
                 }
             }
