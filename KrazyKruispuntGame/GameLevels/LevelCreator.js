@@ -64,4 +64,11 @@ function createLevelChallengeMode() {
     trafficLightRight = Game.getTrafficLights()[2];
     trafficLightLeft = Game.getTrafficLights()[1];
     trafficLightBottom = Game.getTrafficLights()[3];
+
 }
+
+function printTotalCrashesAllowed() {
+    
+}
+
+printTotalCrashesAllowed();

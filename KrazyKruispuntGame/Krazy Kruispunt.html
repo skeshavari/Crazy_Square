@@ -55,7 +55,6 @@
         </div>
     </div>
 
-
     
     <div id="gameContainerDiv">
         <div id="gameScreenDiv">
@@ -108,6 +107,9 @@
 
     </div>
 
+    <div>
+        <p style="font-size:1em;">Lead all the cars safely with the least amount of crashes. You may have a total of <strong><span id="totalCrashAllowed"></span></strong> crashes though..</p>
+    </div>
 </div>
 
 <script src="BlocklyGenStubs.js"></script>
@@ -144,6 +146,9 @@
             alert(e);
         }
     }
+
+
+    document.getElementById("totalCrashAllowed").innerHTML = Game.getMaximumCrashesAllowed();
 </script>
 </body>
 </html>
