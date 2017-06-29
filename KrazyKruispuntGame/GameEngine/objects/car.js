@@ -2,6 +2,14 @@ Car = (function () {
     // private code komt hier...
     var carSprites = [];
 
+    function playExplosion(spriteX, spriteY) {
+        var location = game.add.sprite(spriteX, spriteY, 'p_explosion');
+        location.scale.set(2, 2);
+        location.anchor.setTo(0.5, 0.5);
+        location.animations.add('p_explosion');
+        location.animations.play('p_explosion', 30, false, true);
+    }
+
     return {
         // public code komt hier...
         reset: function () {
@@ -9,7 +17,7 @@ Car = (function () {
         },
 
         create: function (locX, locY, orientation, route) {
-            cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue']
+            cars = ['audi', 'audi_metallic', 'audi_yellow', 'audi_blue'];
             var random_audi = cars[Math.floor(Math.random() * cars.length)];
             var sprite = game.add.sprite(locX, locY, random_audi);
             sprite.anchor.setTo(0.5, 0.5);
@@ -44,7 +52,7 @@ Car = (function () {
                 case "right":
                     knipper_x = sprite.x + 25;
                     knipper_y = sprite.x - 50;
-                break;
+                    break;
             }
 
             var emitter_smoke = game.add.emitter(game.world.centerX, game.world.centerY, 400);
@@ -58,9 +66,6 @@ Car = (function () {
             knipperlicht.animations.play('knipper', 1, true);
             knipperlicht.animations.currentAnim.speed = 2;
 
-            //todo: May need another way of adding an explosion
-            sprite.animations.add('p_explosion',25,false);
-
             carSprites.push({
                 sprite: sprite,
                 lerp_x: locX,
@@ -72,7 +77,7 @@ Car = (function () {
                 knipper_x: knipper_x,
                 knipper_y: knipper_y,
                 route: route
-            })
+            });
         },
 
         render: function () {
@@ -85,23 +90,23 @@ Car = (function () {
                 switch (carSprites[i].orientation) {
                     case "north":
                         carSprites[i].lerp_angle = 0;
-                        particle_x = carSprites[i].sprite.x - 10
-                        particle_y = carSprites[i].sprite.y + 45
+                        particle_x = carSprites[i].sprite.x - 10;
+                        particle_y = carSprites[i].sprite.y + 45;
                         break;
                     case "east":
                         carSprites[i].lerp_angle = 90;
-                        particle_x = carSprites[i].sprite.x - 45
-                        particle_y = carSprites[i].sprite.y - 10
+                        particle_x = carSprites[i].sprite.x - 45;
+                        particle_y = carSprites[i].sprite.y - 10;
                         break;
                     case "south":
                         carSprites[i].lerp_angle = 180;
-                        particle_x = carSprites[i].sprite.x - 10
-                        particle_y = carSprites[i].sprite.y - 45
+                        particle_x = carSprites[i].sprite.x - 10;
+                        particle_y = carSprites[i].sprite.y - 45;
                         break;
                     case "west":
                         carSprites[i].lerp_angle = -90;
-                        particle_x = carSprites[i].sprite.x + 45
-                        particle_y = carSprites[i].sprite.y - 10
+                        particle_x = carSprites[i].sprite.x + 45;
+                        particle_y = carSprites[i].sprite.y - 10;
                         break;
                 }
 
@@ -109,7 +114,6 @@ Car = (function () {
                 carSprites[i].emitter_smoke.emitY = particle_y;
 
                 for (var c = 0; c < carSprites.length; c++) {
-
                     switch (carSprites[c].route) {
                         case "forward":
                             carSprites[c].knipper_x = carSprites[c].sprite.x - 25;
@@ -122,7 +126,7 @@ Car = (function () {
                         case "right":
                             carSprites[c].knipper_x = carSprites[c].sprite.x + 25;
                             carSprites[c].knipper_y = carSprites[c].sprite.y - 50;
-                        break;
+                            break;
                     }
 
                     carSprites[c].knipperlicht.x = carSprites[c].knipper_x;
@@ -132,12 +136,11 @@ Car = (function () {
                 carSprites[i].sprite.angle = carSprites[i].lerp_angle;
             }
         },
-
         //todo: make explosion particle again and use the spritesheet to animate particle
         update: function (carObjects, index) {
             if (index.length !== 0) {
                 for (var i = 0; i < index.length; i++) {
-                    carSprites[index[i]].sprite.animations.play('p_explosion');
+                    playExplosion(carSprites[index[i]].sprite.x, carSprites[index[i]].sprite.y);
                     carSprites[index[i]].sprite.destroy();
                     carSprites[index[i]].emitter_smoke.destroy();
                     carSprites[index[i]].knipperlicht.destroy();
