@@ -100,16 +100,18 @@ function update() {
 
     Car.render();
 
-    game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
-    game.debug.text("FPS: " + game.time.fps, 32, 64);
+    game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 30);
+    game.debug.text("FPS: " + game.time.fps, 32, 60);
     /*game.debug.text("carsSprites: " + Car.getCars().length, 32, 96); */
-    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 96);
-    game.debug.text("carsInDomain: " + Game.getCars().length, 32, 128);
-    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
-    game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 192);
+    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 90);
+    game.debug.text("carsInDomain: " + Game.getCars().length, 32, 120);
+    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 150);
+    game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 180);
     if (Car.getCars()[1] !== undefined) {
-        game.debug.text("ROUTE: " + Car.getCars()[1].route, 32, 250);
+        game.debug.text("ROUTE: " + Car.getCars()[1].route, 32, 210);
     }
-    game.debug.text("Crashes allowed: " + Game.getTotalCrashesAllowed(), 412, 32);
-    game.debug.text("Cars Rescued:    " + Game.getTotalCarsSafelyPassed(), 412, 64);
+    game.debug.text("Crashes allowed:", 412, 30);
+    game.debug.text(Game.getTotalCarsSafelyPassed(), 452, 50);
+    game.debug.text("Cars Rescued:", 412, 80);
+    game.debug.text(Game.getTotalCarsSafelyPassed(), 452, 100);
 }

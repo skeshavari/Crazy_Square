@@ -47,6 +47,12 @@ body {
     padding: 10px;
 }
 
+
+.buttonsContainer button:hover {
+    background-color: #d0d0d0;
+
+}
+
 /* Dropdown Button */
 .dropbtn {
     background-color: #4CAF50;
