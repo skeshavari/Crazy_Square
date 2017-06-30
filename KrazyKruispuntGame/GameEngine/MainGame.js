@@ -24,7 +24,7 @@ function preload() {
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
-    
+
     game.load.script('BlurX', 'https://cdn.rawgit.com/photonstorm/phaser/master/v2/filters/BlurX.js');
     game.load.script('BlurY', 'https://cdn.rawgit.com/photonstorm/phaser/master/v2/filters/BlurY.js');
 
@@ -43,7 +43,18 @@ var blurX;
 var blurY;
 
 
+var upKey;
+var downKey;
+var leftKey;
+var rightKey;
+
+
 function create() {
+    upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    
     var fragmentSrc = [
 
         "precision mediump float;",
@@ -53,15 +64,15 @@ function create() {
 
         "void main(void) {",
 
-            "vec4 texColor = texture2D(uSampler, vTextureCoord);",
+        "vec4 texColor = texture2D(uSampler, vTextureCoord);",
 
-            "if (vTextureCoord.x < 1.0) {",
-                "if (texColor.b > 0.0) {",
-                    "texColor = vec4(0.0, 0.0, 0.0, 0.75);",
-                "}",
-            "}",
-     
-            "gl_FragColor = texColor;",
+        "if (vTextureCoord.x < 1.0) {",
+        "if (texColor.b > 0.0) {",
+        "texColor = vec4(0.0, 0.0, 0.0, 0.75);",
+        "}",
+        "}",
+
+        "gl_FragColor = texColor;",
 
         "}"
     ];
@@ -93,6 +104,7 @@ function create() {
     timer = game.time.create(false);
     timer.loop(updaterateMillisecondPerSecond, updateCars, this);
     timer.start();
+
 }
 
 function updateCars() {
@@ -101,7 +113,27 @@ function updateCars() {
     Car.update(carsFromModel, index);
 }
 
+function checkControls(){
+    if (upKey.downDuration(1)) {
+        trafficLightTop.toggle();
+    } 
+    
+    if (downKey.downDuration(1)) {
+        trafficLightBottom.toggle();
+    } 
+    
+    if (leftKey.downDuration(1)) {
+        trafficLightLeft.toggle();
+    } 
+    
+    if (rightKey.downDuration(1)) {
+        trafficLightRight.toggle();
+    }
+}
+
 function update() {
+    checkControls();
+
     colorChanged = TrafficLight.colorChanged(trafficlights);
 
     if (colorChanged) {

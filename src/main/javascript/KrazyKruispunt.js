@@ -28,6 +28,13 @@ Game = (function () {
             },
             getY: function () {
                 return state.locY;
+            },
+            toggle: function(){
+                if(state.color==="RED"){
+                    state.color = "GREEN";
+                } else {
+                    state.color = "RED";
+                }
             }
         }
     };
