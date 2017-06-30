@@ -102,9 +102,7 @@ function create() {
     timer = game.time.create(false);
     timer.loop(500, updateCars, this);
     timer.start();
-    controlTimer = game.time.create(false);
-    controlTimer.loop(100, checkControls,this);
-    controlTimer.start();
+
 }
 
 function updateCars() {
@@ -114,24 +112,26 @@ function updateCars() {
 }
 
 function checkControls(){
-    if (upKey.isDown) {
+    if (upKey.downDuration(1)) {
         trafficLightTop.toggle();
     } 
     
-    if (downKey.isDown) {
+    if (downKey.downDuration(1)) {
         trafficLightBottom.toggle();
     } 
     
-    if (leftKey.isDown) {
+    if (leftKey.downDuration(1)) {
         trafficLightLeft.toggle();
     } 
     
-    if (rightKey.isDown) {
+    if (rightKey.downDuration(1)) {
         trafficLightRight.toggle();
     }
 }
 
 function update() {
+    checkControls();
+
     colorChanged = TrafficLight.colorChanged(trafficlights);
 
     if (colorChanged) {
