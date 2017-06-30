@@ -25,12 +25,17 @@ TrafficLight = (function() {
         },
 
         plaatsTrafficLight: function(color, locX, locY) {
+            var shadow = game.add.sprite(locX + 55, locY + 55, 'light_red');
+            shadow.anchor.setTo(0.5, 0.5);
+            shadow.filters = [ filter, blurX, blurY ];
+
             var sprite = game.add.sprite(locX, locY, 'light_red');
 
             graphicalLights.push({ sprite: sprite, 
                 color: color, 
                 x: locX, 
-                y: locY 
+                y: locY,
+                shadow: shadow
             });
         },
 
