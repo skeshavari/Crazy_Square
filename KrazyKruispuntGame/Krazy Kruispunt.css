@@ -38,6 +38,12 @@ body {
     height: 600px;
 }
 
+#gameDescription {
+    padding: 15px;
+    text-align:center;
+    font-size: 1.4em;
+}
+
 .buttonsContainer {
     display: flex;
     justify-content: space-between;
@@ -45,6 +51,11 @@ body {
     max-width: 100%;
     min-width: 700px;
     padding: 10px;
+}
+
+
+.buttonsContainer button:hover {
+    background-color: #d0d0d0;
 }
 
 /* Dropdown Button */

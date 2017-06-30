@@ -21,7 +21,7 @@ Blockly.Blocks['if_else'] = {
     }
 };
 
-Blockly.Blocks['do_for_x_seconds'] = {
+Blockly.Blocks['do_after_x_seconds'] = {
     init: function() {
         this.appendStatementInput("repeat")
             .setCheck(null)
