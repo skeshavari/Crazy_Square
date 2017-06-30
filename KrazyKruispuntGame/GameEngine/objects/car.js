@@ -183,6 +183,7 @@ Car = (function () {
                 for (var i = 0; i < index.length; i++) {
                     playExplosion(carSprites[index[i]].sprite.x, carSprites[index[i]].sprite.y);
                     carSprites[index[i]].sprite.destroy();
+                    carSprites[index[i]].shadow.destroy();
                     carSprites[index[i]].emitter_smoke.destroy();
                     if (carSprites[index[i]].knipperlicht !== undefined) {
                         carSprites[index[i]].knipperlicht.destroy();
