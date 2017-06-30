@@ -354,9 +354,6 @@ Game = (function () {
                 }
 
                 if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
-
-                    
-
                     index.push(i);
                     cars.splice(i, 1);
                     carsLength = cars.length;
