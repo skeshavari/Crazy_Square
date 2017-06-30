@@ -329,41 +329,16 @@ Game = (function () {
         return false;
     }
 
-    function carWasRescuedAddToScore(carIndex) {
+    function carWasRescuedAddToScore() {
         totalCarsSafelyPassed++;
-
-        /*
-        switch (car.state state.direction) {
-            case "north":
-                if (state.locX === 3 && state.locY === 2) {
-                    state.direction = "west";
-                    state.hasTurned = true;
-                }
-                break;
-            case "south":
-                if (state.locX === 2 && state.locY === 3) {
-                    state.direction = "east";
-                    state.hasTurned = true;
-                }
-                break;
-            case "east":
-                if (state.locX === 3 && state.locY === 3) {
-                    state.direction = "north";
-                    state.hasTurned = true;
-                }
-                break;
-            case "west":
-                if (state.locX === 2 && state.locY === 2) {
-                    state.direction = "south";
-                    state.hasTurned = true;
-                }
-                break;
-        }
-
-
-
-        switch */
         totalScore += 1500
+    }
+
+    function carExplodedDecreaseStore(){
+        totalScore -= 5000;
+        if (totalScore < 0) {
+            totalScore = 0;
+        }
     }
 
     return {
@@ -388,10 +363,13 @@ Game = (function () {
             for (var i = 0; i < carsLength; i++) {
 
                 if (cars[i].isOutOfBounds() && cars[i].getHasPassedSquare()) {
-                    carWasRescuedAddToScore(i)
+                    carWasRescuedAddToScore();
 
                 }
 
+                if (cars[i].getExplodeOnNextTurn()) {
+                    carExplodedDecreaseStore();
+                }
                 if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
                     index.push(i);
                     cars.splice(i, 1);
@@ -430,7 +408,7 @@ Game = (function () {
             maximumSpawns = number;
         },
         getSpawnRatio: function () {
-            return alreadySpawned + "/" + maximumSpawns;
+            return alreadySpawned + " / " + maximumSpawns;
         },
         getCollisionCounter: function () {
             return collisionCounter;
@@ -449,6 +427,9 @@ Game = (function () {
         },
         getTotalCarsSafelyPassed() {
             return totalCarsSafelyPassed;
+        },
+        getTotalScore() {
+            return totalScore;
         }
     };
 })();
