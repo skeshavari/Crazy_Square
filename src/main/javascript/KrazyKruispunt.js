@@ -329,6 +329,18 @@ Game = (function () {
         return false;
     }
 
+    function carWasRescuedAddToScore() {
+        totalCarsSafelyPassed++;
+        totalScore += 1500
+    }
+
+    function carExplodedDecreaseStore(){
+        totalScore -= 5000;
+        if (totalScore < 0) {
+            totalScore = 0;
+        }
+    }
+
     return {
         clearTest: function () {
             cars = [];
@@ -351,9 +363,13 @@ Game = (function () {
             for (var i = 0; i < carsLength; i++) {
 
                 if (cars[i].isOutOfBounds() && cars[i].getHasPassedSquare()) {
-                    totalCarsSafelyPassed++;
+                    carWasRescuedAddToScore();
+
                 }
 
+                if (cars[i].getExplodeOnNextTurn()) {
+                    carExplodedDecreaseStore();
+                }
                 if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
                     index.push(i);
                     cars.splice(i, 1);
@@ -392,7 +408,7 @@ Game = (function () {
             maximumSpawns = number;
         },
         getSpawnRatio: function () {
-            return alreadySpawned + "/" + maximumSpawns;
+            return alreadySpawned + " / " + maximumSpawns;
         },
         getCollisionCounter: function () {
             return collisionCounter;
@@ -411,6 +427,9 @@ Game = (function () {
         },
         getTotalCarsSafelyPassed() {
             return totalCarsSafelyPassed;
+        },
+        getTotalScore() {
+            return totalScore;
         }
     };
 })();

@@ -105,7 +105,7 @@
         </xml>
             <xml id="startBlocks" style="display: none">
 
-                <block type="repeat_until">
+          <!--      <block type="repeat_until">
                     <statement name="codeToRepeat">
                         <block type="settrafficlight" inline="true">
                             <field name="LightIdentifier">Top</field>
@@ -121,6 +121,11 @@
                     <statement name="stopCondition">
                         <block type="gameisover"></block>
                     </statement>
+                </block> -->
+
+                <block type="settrafficlight" inline="true">
+                    <field name="LightIdentifier">Top</field>
+                    <field name="LightValue">Green</field>
                 </block>
 
             </xml>

@@ -18,14 +18,14 @@ Car = (function () {
 
         create: function (locX, locY, orientation, route) {
             cars = ['ambulance', 'audi', 'audi_metallic', 'audi_yellow', 'audi_blue', 'oldtimer', 'police', 'taxi']
-            var random_audi = cars[Math.floor(Math.random() * cars.length)];
+            var car_sprite = cars[Math.floor(Math.random() * cars.length)];
 
 
             // SHADOW TEST:
-            var shadow = game.add.sprite(locX + 10, locY + 10, random_audi);
+            var shadow = game.add.sprite(locX + 10, locY + 10, car_sprite);
             shadow.anchor.setTo(0.5, 0.5);
             shadow.filters = [ filter, blurX, blurY ];
-            var sprite = game.add.sprite(locX, locY, random_audi);
+            var sprite = game.add.sprite(locX, locY, car_sprite);
             sprite.anchor.setTo(0.5, 0.5);
             switch (orientation) {
                 case "north":
