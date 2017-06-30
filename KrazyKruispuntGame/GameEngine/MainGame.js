@@ -42,10 +42,12 @@ var filter;
 var blurX;
 var blurY;
 
+
 var upKey;
 var downKey;
 var leftKey;
 var rightKey;
+
 
 function create() {
     upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -100,7 +102,7 @@ function create() {
 
     // The time interval that's asks the domain to update it's state.
     timer = game.time.create(false);
-    timer.loop(500, updateCars, this);
+    timer.loop(updaterateMillisecondPerSecond, updateCars, this);
     timer.start();
 
 }
@@ -154,7 +156,7 @@ function update() {
     /* Game Stats */
     game.debug.text("Crashes / Total:", 412, 25);
     game.debug.text("  " + Game.getCollisionCounter() + " / " + Game.getMaximumCrashesAllowed(), 452, 45);
-    game.debug.text("Cars Rescued:", 412, 70);
+    game.debug.text("Total Money:", 412, 70);
     game.debug.text("$ " + Game.getTotalScore(), 452, 90);
 
     game.debug.text("Cars / Total: ", 32, 25);

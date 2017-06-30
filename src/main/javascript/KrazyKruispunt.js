@@ -342,7 +342,7 @@ Game = (function () {
     }
 
     function carExplodedDecreaseStore(){
-        totalScore -= 5000;
+        totalScore -= 15000;
         if (totalScore < 0) {
             totalScore = 0;
         }

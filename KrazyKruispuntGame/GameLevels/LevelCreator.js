@@ -8,6 +8,8 @@ var trafficLightRight = Game.getTrafficLights()[1]
 var trafficLightLeft = Game.getTrafficLights()[2]
 var trafficLightBottom = Game.getTrafficLights()[3]
 
+var updaterateMillisecondPerSecond = 600;
+
 Game.setRandomSpawn(true)
 
 function createLevelEasy() {
@@ -31,6 +33,8 @@ function createLevelHard() {
     Game.setTotalSpawns(100);
     Game.changeSpawnChance(1);
 
+    updaterateMillisecondPerSecond = 500;
+
     Game.makeCar(3, 5, "north", "left");
     Game.makeCar(2, 0, "south", "forward");
     Game.makeCar(2, -1, "west", "right");
@@ -40,7 +44,8 @@ function createLevelChallengeMode() {
     Game.setMaximumCrashesAllowed(3)
     Game.setTotalSpawns(9999999)
     Game.changeSpawnChance(1)
-    
+
+    updaterateMillisecondPerSecond = 400;
 
     Game.makeCar(3, 5, "north", "left");
     Game.makeCar(2, 0, "south", "forward");
@@ -49,10 +54,11 @@ function createLevelChallengeMode() {
 }
 
 function createLevelInsaneChallengeMode() {
-    Game.setMaximumCrashesAllowed(0);
+    Game.setMaximumCrashesAllowed(1);
     Game.setTotalSpawns(9999999);
     Game.changeSpawnChance(1);
 
+    updaterateMillisecondPerSecond = 300;
 
     Game.makeCar(3, 5, "north", "left");
     Game.makeCar(2, 0, "south", "forward");
