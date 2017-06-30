@@ -8,6 +8,7 @@ Game = (function () {
     var collisionCounter = 0;
     var maximumCrashes = 10;
     var totalCarsSafelyPassed = 0;
+    var totalScore = 0;
 
     var TrafficLight = function (_x, _y) {
         var state = {

@@ -111,7 +111,7 @@ function update() {
         game.debug.text("ROUTE: " + Car.getCars()[1].route, 32, 210);
     }
     game.debug.text("Crashes allowed:", 412, 30);
-    game.debug.text(Game.getTotalCrashesAllowed(), 452, 50);
+    game.debug.text(Game.getCollisionCounter() + " / " + Game.getMaximumCrashesAllowed(), 452, 50);
     game.debug.text("Cars Rescued:", 412, 80);
     game.debug.text("$ " + (Game.getTotalCarsSafelyPassed() * 1500), 452, 100);
 }
