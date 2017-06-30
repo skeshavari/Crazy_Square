@@ -74,7 +74,7 @@
         <xml id="toolbox" style="display: none">
             <category name="Loops">
                 <block type="if_else"></block>
-                <block type="do_for_x_seconds">
+                <block type="do_after_x_seconds">
                     <field name="seconds">0</field>
                 </block>
 
@@ -103,23 +103,32 @@
                 </block>
             </category>
         </xml>
+            <xml id="startBlocks" style="display: none">
 
-        <xml id="startBlocks" style="display: none">
-            <block type="settrafficlight">
-                <field name="LightIdentifier">Top</field>
-                <field name="LightValue">Red</field>
-            </block>
-            <block type="settrafficlight">
-                <field name="LightIdentifier">Top</field>
-                <field name="LightValue">Red</field>
-            </block>
+                <block type="repeat_until">
+                    <statement name="codeToRepeat">
+                        <block type="settrafficlight" inline="true">
+                            <field name="LightIdentifier">Top</field>
+                            <field name="LightValue">Red</field>
+                            <next>
+                                <block type="settrafficlight" inline="true">
+                                    <field name="LightIdentifier">Bottom</field>
+                                    <field name="LightValue">Green</field>
+                                </block>
+                            </next>
+                        </block>
+                    </statement>
+                    <statement name="stopCondition">
+                        <block type="gameisover"></block>
+                    </statement>
+                </block>
 
-        </xml>
-
+            </xml>
     </div>
 
-    <div>
-        <p style="font-size:1em;">Lead all the cars safely with the least amount of crashes. You may have a total of <strong><span id="totalCrashAllowed"></span></strong> crashes though..</p>
+    <div id="gameDescription">
+        <p style="font-size:1em;">Lead all the cars safely with the least amount of crashes to score the most points</p>
+        <p>You may have a total of <strong><span id="totalCrashAllowed"></span></strong> crashes</p>
     </div>
 </div>
 
@@ -159,7 +168,9 @@
     }
 
 
-    document.getElementById("totalCrashAllowed").innerHTML = Game.getMaximumCrashesAllowed();
+    document.getElementById("totalCrashAllowed").innerHTML = Game.getTotalCrashesAllowed();
+
+    
 </script>
 </body>
 </html>
