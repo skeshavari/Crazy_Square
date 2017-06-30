@@ -24,11 +24,9 @@ function preload() {
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
-<<<<<<< HEAD
-=======
     
->>>>>>> 332ef6d6ca3b3c21fcf4bb812ee51ded36997433
-
+    game.load.script('BlurX', 'https://cdn.rawgit.com/photonstorm/phaser/master/v2/filters/BlurX.js');
+    game.load.script('BlurY', 'https://cdn.rawgit.com/photonstorm/phaser/master/v2/filters/BlurY.js');
 
     game.load.spritesheet('knipperendlicht', 'GameEngine/assets/particles/knipperlicht.png', 10, 10, 2);
     game.load.spritesheet('p_explosion', 'GameEngine/assets/particles/explosion.png', 65, 65);
@@ -72,8 +70,8 @@ function create() {
     blurX = game.add.filter('BlurX');
     blurY = game.add.filter('BlurY');
 
-    blurX.blur = 100;
-    blurY.blur = 1;
+    blurX.blur = 10;
+    blurY.blur = 10;
 
     game.add.sprite(0, 0, 'spr_kruispunt');
 
