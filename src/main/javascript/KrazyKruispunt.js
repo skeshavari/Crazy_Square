@@ -7,6 +7,8 @@ Game = (function () {
     var alreadySpawned = 0;
     var collisionCounter = 0;
     var maximumCrashes = 10;
+    var totalCarsSafelyPassed = 0;
+    var totalScore = 0;
 
     var TrafficLight = function (_x, _y) {
         var state = {
@@ -37,7 +39,8 @@ Game = (function () {
             direction: facing,
             route: newRoute,
             hasTurned: false,
-            explodeOnNextTurn: false
+            explodeOnNextTurn: false,
+            carPassedSquare: false
         }
 
         function redLight() {
@@ -175,6 +178,7 @@ Game = (function () {
 
         function atValidLocation() {
             if (checkIfXLocIsCenter() && checkIfYLocIsCenter()) {
+                state.carPassedSquare = true;
                 return true;
             }
             return false;
@@ -242,6 +246,9 @@ Game = (function () {
             },
             getExplodeOnNextTurn: function () {
                 return state.explodeOnNextTurn;
+            }, 
+            getHasPassedSquare: function () {
+                return state.carPassedSquare;
             }
         }
     }
@@ -326,9 +333,6 @@ Game = (function () {
         clearTest: function () {
             cars = [];
         },
-        makeMainCar: function (x, y, facing, route) {
-            cars.push(Car(x, y, facing, route));
-        },
         makeCar: function (x, y, facing, route) {
             cars.push(Car(x, y, facing, route));
         },
@@ -345,11 +349,18 @@ Game = (function () {
             var index = [];
             var carsLength = cars.length;
             for (var i = 0; i < carsLength; i++) {
+
+                if (cars[i].isOutOfBounds() && cars[i].getHasPassedSquare()) {
+                    totalCarsSafelyPassed++;
+                }
+
                 if (cars[i].isOutOfBounds() || cars[i].getExplodeOnNextTurn()) {
                     index.push(i);
                     cars.splice(i, 1);
                     carsLength = cars.length;
                     i--;
+
+                    
                 } else {
                     cars[i].update();
 
@@ -394,6 +405,12 @@ Game = (function () {
         },
         getMaximumCrashesAllowed: function () {
             return maximumCrashes;
+        },
+        getTotalCrashesAllowed() {
+            return maximumCrashes - collisionCounter;
+        },
+        getTotalCarsSafelyPassed() {
+            return totalCarsSafelyPassed;
         }
     };
 })();

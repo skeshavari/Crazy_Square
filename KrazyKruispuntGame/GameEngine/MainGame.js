@@ -24,6 +24,10 @@ function preload() {
     game.load.image('light_red', 'GameEngine/assets/images/light_red.png');
     game.load.image('light_green', 'GameEngine/assets/images/light_green.png');
     game.load.image('p_smoke', 'GameEngine/assets/particles/smoke.png');
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 332ef6d6ca3b3c21fcf4bb812ee51ded36997433
 
 
     game.load.spritesheet('knipperendlicht', 'GameEngine/assets/particles/knipperlicht.png', 10, 10, 2);
@@ -107,15 +111,18 @@ function update() {
 
     Car.render();
 
-    game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 32);
-    game.debug.text("FPS: " + game.time.fps, 32, 64);
+    game.debug.text("Next update: " + timer.duration.toFixed(0), 32, 30);
+    game.debug.text("FPS: " + game.time.fps, 32, 60);
     /*game.debug.text("carsSprites: " + Car.getCars().length, 32, 96); */
-    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 96);
-    game.debug.text("carsInDomain: " + Game.getCars().length, 32, 128);
-    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 160);
-    game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 192);
+    game.debug.text("collisionsCount: " + Game.getCollisionCounter(), 32, 90);
+    game.debug.text("carsInDomain: " + Game.getCars().length, 32, 120);
+    game.debug.text("randomSpawn: " + Game.getRandomSpawn(), 32, 150);
+    game.debug.text("randomRatio: " + Game.getSpawnRatio(), 32, 180);
     if (Car.getCars()[1] !== undefined) {
-        game.debug.text("ROUTE: " + Car.getCars()[1].route, 32, 250);
+        game.debug.text("ROUTE: " + Car.getCars()[1].route, 32, 210);
     }
-    
+    game.debug.text("Crashes allowed:", 412, 30);
+    game.debug.text(Game.getCollisionCounter() + " / " + Game.getMaximumCrashesAllowed(), 452, 50);
+    game.debug.text("Cars Rescued:", 412, 80);
+    game.debug.text("$ " + (Game.getTotalCarsSafelyPassed() * 1500), 452, 100);
 }
