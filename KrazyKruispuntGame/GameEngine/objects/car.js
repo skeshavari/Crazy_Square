@@ -24,7 +24,7 @@ Car = (function () {
             // SHADOW TEST:
             var shadow = game.add.sprite(locX + 10, locY + 10, random_audi);
             shadow.anchor.setTo(0.5, 0.5);
-            shadow.filters = [ filter ];
+            shadow.filters = [ filter, blurX, blurY ];
             var sprite = game.add.sprite(locX, locY, random_audi);
             sprite.anchor.setTo(0.5, 0.5);
             switch (orientation) {
